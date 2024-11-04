@@ -99,6 +99,13 @@ create table user(
  status boolean
 );
 
+create table user_images(
+ id_user_images int primary key auto_increment,
+ path text,
+ id_user int
+);
+
+
 create table user_address(
  id_user_address int primary key auto_increment,
  status boolean,
@@ -162,13 +169,37 @@ create table views(
  id_monitor int
 );
 
+create table voucher_status(
+ id_voucher_status int primary key auto_increment,
+ status varchar(255)
+);
+
 create table voucher(
  id_voucher int primary key auto_increment,
  number int,
  unit varchar(255),
  limit_number int,
  limit_date_time datetime,
+ id_voucher_status int,
  id_monitor int
+);
+
+create table user_voucher(
+ id_user_voucher int primary key auto_increment,
+ id_voucher int,
+ id_user int
+);
+
+create table monitor_voucher(
+ id_monitor_voucher int primary key auto_increment,
+ id_monitor int,
+ id_voucher int
+);
+
+create table like_comment(
+ id_like_comment int primary key auto_increment,
+ id_comment int,
+ id_user int
 );
 
 ALTER TABLE accessory
@@ -210,6 +241,10 @@ FOREIGN KEY (scan_frequency) REFERENCES scan_frequency(id_scan_frequency);
 ALTER TABLE monitor
 ADD CONSTRAINT FK7_monitor
 FOREIGN KEY (brand) REFERENCES brand(id_brand);
+
+ALTER TABLE user_images
+ADD CONSTRAINT FK_user_images
+FOREIGN KEY (id_user) REFERENCES user(id_user);
 
 ALTER TABLE user_address
 ADD CONSTRAINT FK1_user_address
@@ -275,6 +310,34 @@ ALTER TABLE views
 ADD CONSTRAINT FK2_views
 FOREIGN KEY (id_user) REFERENCES user(id_user);
 
+ALTER TABLE like_comment
+ADD CONSTRAINT FK1_like_comment
+FOREIGN KEY (id_comment) REFERENCES comment(id_comment);
+
+ALTER TABLE like_comment
+ADD CONSTRAINT FK2_like_comment
+FOREIGN KEY (id_user) REFERENCES user(id_user);
+
 ALTER TABLE voucher
-ADD CONSTRAINT FK_voucher
+ADD CONSTRAINT FK1_voucher
+FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
+
+ALTER TABLE voucher
+ADD CONSTRAINT FK2_voucher
+FOREIGN KEY (id_voucher_status) REFERENCES voucher_status(id_voucher_status);
+
+ALTER TABLE user_voucher
+ADD CONSTRAINT FK1_user_voucher
+FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher);
+
+ALTER TABLE user_voucher
+ADD CONSTRAINT FK2_user_voucher
+FOREIGN KEY (id_user) REFERENCES user(id_user);
+
+ALTER TABLE monitor_voucher
+ADD CONSTRAINT FK1_monitor_voucher
+FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher);
+
+ALTER TABLE monitor_voucher
+ADD CONSTRAINT FK2_monitor_voucher
 FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
