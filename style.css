@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+}
+
+.header-row-1 {
+    width: 100%;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    /* padding: 10px 0; */
+}
+
+.header-row-1 p {
+    color: aliceblue;
+    text-align: center;
+    top: 50%;
+}
+
+nav .navbar-nav {
+    flex: 1;
+    justify-content: center; /* Căn giữa các phần tử trong navbar */
+    margin: 0 10px;
+    align-items: center;
+}
+
+form {
+    width: 30%; 
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+form.header-row-2-search {
+    width: 100%; /* Chiếm toàn bộ chiều rộng của thanh điều hướng */
+    outline: none;
+    border: none;
+    background: #f6f6f8;
+    height: 40px;
+    border-radius: 15px;
+    padding-left: 40px;
+    padding-right: 50px; /* Để có khoảng trống cho biểu tượng */
+    position: relative;
+}
+
+form input {
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    border: none;
+    background: none;
+    height: 100%;
+    padding-left: 40px; /* Khoảng cách bên trái cho biểu tượng */
+}
+
+form span {
+    position: absolute;
+    right: 10px; /* Đặt biểu tượng ở bên phải */
+    top: 50%; /* Căn giữa theo chiều dọc */
+    transform: translateY(-50%);
+    font-size: 25px;
+    pointer-events: none; /* Không cho phép tương tác với biểu tượng */
+}
