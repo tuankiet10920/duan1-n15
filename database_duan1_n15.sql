@@ -2,17 +2,6 @@ create database duan1_n15;
 use duan1_n15;
 -- drop database duan1_n15;
 
-create table brand_accessory(
- id_brand_accessory int primary key auto_increment,
- name varchar(255)
-);
-
-create table accessory(
- id_accessory int primary key auto_increment,
- name varchar(255),
- id_brand_accessory int
-);
-
 create table base_plate(
  id_base_plate int primary key auto_increment,
  name varchar(255)
@@ -57,7 +46,6 @@ create table monitor(
  describe_monitor text,
  status boolean,
  brand int,
- images int,
  color_space int,
  connection_port int,
  base_plate int,
@@ -72,19 +60,14 @@ create table images(
  id_monitor int
 );
 
-create table accessory_monitor(
- id_accessory_monitor int primary key auto_increment,
- id_accessory int,
- id_monitor int
-);
-
 create table address(
  id_address int primary key auto_increment,
  number varchar(255),
  street varchar(255),
  ward varchar(255),
  district varchar(255),
- city varchar(255)
+ city varchar(255),
+ id_user int
 );
 
 create table user(
@@ -97,20 +80,6 @@ create table user(
  birthday date,
  nick_name varchar(255),
  status boolean
-);
-
-create table user_images(
- id_user_images int primary key auto_increment,
- path text,
- id_user int
-);
-
-
-create table user_address(
- id_user_address int primary key auto_increment,
- status boolean,
- id_user int,
- id_address int
 );
 
 create table phone_number(
@@ -129,15 +98,11 @@ create table bill(
 create table bill_detail(
  id_bill_detail int primary key auto_increment,
  quatity int,
+ price int,
  id_monitor int,
  id_bill int
 );
 
-create table sharing(
- id_sharing int primary key auto_increment,
- id_monitor int,
- id_user int
-);
 
 create table rating(
  id_rating int primary key auto_increment,
@@ -181,42 +146,8 @@ create table voucher(
  limit_number int,
  limit_date_time datetime,
  id_voucher_status int,
- id_monitor int
+ id_bill_detail int
 );
-
-create table user_voucher(
- id_user_voucher int primary key auto_increment,
- id_voucher int,
- id_user int
-);
-
-create table monitor_voucher(
- id_monitor_voucher int primary key auto_increment,
- id_monitor int,
- id_voucher int
-);
-
-create table like_comment(
- id_like_comment int primary key auto_increment,
- id_comment int,
- id_user int
-);
-
-ALTER TABLE accessory
-ADD CONSTRAINT FK_accessory
-FOREIGN KEY (id_brand_accessory) REFERENCES brand_accessory(id_brand_accessory);
-
-ALTER TABLE accessory_monitor
-ADD CONSTRAINT FK1_accessory_monitor
-FOREIGN KEY (id_accessory) REFERENCES accessory(id_accessory);
-
-ALTER TABLE accessory_monitor
-ADD CONSTRAINT FK2_accessory_monitor
-FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
-
-ALTER TABLE monitor
-ADD CONSTRAINT FK1_monitor
-FOREIGN KEY (images) REFERENCES images(id_image);
 
 ALTER TABLE monitor
 ADD CONSTRAINT FK2_monitor
@@ -242,17 +173,13 @@ ALTER TABLE monitor
 ADD CONSTRAINT FK7_monitor
 FOREIGN KEY (brand) REFERENCES brand(id_brand);
 
-ALTER TABLE user_images
-ADD CONSTRAINT FK_user_images
-FOREIGN KEY (id_user) REFERENCES user(id_user);
+ALTER TABLE images
+ADD CONSTRAINT FK_images
+FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 
-ALTER TABLE user_address
-ADD CONSTRAINT FK1_user_address
+ALTER TABLE address
+ADD CONSTRAINT FK_address
 FOREIGN KEY (id_user) REFERENCES user(id_user);
-
-ALTER TABLE user_address
-ADD CONSTRAINT FK2_user_address
-FOREIGN KEY (id_address) REFERENCES address(id_address);
 
 ALTER TABLE phone_number
 ADD CONSTRAINT FK_phone_number
@@ -278,14 +205,6 @@ ALTER TABLE rating
 ADD CONSTRAINT FK2_rating
 FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 
-ALTER TABLE sharing
-ADD CONSTRAINT FK1_sharing
-FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
-
-ALTER TABLE sharing
-ADD CONSTRAINT FK2_sharing
-FOREIGN KEY (id_user) REFERENCES user(id_user);
-
 ALTER TABLE comment
 ADD CONSTRAINT FK1_comment
 FOREIGN KEY (id_user) REFERENCES user(id_user);
@@ -310,34 +229,10 @@ ALTER TABLE views
 ADD CONSTRAINT FK2_views
 FOREIGN KEY (id_user) REFERENCES user(id_user);
 
-ALTER TABLE like_comment
-ADD CONSTRAINT FK1_like_comment
-FOREIGN KEY (id_comment) REFERENCES comment(id_comment);
-
-ALTER TABLE like_comment
-ADD CONSTRAINT FK2_like_comment
-FOREIGN KEY (id_user) REFERENCES user(id_user);
-
 ALTER TABLE voucher
 ADD CONSTRAINT FK1_voucher
-FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
+FOREIGN KEY (id_bill_detail) REFERENCES bill_detail(id_bill_detail);
 
 ALTER TABLE voucher
 ADD CONSTRAINT FK2_voucher
 FOREIGN KEY (id_voucher_status) REFERENCES voucher_status(id_voucher_status);
-
-ALTER TABLE user_voucher
-ADD CONSTRAINT FK1_user_voucher
-FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher);
-
-ALTER TABLE user_voucher
-ADD CONSTRAINT FK2_user_voucher
-FOREIGN KEY (id_user) REFERENCES user(id_user);
-
-ALTER TABLE monitor_voucher
-ADD CONSTRAINT FK1_monitor_voucher
-FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher);
-
-ALTER TABLE monitor_voucher
-ADD CONSTRAINT FK2_monitor_voucher
-FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
