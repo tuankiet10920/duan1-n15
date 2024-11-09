@@ -100,7 +100,8 @@ create table bill_detail(
  quatity int,
  price int,
  id_monitor int,
- id_bill int
+ id_bill int,
+ id_voucher int
 );
 
 
@@ -134,19 +135,12 @@ create table views(
  id_monitor int
 );
 
-create table voucher_status(
- id_voucher_status int primary key auto_increment,
- status varchar(255)
-);
-
 create table voucher(
  id_voucher int primary key auto_increment,
  number int,
  unit varchar(255),
  limit_number int,
- limit_date_time datetime,
- id_voucher_status int,
- id_bill_detail int
+ limit_date_time datetime
 );
 
 ALTER TABLE monitor
@@ -197,6 +191,10 @@ ALTER TABLE bill_detail
 ADD CONSTRAINT FK2_bill_detail
 FOREIGN KEY (id_bill) REFERENCES bill(id_bill);
 
+ALTER TABLE bill_detail
+ADD CONSTRAINT FK3_bill_detail
+FOREIGN KEY (id_voucher) REFERENCES voucher(id_voucher);
+
 ALTER TABLE rating
 ADD CONSTRAINT FK1_rating
 FOREIGN KEY (id_user) REFERENCES user(id_user);
@@ -228,11 +226,3 @@ FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 ALTER TABLE views
 ADD CONSTRAINT FK2_views
 FOREIGN KEY (id_user) REFERENCES user(id_user);
-
-ALTER TABLE voucher
-ADD CONSTRAINT FK1_voucher
-FOREIGN KEY (id_bill_detail) REFERENCES bill_detail(id_bill_detail);
-
-ALTER TABLE voucher
-ADD CONSTRAINT FK2_voucher
-FOREIGN KEY (id_voucher_status) REFERENCES voucher_status(id_voucher_status);
