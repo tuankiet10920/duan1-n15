@@ -82,6 +82,40 @@ form span {
     justify-content: space-between;
 }
 
+.card-hover:hover {
+    background-color: #4490DB !important;
+    color: #fff !important;
+}
+.card-hover:hover .material-symbols-outlined {
+    color: #fff !important;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 30px 0;
+    width: 100%;
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.footer .row > div {
+    max-width: 642px; /* Cùng với kích thước box hình ảnh */
+    margin: 0 auto;
+  }
+.footer h6 {
+    font-weight: bold;
+}
+.footer .contact-info p {
+    margin-bottom: 0.5rem;
+}
+.footer a {
+    color: #000;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
 
 /* start detail */
 /* end detail */
