@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    width: 100%;
+}
+
+.admin {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.left {
+    width: 18%;
+    padding: 0px 10px;
+    background: #1B1442;
+    height: 100vh;
+}
+
+.right {
+    width: 82%;
+}
+
+.header-right {
+    width: 100%;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.content-right {
+    width: 100%;
+}
+
+.header-right-container,
+.content-right-container {
+    width: calc(100% - 10px);
+    display: flex;
+    justify-content: end;
+}
+
+.header-right-container-box,
+.content-right-container-box {
+    width: 99%;
+}
+
+#find-dashboard {
+    border: none;
+    outline: none;
+}
+
+.group-find {
+    width: fit-content;
+    padding: 3px 10px;
+}
+
+.select-entity {
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    border-radius: 5px;
+}
+
+.select-entity:hover {
+    background: #4460DB;
+}
+
+.left {
+    overflow-y: scroll;
+}
+
+.left::-webkit-scrollbar {
+    width: 0px;
+
+}
+
+.input-search-table-right {
+    padding: 5px 0px 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #AAAAAA;
+    outline: none;
+    width: 100%;
+}
+.content-right-table{
+    border: 1px solid #AAAAAA;
+    border-radius: 7px;
+}
+.content-right-table-info {
+    width: 100%;
+}
+
+.content-right-table-info tbody tr td {
+    width: calc(100% / 7);
+    padding: 5px 9px;
+}
+
+.content-right-table-info thead tr th{
+    background-color: rgba(217, 217, 217, .4);
+    width: calc(100% / 7);
+    padding: 10px 9px;
+}
+.right-content-table-name {
+    white-space: nowrap;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
