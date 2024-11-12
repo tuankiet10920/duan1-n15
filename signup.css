@@ -1,0 +1,112 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+/* Social Login Section */
+.social-login {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.social-text {
+    font-size: 16px;
+}
+
+/* Separator */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.separator hr {
+    flex: 1;
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.separator-text {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Form */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.custom-input {
+    width: 580px; /* Đảm bảo chiếm đầy đủ chiều rộng của container */
+    padding: 12px 30px; /* Thêm khoảng padding cho cả 2 bên (30px ở mỗi bên) */
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.custom-input:focus {
+    border-color: #4490DB;
+    box-shadow: 0 0 8px rgba(68, 144, 219, 0.3);
+    outline: none;
+}
+
+.custom-input::placeholder {
+    color: #aaa;
+}
+
+/* Login Button */
+.custom-button {
+    width: 100%;
+    background-color: #4490DB;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #357bb5;
+}
+
+/* Sign-up Link */
+.text-center p {
+    font-size: 14px;
+    color: #888;
+}
+
+.text-center p a {
+    color: #4490DB;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.text-center p a:hover {
+    text-decoration: underline;
+}
