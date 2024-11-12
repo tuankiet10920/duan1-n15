@@ -41,6 +41,8 @@ nav .navbar-nav {
     align-items: center;
 }
 
+
+
 form {
     width: 30%; 
     display: flex;
@@ -116,6 +118,8 @@ form span {
     text-decoration: underline;
 }
 
+
+/* login */
 
 /* start detail */
 /* end detail */
