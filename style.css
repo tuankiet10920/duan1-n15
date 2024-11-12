@@ -84,6 +84,19 @@ form span {
 
 
 /* start detail */
+
+.container{
+    
+}
+
+.smallimg{
+    display: flex;
+    gap: 15px;
+}
+.smallimg img{
+    margin-left: 9px;
+}
+
 /* end detail */
 
 
