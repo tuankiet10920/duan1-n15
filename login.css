@@ -4,67 +4,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: "Poppins", sans-serif;
 }
 
-/* Container */
-.container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding-top: 50px;
-}
-
-/* Social Login Section */
-.social-login {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.social-icon {
-    width: 30px;
-    height: 30px;
-}
-
-.social-text {
-    font-size: 16px;
-}
-
-/* Separator */
-.separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
-}
-
-.separator hr {
-    flex: 1;
-    border: 0;
-    height: 1px;
-    background-color: #ddd;
-}
-
-.separator-text {
-    font-size: 14px;
-    color: #888;
-}
-
-/* Form */
-.form-container {
-    width: 100%;
-    max-width: 400px;
-}
-
+/* Custom Input */
 .custom-input {
-    width: 100%;
+    border-radius: 15px;
     padding: 12px 20px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    font-size: 16px;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -80,14 +28,10 @@ body {
 
 /* Login Button */
 .custom-button {
-    width: 100%;
     background-color: #4490DB;
     color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 16px;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
@@ -104,7 +48,6 @@ body {
 .text-center p a {
     color: #4490DB;
     font-weight: 500;
-    text-decoration: none;
 }
 
 .text-center p a:hover {
