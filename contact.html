@@ -15,101 +15,53 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container mt-4">
-       
-        <div class="breadcrumbs mb-4">Tài khoản / Tài khoản của tôi / Sản Phẩm / Xem giỏ hàng / Thanh toán</div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Chi tiết thanh toán</h3>
-                <form class="checkout-form">
-                    <div class="mb-3">
-                        <label>Họ và tên</label>
-                        <input type="text" class="form-control" required>
+    <div class="container">
+        <div class="content">
+            <div class="left-side">
+                <div class="address details">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="topic">Địa Chỉ</div>
+                    <div class="text-one">Trường cao đẳng fpt poly</div>
+                    <div class="text-two">Công viên phần mềm quang trung</div>
+                </div>
+                <div class="phone details">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="topic">Điện thoại</div>
+                    <div class="text-one">+89 9234 765 728</div>
+                    <div class="text-two">+89 9474 989 672</div>
+                </div>
+                <div class="email details">
+                    <i class="fas fa-envelope"></i>
+                    <div class="topic">Email</div>
+                    <div class="text-one">kiet09@gmail.com</div>
+                    <div class="text-two">moniter@gmail.com</div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="topic-text">Gủi chúng tôi một tin nhắn</div>
+                <p>nếu bạn có bất kỳ công việc nào từ tôi hoặc bất kỳ loại câu hỏi nào liên quan đến hướng dẫn của tôi, bạn có thể gửi tin nhắn cho tôi từ đây. Tôi rất hân hạnh được giúp đỡ bạn</p>
+                <form action="#">
+                    <div class="input-box">
+                        <input type="text" placeholder="Nhập tên của bạn">
                     </div>
-                    <div class="mb-3">
-                        <label>Địa chỉ nơi ở (bắt buộc)</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Tỉnh, Thành phố (bắt buộc)</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Số điện thoại (bắt buộc)</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label>Địa chỉ Email (nếu có)</label>
-                        <input type="email" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label>Tình trạng hôn nhân (nếu có)</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label>Mã bưu điện (không bắt buộc)</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="save-info">
-                        <label class="form-check-label" for="save-info">Lưu thông tin này để trả phòng nhanh hơn vào lần sau</label>
+                    <div class="input-box">
+                        <input type="text" placeholder="Nhập Email của bạn">
+                    </div><br>
+                    <div class="input-box message-box">
+                        <textarea name="" id="" placeholder="Nhập văn bản"></textarea>
+                    </div><br>
+                    <div class="button">
+                       <input type="button" value="gửi">
                     </div>
                 </form>
             </div>
-            <div class="col-md-6">
-                <h3>Đơn hàng đã chọn</h3>
-                <div class="order-summary">
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="img/dell1.jpg" alt="Samsung TV" class="product-img">
-                        <div>
-                            <p>Smart TV Samsung Crystal UHD 4K 55 inch</p>
-                        </div>
-                        <p class="ms-auto">8.890.000đ</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="img/36080_d9.jpg" alt="Dell Monitor" class="product-img">
-                        <div>
-                            <p>Màn hình Dell S2421H 23.8 inch - FHD - IPS - 75Hz</p>
-                        </div>
-                        <p class="ms-auto">2.999.000đ</p>
-                    </div>
-                    <p>Tổng phụ: 11.889.000đ</p>
-                    <p>Phí vận chuyển: Miễn Phí</p>
-                    <p><strong>Tổng cộng: 11.889.000đ</strong></p>
-
-                    <div class="payment-options mt-3">
-                        <p><input type="radio" name="payment" value="bank"> Thanh toán qua Ngân Hàng</p>
-                        <p><input type="radio" name="payment" value="cash"> Thanh toán khi nhận hàng</p>
-                    </div>
-                    
-                    <div class="discount mt-3">
-                        <input type="text" placeholder="Mã Phiếu giảm giá" class="form-control">
-                        <button class="btn btn-primary mt-2">Áp dụng</button>
-                    </div>
-                    
-                    <button class="btn btn-success w-100 mt-3">Đặt hàng</button>
-                </div>
-            </div>
+            
+            
         </div>
-        <div class="cart-footer d-flex justify-content-between mt-3">
-            <button class="back-to-shop btn btn-outline-dark">Trở về trang cửa hàng</button>
-            <button class="update-cart btn btn-dark">Cập nhật giỏ hàng</button>
-        </div>
-
-        <div class="summary mt-4">
-            <p><strong>Tổng số giỏ hàng:</strong></p>
-            <div>
-                <p>Tổng phụ: <span>11.889.000đ</span></p><hr>
-                <p>Phí vận chuyển: <span>Miễn Phí</span></p><hr>
-                <p><strong>Tổng cộng: <span>11.889.000đ</span></strong></p><hr>
-            </div>
-            <button class="checkout-btn btn btn-primary mt-3">Tiến hành thanh toán</button>
-        </div>
-        
     </div>
 </body>
 </html>

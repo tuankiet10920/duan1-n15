@@ -45,8 +45,6 @@ nav .navbar-nav {
 
 form {
     width: 30%; 
-    display: flex;
-    align-items: center;
     position: relative;
 }
 
@@ -119,13 +117,24 @@ form span {
 }
 
 
-/* login */
 
 /* start detail */
+
+
+
+.smallimg{
+    display: flex;
+    gap: 15px;
+}
+.smallimg img{
+    margin-left: 9px;
+}
+
 /* end detail */
 
 
 /* start contact */
+
 /* end contact */
 
 
