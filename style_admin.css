@@ -108,3 +108,50 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.form-dashboard-container .row{
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+}
+.form-dashboard-container .row .col label{
+    font-size: 14px;
+}
+.form-dashboard-container .row .col input,
+.form-dashboard-container .row .col select{
+    padding: 5px 0px 5px 10px;
+    font-size: 14px;
+    border: 1px solid #AAAAAA;
+    border-radius: 3px;
+    outline: none;
+    width: 95%;
+}
+.form-dashboard-container .row textarea{
+    padding: 5px 0px 5px 10px;
+    font-size: 14px;
+    border: 1px solid #AAAAAA;
+    border-radius: 3px;
+    outline: none;
+}
+.form-dashboard-container .row .col input:focus{
+    border: 1px solid #4490DB;
+}
+.form-dashboard-container .row textarea:focus{
+    border: 1px solid #4490DB;
+}
+.icon-href-dashboard{
+    padding: 3px;
+    border-radius: 5px;
+    background-color: rgba(68, 144, 219, 0.2);
+    transition: all .3s ease-in-out;
+}
+.icon-href-dashboard:hover{
+    background-color: rgba(68, 144, 219, 0.7);
+}
+
+
+
+
+@media (min-width: 1400px) {
+    .form-dashboard-container, .form-dashboard-container-lg, .form-dashboard-container-md, .form-dashboard-container-sm, .form-dashboard-container-xl, .form-dashboard-container-xxl {
+        max-width: 100%;
+    }
+}
