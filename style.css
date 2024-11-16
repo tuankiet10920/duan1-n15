@@ -179,7 +179,7 @@ nav .navbar-nav {
     min-height: 110px;
 }
 .right-side .button input[type="button"]{
-    color: #fff;
+    color: #0b0000;
     font-size: 18px;
     padding: 8px 36px;
     outline: none;
@@ -193,10 +193,266 @@ nav .navbar-nav {
 
 
 /* start cart */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: repeating-linear-gradient(white);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    
+}
+
+.cart h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    color: #333;
+    font-weight: bold;
+}
+
+.product-image {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+td img {
+    float: left;
+}
+
+td p {
+    margin: 0;
+    font-size: 14px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 60%;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    color: rgb(17, 18, 18);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.quantity-button {
+    background-color: #ddd;
+    color: #333;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+    border-radius: 4px;
+}
+
+.cart-summary {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.back-button, .update-cart-button, .checkout-button {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.back-button {
+    background-color: #4490db;
+}
+
+.update-cart-button {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: normal;
+}
+
+.checkout-button {
+    background-color: #4490db;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
 
 /* end cart */
 
 
 
 /* start pay */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f6f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Breadcrumb */
+  .breadcrumb a {
+    color: #555;
+    text-decoration: none;
+    margin-right: 5px;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Checkout Layout */
+  .checkout {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .checkout-details,
+  .order-summary {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 48%;
+  }
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  /* Form Styles */
+  form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .save-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .save-info label {
+    margin-left: 10px;
+  }
+  
+  /* Order Summary */
+  .order-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .order-summary li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .order-summary img {
+    max-width: 50px;
+    margin-right: 10px;
+  }
+  
+  .totals p {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .payment-options input {
+    margin-right: 10px;
+  }
+  
+  .discount-code {
+    margin-top: 15px;
+  }
+  
+  .discount-code input {
+    width: 70%;
+    padding: 8px;
+    margin-right: 10px;
+  }
+  
+  button {
+    background-color: #4490db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #4490db;
+  }
+  
+
 /* end pay */
