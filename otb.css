@@ -32,3 +32,16 @@ body {
 .custom-button:hover {
     background-color: #357bb5;
 }
+
+/* Lỗi */
+.is-invalid {
+    border-color: #dc3545 !important; /* Màu đỏ cho lỗi */
+    box-shadow: 0 0 6px rgba(220, 53, 69, 0.5);
+}
+
+/* Hợp lệ */
+.is-valid {
+    border-color: #28a745 !important; /* Màu xanh cho hợp lệ */
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.5);
+}
+
