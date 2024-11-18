@@ -52,11 +52,11 @@
                   <a class="nav-link" href="#">Liên hệ</a>
                 </li>
               </ul>
-              <form class="d-flex" role="search header-row-2-search">
-                <input class="form-control me-2" style="width: 100%" type="search" placeholder="Search"
-                  aria-label="Search" />
-                <span class="material-symbols-outlined">search</span>
+              <form class="d-flex position-relative" role="search header-row-2-search">
+                <input class="form-control me-2" style="width: 100%" type="search" placeholder="Search" aria-label="Search" />
+                <span class="material-symbols-outlined search-icon">search</span>
               </form>
+              
               <div class="header-row-2-user ms-2">
                 <span class="material-symbols-outlined">person</span>
               </div>

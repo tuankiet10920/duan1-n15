@@ -28,179 +28,67 @@
   <div class="container my-4">
       <h2 class="text-center mb-4">Danh Mục</h2>
       <div class="row row-cols-6 g-3">
-          <div class="col col-6 col-sm-4 col-md-3 col-lg-2" style="transition: all .3s ease-in-out;">
-              <div class="card text-center p-2 card-hover">
-                  <div class="card-body">
-                      <span class="material-symbols-outlined fs-2">jamboard_kiosk</span>
-                      <p class="fs-6 mt-2 mb-0" style="font-weight: 600;">DELL</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col col-6 col-sm-4 col-md-3 col-lg-2" style="transition: all .3s ease-in-out;">
-              <div class="card text-center p-2 card-hover">
-                  <div class="card-body">
-                      <span class="material-symbols-outlined fs-2">jamboard_kiosk</span>
-                      <p class="fs-6 mt-2 mb-0" style="font-weight: 600;">SAMSUNG</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col col-6 col-sm-4 col-md-3 col-lg-2" style="transition: all .3s ease-in-out;">
-              <div class="card text-center p-2 card-hover">
-                  <div class="card-body">
-                      <span class="material-symbols-outlined fs-2">jamboard_kiosk</span>
-                      <p class="fs-6 mt-2 mb-0" style="font-weight: 600;">Lenovo</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col col-6 col-sm-4 col-md-3 col-lg-2" style="transition: all .3s ease-in-out;">
-              <div class="card text-center p-2 card-hover">
-                  <div class="card-body">
-                      <span class="material-symbols-outlined fs-2">jamboard_kiosk</span>
-                      <p class="fs-6 mt-2 mb-0" style="font-weight: 600;">Apple</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col col-6 col-sm-4 col-md-3 col-lg-2" style="transition: all .3s ease-in-out;">
-              <div class="card text-center p-2 card-hover">
-                  <div class="card-body">
-                      <span class="material-symbols-outlined fs-2">jamboard_kiosk</span>
-                      <p class="fs-6 mt-2 mb-0" style="font-weight: 600;">LG</p>
-                  </div>
-              </div>
-          </div>
-          <div class="col col-6 col-sm-4 col-md-3 col-lg-2" style="transition: all .3s ease-in-out;">
-              <div class="card text-center p-2 card-hover">
-                  <div class="card-body">
-                      <span class="material-symbols-outlined fs-2">jamboard_kiosk</span>
-                      <p class="fs-6 mt-2 mb-0" style="font-weight: 600;">ACER</p>
-                  </div>
-              </div>
-          </div>
+          <?php
+            $string = "";
+            foreach ($brandList as $key => $value) {
+                $string .= '
+                    <div class="col col-6 col-sm-4 col-md-3 col-lg-2" style="transition: all .3s ease-in-out;">
+                        <div class="card text-center p-2 card-hover">
+                            <div class="card-body">
+                                <span class="material-symbols-outlined fs-2">jamboard_kiosk</span>
+                                <p class="fs-6 mt-2 mb-0" style="font-weight: 600;">' . $value['name'] . '</p>
+                            </div>
+                        </div>
+                    </div>
+                ';
+            }
+            echo $string;
+            ?>
       </div>
   </div>
 
   <div class="container mt-5">
       <h3 class="mb-4">Sản Phẩm Hot</h3>
       <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          <?php
+            $string = '';
+            foreach ($monitorList as $key => $monitor) {
+                $string .= '
+                    <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="card text-center rounded-2 text-decoration-none card-body">
+                            <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
+                                    alt="Product Image" /></a>
+                            <div class="text-start">
+                                <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'" class="text-decoration-none" style="color: #000">
+                                    <h5 class="card-title">
+                                    ' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['number'] . ' inch
+                                    </h5>
+                                </a>
+                                <p class="card-text text-danger fw-bold">'. number_format($monitor['price'], 0, ',', '.') .'₫</p>
+                                <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
+                                    Freeship từ 2km đổ lại
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-warning">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
+                                    <span class="material-symbols-outlined ms-2"> favorite </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ';
+            }
+            echo $string;
+            ?>
+
           <!-- Lặp lại thẻ div .col để thêm các sản phẩm khác -->
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
       </div>
   </div>
 
@@ -211,250 +99,47 @@
   <div class="container mt-5">
       <h3 class="mb-4">Màn Hình Để Bàn</h3>
       <div class="row row-cols-1 row-cols-md-4 g-4">
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!-- Lặp lại thẻ div .col để thêm các sản phẩm khác -->
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-              <div class="card text-center rounded-2 text-decoration-none card-body">
-                  <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                  <div class="text-start">
-                      <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                              Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                      </a>
-                      <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                      <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                      </p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                      </div>
-                      <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          <?php
+            $string = '';
+            foreach ($monitorList as $key => $monitor) {
+                $string .= '
+                    <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="card text-center rounded-2 text-decoration-none card-body">
+                            <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
+                                    alt="Product Image" /></a>
+                            <div class="text-start">
+                                <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'" class="text-decoration-none" style="color: #000">
+                                    <h5 class="card-title">
+                                    ' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['number'] . ' inch
+                                    </h5>
+                                </a>
+                                <p class="card-text text-danger fw-bold">'. number_format($monitor['price'], 0, ',', '.') .'₫</p>
+                                <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
+                                    Freeship từ 2km đổ lại
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-warning">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
+                                    <span class="material-symbols-outlined ms-2"> favorite </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ';
+            }
+            echo $string;
+            ?>
           <div class="d-flex justify-content-center w-100 mt-3">
               <button class="btn btn-primary " type="submit" style="--bs-btn-padding-y: 0.5rem; --bs-btn-padding-x: 2.5rem; 
             --bs-btn-font-size: 1rem;">Button</button>
           </div>
-
       </div>
   </div>
 

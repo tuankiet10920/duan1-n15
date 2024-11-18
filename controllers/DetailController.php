@@ -1,11 +1,14 @@
 <?php
-class HomeController{
+class DetailController {
     public $action;
-    public function __construct($action){
+    public $id;
+    public function __construct($action, $id){
         $this->action = $action;
+        $this->id = $id;
     }
+
     public function index(){
-        include_once 'models/homeModel.php';
+        include_once 'models/detailModel.php';
         $homeModel = new HomeModel();
         switch ($this->action) {
             case 'value':
@@ -16,8 +19,7 @@ class HomeController{
                 # code...
                 break;
         }
-        $monitorList = $homeModel->getAllMonitors();
-        $brandList = $homeModel->getAll('brand');
-        include_once 'views/home.php';
+        $monitor = $homeModel->getMonitorWithId($this->id);
+        include_once 'views/detail.php';
     }
 }
