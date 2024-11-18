@@ -1,0 +1,47 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.otp-input {
+    width: 60px; /* Giảm chiều rộng cho responsive */
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.custom-button {
+    width: 100%; /* Đặt width là 100% để nút có thể co giãn */
+    max-width: 300px;
+    background-color: #4490DB;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #357bb5;
+}
+
+/* Lỗi */
+.is-invalid {
+    border-color: #dc3545 !important; /* Màu đỏ cho lỗi */
+    box-shadow: 0 0 6px rgba(220, 53, 69, 0.5);
+}
+
+/* Hợp lệ */
+.is-valid {
+    border-color: #28a745 !important; /* Màu xanh cho hợp lệ */
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.5);
+}
+

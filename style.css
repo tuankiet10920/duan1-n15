@@ -41,41 +41,6 @@ nav .navbar-nav {
     align-items: center;
 }
 
-
-
-form {
-    width: 30%; 
-    position: relative;
-}
-
-form.header-row-2-search {
-    width: 100%; /* Chiếm toàn bộ chiều rộng của thanh điều hướng */
-    outline: none;
-    border: none;
-    background: #f6f6f8;
-    height: 40px;
-    border-radius: 15px;
-    padding-left: 40px;
-    padding-right: 50px; /* Để có khoảng trống cho biểu tượng */
-    position: relative;
-}
-
-form input {
-    width: 100%; /* Chiếm toàn bộ chiều rộng */
-    border: none;
-    background: none;
-    height: 100%;
-    padding-left: 40px; /* Khoảng cách bên trái cho biểu tượng */
-}
-
-form span {
-    position: absolute;
-    right: 10px; /* Đặt biểu tượng ở bên phải */
-    top: 50%; /* Căn giữa theo chiều dọc */
-    transform: translateY(-50%);
-    font-size: 25px;
-    pointer-events: none; /* Không cho phép tương tác với biểu tượng */
-}
 .section-5-container-box-image-2{
     display: flex;
     flex-direction: column;
@@ -88,6 +53,12 @@ form span {
 }
 .card-hover:hover .material-symbols-outlined {
     color: #fff !important;
+}
+
+.equal-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
 }
 
 .footer {
@@ -126,6 +97,8 @@ form span {
     display: flex;
     gap: 15px;
 }
+
+
 .smallimg img{
     margin-left: 9px;
 }
@@ -134,7 +107,93 @@ form span {
 
 
 /* start contact */
+.contacts {
+    background: #fff;
+    border-radius: 6px;
+    padding: 20px 60px 40px 40px;
+    border: 1px solid gray;
+    margin-top: 100px;
+}
+.contacts .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.contacts .content .left-side{
+    width: 25%;
+    height: 100%;
+    position: relative;
+}
+.contacts .content .left-side .details{
+    margin: 14px;
+    text-align: center;
+}
+
+.contacts .content .left-side .details i{
+    font-size: 30px;
+    color: #7cb1e6;
+    margin-bottom: 10px;
+}
+.content .left-side::before{
+    content: '';
+    position: absolute;
+    height: 70%;
+    width: 2px;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #afafb6;
+}
+.contacts .content .left-side .topic{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.content .left-side .details .text-one,
+.content .left-side .details .text-two{
+    font-size: 14px;
+    color: #afafb6;
+}
+
+
+.contacts .content .right-side{
+    width: 75%;
+    margin-left: 75px;
+}
+.content .right-side .topic-text{
+    font-size: 23px;
+    font-weight: 600;
+    color: #7cb1e6;
+}
+.content .right-side .input-box{
+    height: 50px;
+    width: 100%;
+    margin: 12px 0;
+}
+.right-side .input-box input,
+.right-side .input-box textarea{
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    background-color: #f0f1f8;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+.right-side .message-box{
+    min-height: 110px;
+}
+.right-side .button input[type="button"]{
+    color: #fff;
+    font-size: 18px;
+    padding: 8px 36px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #7cb1e6;
+}
 /* end contact */
 
 
