@@ -68,6 +68,15 @@ nav .navbar-nav {
   color: #fff !important;
 }
 
+.product-name {
+  display: -webkit-box; /* Sử dụng cho hiệu ứng cắt */
+  -webkit-line-clamp: 2; /* Giới hạn hiển thị 2 dòng */
+  -webkit-box-orient: vertical; /* Hướng hiển thị theo chiều dọc */
+  overflow: hidden; /* Ẩn nội dung tràn */
+  text-overflow: ellipsis; /* Thêm dấu "..." khi bị cắt */
+  white-space: normal; /* Cho phép xuống dòng */
+}
+
 .equal-image {
   width: 100%;
   height: 350px;
