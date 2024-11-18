@@ -90,8 +90,24 @@ body {
 }
 .content-right-table-info {
     width: 100%;
+    min-width: 1200px;
+
+}
+.table-scroll-admin{
+    width: 100%;
+    overflow-y: hidden;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+.table-scroll-admin::-webkit-scrollbar {
+    height: 5px; /* Chiều cao của thanh cuộn */
+    background-color: #f0f0f0; /* Màu nền của thanh cuộn */
 }
 
+.table-scroll-admin::-webkit-scrollbar-thumb {
+    background-color: #888; /* Màu của phần kéo của thanh cuộn */
+    border-radius: 50px; /* Làm tròn góc của phần kéo */
+}
 .content-right-table-info tbody tr td {
     width: calc(100% / 7);
     padding: 5px 9px;
@@ -147,7 +163,28 @@ body {
     background-color: rgba(68, 144, 219, 0.7);
 }
 
+.admin-ion-desktop{
+    display: block;
+    margin-right: 10px;
+    font-size: 35px;
+    font-weight: 600;
+}
+.content-dashboard-themes-box{
+    border-radius: 15px;
+    background: #295683;
+    color: #fff;
+}
+.content-dashboard-name-qty p:last-child{
+    font-size: 25px;
+    font-weight: 600;
+}
 
+.btn-main-color{
+    background: #295683;
+}
+.btn-main-color:hover{
+    background: #1c3d5f;
+}
 
 
 @media (min-width: 1400px) {
