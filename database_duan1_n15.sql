@@ -308,7 +308,8 @@ inner join brand on monitor.brand = brand.id_brand
 inner join color_space on monitor.color_space = color_space.id_color_space
 inner join base_plate on monitor.base_plate = base_plate.id_base_plate
 inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
-inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency;
+inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency
+where id_monitor = 1;
 
 
 insert into connection_port_monitor values

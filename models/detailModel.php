@@ -12,6 +12,6 @@ inner join base_plate on monitor.base_plate = base_plate.id_base_plate
 inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
 inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency
 where id_monitor = :id;";
-        return $data->selectall($sql, $id);
+        return $data->selectWithId($sql, $id);
     }
 }

@@ -60,7 +60,7 @@
                                     alt="Product Image" /></a>
                             <div class="text-start">
                                 <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'" class="text-decoration-none" style="color: #000">
-                                    <h5 class="card-title">
+                                    <h5 class="card-title product-name">
                                     ' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['number'] . ' inch
                                     </h5>
                                 </a>
@@ -109,7 +109,7 @@
                                     alt="Product Image" /></a>
                             <div class="text-start">
                                 <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'" class="text-decoration-none" style="color: #000">
-                                    <h5 class="card-title">
+                                    <h5 class="card-title product-name">
                                     ' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['number'] . ' inch
                                     </h5>
                                 </a>
