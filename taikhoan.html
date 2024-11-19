@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Tài Khoản</title>
+    <link rel="stylesheet" href="taikhoan.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile">
+                <div class="avatar"></div>
+                <p class="name">Name Người Dùng</p>
+            </div>
+            <ul class="menu">
+                <li><span class="icon">👤</span> Thông tin tài khoản</li>
+                <li><span class="icon">📍</span> Địa chỉ</li>
+                <li><span class="icon">🛒</span> Quản lý giỏ hàng</li>
+                <li><span class="icon">👁️</span> Sản phẩm đã xem</li>
+                <li><span class="icon">🚪</span> Đăng xuất</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h2>Thông tin tài khoản</h2>
+            <form class="account-info">
+                <label>Họ tên</label>
+                <input type="text" value="Vui lòng nhập">
+                
+                <label>Giới tính</label>
+                <div class="gender">
+                    <input type="radio" id="male" name="gender" checked>
+                    <label for="male">Nam</label>
+                    <input type="radio" id="female" name="gender">
+                    <label for="female">Nữ</label>
+                </div>
+
+                <label>Số điện thoại</label>
+                <div class="input-with-action">
+                    <span>Chưa kích hoạt</span>
+                    <a href="#">Thay đổi</a>
+                </div>
+
+                <label>Email</label>
+                <div class="input-with-action">
+                    <span>Vui lòng nhập</span>
+                    <a href="#">Thay đổi</a>
+                </div>
+
+                <label>Ngày sinh</label>
+                <div class="date-select">
+                    <select>
+                        <option>Ngày</option>
+                    </select>
+                    <select>
+                        <option>Tháng</option>
+                    </select>
+                    <select>
+                        <option>Năm</option>
+                    </select>
+                </div>
+
+                <button type="submit">Lưu thay đổi</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

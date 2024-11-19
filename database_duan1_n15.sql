@@ -38,7 +38,6 @@ create table monitor(
  name varchar(255),
  price int,
  type_screen boolean,
- brightness varchar(255),
  response_time float,
  in_stock int,
  gurantee int,
@@ -47,10 +46,15 @@ create table monitor(
  status boolean,
  brand int,
  color_space int,
- connection_port int,
  base_plate int,
  screen_solution int,
  scan_frequency int
+);
+
+create table connection_port_monitor(
+	id_connection_port_monitor int primary key auto_increment,
+    id_connection_port int,
+    id_monitor int
 );
 
 create table images(
@@ -147,25 +151,30 @@ ALTER TABLE monitor
 ADD CONSTRAINT FK2_monitor
 FOREIGN KEY (color_space) REFERENCES color_space(id_color_space);
 
-ALTER TABLE monitor
-ADD CONSTRAINT FK3_monitor
-FOREIGN KEY (connection_port) REFERENCES connection_port(id_connection_port);
 
 ALTER TABLE monitor
-ADD CONSTRAINT FK4_monitor
+ADD CONSTRAINT FK3_monitor
 FOREIGN KEY (base_plate) REFERENCES base_plate(id_base_plate);
 
 ALTER TABLE monitor
-ADD CONSTRAINT FK5_monitor
+ADD CONSTRAINT FK4_monitor
 FOREIGN KEY (screen_solution) REFERENCES screen_solution(id_screen_solution);
 
 ALTER TABLE monitor
-ADD CONSTRAINT FK6_monitor
+ADD CONSTRAINT FK5_monitor
 FOREIGN KEY (scan_frequency) REFERENCES scan_frequency(id_scan_frequency);
 
 ALTER TABLE monitor
-ADD CONSTRAINT FK7_monitor
+ADD CONSTRAINT FK6_monitor
 FOREIGN KEY (brand) REFERENCES brand(id_brand);
+
+ALTER TABLE connection_port_monitor
+ADD CONSTRAINT FK1_connection_port_monitor
+FOREIGN KEY (id_connection_port) REFERENCES connection_port(id_connection_port);
+
+ALTER TABLE connection_port_monitor
+ADD CONSTRAINT FK2_connection_port_monitor
+FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 
 ALTER TABLE images
 ADD CONSTRAINT FK_images
@@ -226,3 +235,90 @@ FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 ALTER TABLE views
 ADD CONSTRAINT FK2_views
 FOREIGN KEY (id_user) REFERENCES user(id_user);
+
+insert into brand values
+(null, 'Dell'),
+ (null, 'Samsung'),
+ (null, 'Lenovo'),
+ (null, 'Asus'),
+ (null, 'LG'),
+ (null, 'ACER');
+ 
+insert into base_plate values 
+(null, 'TN'),
+(null, 'VA'),
+(null, 'IPS');
+
+insert into screen_solution values 
+(null, 'HD (720p)', '1280 x 720 pixel'),
+(null, 'Full HD (1080p)', '1920 x 1080 pixel'),
+(null, 'QHD (1440p)', '2048 x 1080 pixel'),
+(null, '4K (UHD)', '3840 x 2160 pixel'),
+(null, '8K', '7680 x 4320 pixel');
+
+insert into scan_frequency values 
+(null, '60'),
+(null, '75'),
+(null, '120'),
+(null, '144'),
+(null, '165'),
+(null, '240'),
+(null, '360');
+
+insert into color_space values 
+(null, 'sRGB'),
+(null, 'Adobe RGB'),
+(null, 'DCI-P3'),
+(null, 'NTSC');
+
+
+insert into connection_port values 
+(null, 'HDMI'),
+(null, 'DisplayPort'),
+(null, 'DVI'),
+(null, 'USB-C'),
+(null, 'VGA');
+
+
+insert into monitor values
+(null, 'Màn Hình Gaming ASUS TUF Gaming VG27AQ3A', 6200000, 0, 1, 20, 12, 24, 'Chân đế và dây nguồn được để trong hộp cùng với màn hình', 1, 4, 1, 3, 2, 4),
+(null, 'Màn Hình Gaming ASUS TUF VG249Q3A', 6200000, 0, 1, 20, 12, 24, 'Chân đế và dây nguồn được để trong hộp cùng với màn hình', 1, 4, 1, 3, 2, 4),
+(null, 'Màn hình ASUS VA27EHF', 6200000, 0, 1, 20, 12, 24, 'Chân đế và dây nguồn được để trong hộp cùng với màn hình', 1, 4, 1, 3, 2, 4),
+(null, 'Màn Hình Game ASUS VG279QR', 6200000, 0, 1, 20, 12, 24, 'Chân đế và dây nguồn được để trong hộp cùng với màn hình', 1, 4, 1, 3, 2, 4);
+
+
+insert into images values
+(null, 'asus-tuf-vg27aq3a.jpg', 'asus-tuf-vg27aq3a', 1),
+(null, 'asus-tuf-vg27aq3a-1.jpg', 'asus-tuf-vg27aq3a-1', 1),
+(null, 'asus-tuf-vg27aq3a-2.jpg', 'asus-tuf-vg27aq3a-2', 1),
+(null, 'asus-tuf-vg249q3a.jpg', 'asus-tuf-vg249q3a', 2),
+(null, 'asus-tuf-vg249q3a-1.jpg', 'asus-tuf-vg249q3a-1', 2),
+(null, 'asus-tuf-vg249q3a-2.jpg', 'asus-tuf-vg249q3a-2', 2),
+(null, 'asus-va27ehf-27inch.jpg', 'asus-va27ehf-27inch', 3),
+(null, 'asus-va27ehf-27inch-1.jpg', 'asus-va27ehf-27inch-1', 3),
+(null, 'asus-vg279qr-27inch.jpg', 'asus-vg279qr-27inch', 4),
+(null, 'asus-vg279qr-27inch-1.jpg', 'asus-vg279qr-27inch-1', 4);
+
+select * from images where id_monitor = 1;
+
+select * from images;
+
+select id_monitor, monitor.name, price, type_screen, response_time, in_stock, gurantee, size, describe_monitor, status, brand.name as brand_name, color_space.name as color_space_name, base_plate.name as base_plate_name, screen_solution.name as screen_solution_name ,number_number, scan_frequency.number from monitor 
+inner join brand on monitor.brand = brand.id_brand
+inner join color_space on monitor.color_space = color_space.id_color_space
+inner join base_plate on monitor.base_plate = base_plate.id_base_plate
+inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
+inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency
+where id_monitor = 1;
+
+
+insert into connection_port_monitor values
+(null, 1, 1),
+(null, 2, 1),
+(null, 3, 1),
+(null, 1, 2),
+(null, 3, 2),
+(null, 2, 3),
+(null, 3, 3),
+(null, 1, 4),
+(null, 4, 4);

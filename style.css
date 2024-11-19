@@ -111,15 +111,244 @@ nav .navbar-nav {
 
 /* start detail */
 
-.smallimg {
-  display: flex;
-  gap: 15px;
+.rating {
+    font-size: 18px;
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 28px;
+    color: red;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    
+}
+
+#buy-amount{
+    display: flex;
+    
+}
+#buy-amount button{
+    width: 45px;
+    height: 44px;
+    outline: none;
+    background: none;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
+#buy-amount button:hover{
+    background-color: #ececec;
+}
+
+#buy-amount button svg{
+    color: #909090;
+}
+
+#buy-amount button:hover svg {
+    color: #4f4f4f;
+}
+
+#buy-amount #amount{
+    width: 40px;
+    text-align: center;
+    border: 1px solid grey;
+    
+}
+.buy-now {
+    margin-left: 30px;
+    background-color: #7cb1e6;
+    color: #fff;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buy-now:hover {
+  background-color: #4f4f4f;
+}
+
+
+
+
+.smallimg{
+    display: flex;
+    gap: 15px;
 }
 
 .smallimg img {
   margin-left: 9px;
 }
 
+
+ /* Container sản phẩm */
+ .product-describe {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mô tả sản phẩm */
+  .product-description h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .product-description h2 {
+    font-size: 18px;
+    color: #7cb1e6;
+    margin-bottom: 20px;
+  }
+  
+  .product-description p {
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .product-description ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .product-description ul li {
+    margin-bottom: 10px;
+  }
+
+
+
+  /* Container bình luận */
+  .comment {
+    margin-top: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tiêu đề */
+  .comment h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  /* Form nhập bình luận */
+  #comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  #comment-input {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  #comment-input:focus {
+    border-color: #7cb1e6;
+    outline: none;
+  }
+  
+  #comment-form button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #7cb1e6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #comment-form button:hover {
+    background-color: #7cb1e6;
+  }
+  
+  /* Danh sách bình luận */
+  #comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .comment-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+  }
+  
+  .comment-item strong {
+    color: #7cb1e6;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .comment-item p {
+    margin: 0;
+    color: #555;
+    font-size: 16px;
+  }
+
+  .comments-admin{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+
+  .comment-admin{
+    width: 95%;
+  }
+
+
+   /* Bình luận */
+   .product-comments {
+    margin-top: 30px;
+  }
+  
+  .product-comments h3 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #7cb1e6;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .comments {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .comments strong {
+    color: #7cb1e6;
+  }
+  
+  .comments p {
+    margin-bottom: 5px;
+  }
+  
 /* end detail */
 
 /* start contact */
@@ -199,20 +428,157 @@ nav .navbar-nav {
 .right-side .message-box {
   min-height: 110px;
 }
-.right-side .button input[type="button"] {
-  color: #fff;
-  font-size: 18px;
-  padding: 8px 36px;
-  outline: none;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #7cb1e6;
+.right-side .button input[type="button"]{
+    color: #0b0000;
+    font-size: 18px;
+    padding: 8px 36px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #7cb1e6;
 }
 /* end contact */
 
 /* start cart */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: repeating-linear-gradient(white);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    
+}
+
+.cart h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    color: #333;
+    font-weight: bold;
+}
+
+.product-image {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+td img {
+    float: left;
+}
+
+td p {
+    margin: 0;
+    font-size: 14px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 60%;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    color: rgb(17, 18, 18);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.quantity-button {
+    background-color: #ddd;
+    color: #333;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+    border-radius: 4px;
+}
+
+.cart-summary {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.back-button, .update-cart-button, .checkout-button {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.back-button {
+    background-color: #4490db;
+}
+
+.update-cart-button {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: normal;
+}
+
+.checkout-button {
+    background-color: #4490db;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+
 /* end cart */
 
 /* start pay */
+
+
 /* end pay */

@@ -15,6 +15,82 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="breadcrumb">
+          <a href="#">Tài khoản</a> / 
+          <a href="#">Tài khoản của tôi</a> / 
+          <a href="#">Sản phẩm</a> / 
+          <a href="#">Xem giỏ hàng</a> / 
+          <a href="#">Thanh toán</a>
+        </div>
     
+        <div class="checkout">
+          <!-- Form thông tin thanh toán -->
+          <div class="checkout-details">
+            <h2>Chi tiết thanh toán</h2>
+            <form action="#">
+              <label for="name">Họ và tên</label>
+              <input type="text" id="name" name="name" required>
+    
+              <label for="address">Địa chỉ nơi ở (bắt buộc)</label>
+              <input type="text" id="address" name="address" required>
+    
+              <label for="city">Tỉnh, Thành phố (bắt buộc)</label>
+              <input type="text" id="city" name="city" required>
+    
+              <label for="phone">Số điện thoại (bắt buộc)</label>
+              <input type="tel" id="phone" name="phone" required>
+    
+              <label for="email">Địa chỉ Email (nếu có)</label>
+              <input type="email" id="email" name="email">
+    
+              <label for="status">Tình trạng hôn nhân (nếu có)</label>
+              <input type="text" id="status" name="status">
+    
+              <label for="zipcode">Mã bưu điện (không bắt buộc)</label>
+              <input type="text" id="zipcode" name="zipcode">
+    
+              <div class="save-info">
+                <input type="checkbox" id="save" name="save">
+                <label for="save">Lưu thông tin này để trả phòng nhanh hơn vào lần sau</label>
+              </div>
+            </form>
+          </div>
+    
+          <!-- Đơn hàng đã chọn -->
+          <div class="order-summary">
+            <h2>Đơn hàng đã chọn</h2>
+            <ul>
+              <li>
+                <img src="img/dell1.jpg" alt="Smart Tivi Samsung">
+                Smart Tivi Samsung Crystal UHD 4K 55 inch
+                <span>8.890.000đ</span>
+              </li>
+              <li>
+                <img src="img/36080_d9.jpg" alt="Màn hình Dell">
+                Màn Hình Dell S2421H (23.8 inch - FHD - IPS - 75Hz - 4ms)
+                <span>2.999.000đ</span>
+              </li>
+            </ul>
+            <div class="totals">
+              <p>Tổng phụ: <span>11.889.000đ</span></p><hr>
+              <p>Phí vận chuyển: <span>Miễn phí</span></p><hr>
+              <p><strong>Tổng cộng: <span>11.889.000đ</span></strong></p>
+            </div>
+            <div class="payment-options">
+              <input type="radio" id="bank" name="payment" checked>
+              <label for="bank">Thanh toán qua Ngân Hàng</label><br>
+              <input type="radio" id="cod" name="payment">
+              <label for="cod">Thanh toán khi nhận hàng</label>
+            </div>
+            <div class="discount-code">
+              <input type="text" placeholder="Mã phiếu giảm giá">
+              <button>Áp dụng</button>
+            </div>
+            <button class="order-btn">Đặt hàng</button>
+          </div>
+        </div>
+      </div>
+   
 </body>
 </html>
