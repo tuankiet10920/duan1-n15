@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+
+  .filter-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    /* Xóa height: 100% để tránh box kéo dài */
+  }
+
+  .product-grid .card {
+    height: 100%;
+  }
+
+  .product-grid img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .product-name {
+    display: -webkit-box; /* Sử dụng cho hiệu ứng cắt */
+    -webkit-line-clamp: 2; /* Giới hạn hiển thị 2 dòng */
+    -webkit-box-orient: vertical; /* Hướng hiển thị theo chiều dọc */
+    overflow: hidden; /* Ẩn nội dung tràn */
+    text-overflow: ellipsis; /* Thêm dấu "..." khi bị cắt */
+    white-space: normal; /* Cho phép xuống dòng */
+  }
