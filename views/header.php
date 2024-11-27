@@ -21,7 +21,7 @@
 </head>
 
 <body>
-  <div class="header">
+  <header class="header">
     <div class="header-text d-flex justify-content-center align-items-center bg-dark" style="height: 40px; width: 100%">
       <p class="text-white" style="margin-bottom: 0px !important">
         MÀN HÌNH CHẤT QUÀ ĐỘC NGAY NGẤT TRONG MÙA XUÂN NÀY!
@@ -40,10 +40,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item ms-3">
-                  <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                  <a class="nav-link active" aria-current="page" href="index.php">Trang chủ</a>
                 </li>
                 <li class="nav-item ms-3">
-                  <a class="nav-link" href="#">Sản phẩm</a>
+                  <a class="nav-link" href="index.php?page=products">Sản phẩm</a>
                 </li>
                 <li class="nav-item ms-3">
                   <a class="nav-link" href="#">Về chúng tôi</a>
@@ -56,12 +56,35 @@
                 <input class="form-control me-2" style="width: 100%" type="search" placeholder="Search" aria-label="Search" />
                 <span class="material-symbols-outlined search-icon">search</span>
               </form>
-              
-              <div class="header-row-2-user ms-2">
-                <span class="material-symbols-outlined">person</span>
+              <?php 
+                if(isset($_SESSION['user'])){
+                  echo '
+                    <div class="header-row-2-name">
+                      <p class="mb-0">'. $_SESSION['user']['name'] .'</p>
+                    </div>
+                    <div class="header-row-2-user ms-2 mt-2">
+                      <a href="index.php?page=login&action=logout" onclick="reloadLogout()" class="text-decoration-none" style="color: #000;">
+                        <span class="material-symbols-outlined">logout</span>
+                      </a>
+                    </div>
+                  ';
+                }else{
+                  echo '
+                    <div class="header-row-2-user ms-2 mt-2">
+                      <a href="index.php?page=login" class="text-decoration-none" style="color: #000;">
+                        <span class="material-symbols-outlined">person</span>
+                      </a>
+                    </div>
+                  ';
+                }
+              ?>
+              <div class="header-row-2-name">
+                <p class="mb-0"></p>
               </div>
-              <div class="header-row-2-cart ms-2">
-                <span class="material-symbols-outlined">shopping_cart</span>
+              <div class="header-row-2-cart ms-2 mt-2">
+                <a href="index.php?page=cart" class="text-decoration-none" style="color: #000;">
+                  <span class="material-symbols-outlined">shopping_cart</span>
+                </a>
               </div>
               <hr />
             </div>
@@ -69,4 +92,4 @@
         </nav>
       </div>
     </div>
-  </div>
+  </header>

@@ -7,7 +7,6 @@
 }
 body {
     width: 100%;
-    height: 300vh;
     font-family: "Poppins", sans-serif;
 }
 
@@ -99,7 +98,18 @@ nav .navbar-nav {
 
 
 /* start detail */
-
+#qty{
+    padding: 0;
+    outline: none;
+    border: none;
+    width: 25px;
+    margin-left: 14px;
+}
+.input-cart{
+    padding: 5px 10px;
+    border: 1px solid grey;
+    outline: none;
+}
 
 
 .smallimg{

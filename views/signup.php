@@ -1,6 +1,6 @@
 <div class="container d-flex flex-column align-items-center" style="max-width: 600px;">
     <img src="./imgduan1/logo.jpg" alt="Logo" style="width: 250px;">
-    <h3 class="text-center mb-3">Đăng nhập với</h3>
+    <h3 class="text-center mb-3">Đăng ký với</h3>
 
     <!-- Social login -->
     <div class="d-flex justify-content-center mb-3">
@@ -19,14 +19,14 @@
         </div>
 
         <!-- Login form -->
-        <form>
-            <input type="text" class="custom-input" placeholder="Nhập họ và tên" id="name">
-            <input type="text" class="custom-input" placeholder="Nhập số điện thoại" id="number">
-            <input type="email" class="custom-input" placeholder="Nhập email" id="email">
-            <input type="password" class="custom-input" placeholder="Nhập mật khẩu" id="password">
-            <input type="password" class="custom-input" placeholder="Nhập lại mật khẩu" id="passwordConfirmation">
+        <form action="index.php?page=signup&action=add" method="post">
+            <input type="text" name="name" class="custom-input" placeholder="Nhập họ và tên" id="name">
+            <input type="text" name="phone" class="custom-input" placeholder="Nhập số điện thoại" id="number">
+            <input type="email" name="email" class="custom-input" placeholder="Nhập email" id="email">
+            <input type="password" name="password" class="custom-input" placeholder="Nhập mật khẩu" id="password">
+            <input type="password" name="passwordConfirm" class="custom-input" placeholder="Nhập lại mật khẩu" id="passwordConfirmation">
 
-            <button type="submit" class="custom-button">Đăng Ký</button>
+            <input type="submit" name="signup" class="custom-button" value="Đăng Ký"></input>
         </form>
 
         <!-- Sign up link -->

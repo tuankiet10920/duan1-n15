@@ -7,7 +7,6 @@
 }
 body {
   width: 100%;
-  height: 300vh;
   font-family: "Poppins", sans-serif;
 }
 
@@ -136,8 +135,13 @@ nav .navbar-nav {
     margin-bottom: 10px;
 }
 
+.header-link{
+  color: #4490DB;
+  text-decoration: none;
+}
+
 .price {
-    font-size: 28px;
+    font-size: 22px;
     color: red;
     font-weight: bold;
     margin-bottom: 20px;
@@ -151,15 +155,26 @@ nav .navbar-nav {
 
 #buy-amount{
     display: flex;
-    
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 5px 10px;
 }
 #buy-amount button{
-    width: 45px;
-    height: 44px;
+    width: 20px;
+    height: 20px;
     outline: none;
     background: none;
     border: 1px solid grey;
     cursor: pointer;
+    border-radius: 50%;
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#buy-amount p{
+  margin: 0px 5px;
 }
 
 #buy-amount button:hover{
@@ -394,6 +409,14 @@ nav .navbar-nav {
   text-align: center;
 }
 
+#qty{
+  padding: 0;
+  outline: none;
+  border: none;
+  width: 33px;
+  margin-left: 18px;
+}
+
 .contacts .content .left-side .details i {
   font-size: 30px;
   color: #7cb1e6;
@@ -522,8 +545,7 @@ td p {
     margin: 0;
     font-size: 14px;
 }
-
-input[type="text"] {
+.input-field-contact {
     padding: 8px;
     width: 60%;
     margin-top: 10px;
@@ -601,3 +623,113 @@ p {
 
 
 /* end pay */
+
+
+/* start signup */
+/* Social Login Section */
+.social-login {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.social-text {
+  font-size: 16px;
+}
+
+/* Separator */
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.separator hr {
+  flex: 1;
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.separator-text {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Form */
+.custom-input {
+  width: 100%; /* Sử dụng 100% để input tự động điều chỉnh theo chiều rộng container */
+  padding: 12px 30px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.custom-input:focus {
+  border-color: #4490DB;
+  box-shadow: 0 0 8px rgba(68, 144, 219, 0.3);
+  outline: none;
+}
+
+.custom-input::placeholder {
+  color: #aaa;
+}
+
+/* Login Button */
+.custom-button {
+  width: 100%;
+  background-color: #4490DB;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+  background-color: #357bb5;
+}
+
+/* Sign-up Link */
+.text-center p {
+  font-size: 14px;
+  color: #888;
+}
+
+.text-center p a {
+  color: #4490DB;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.text-center p a:hover {
+  text-decoration: underline;
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 6px rgba(220, 53, 69, 0.5);
+}
+
+.is-valid {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 6px rgba(40, 167, 69, 0.5);
+}
+
+/* Hiển thị thông báo lỗi */
+.invalid-feedback {
+  display: block; /* Đảm bảo hiển thị */
+  color: #dc3545;
+}
+
+/* end signup */
