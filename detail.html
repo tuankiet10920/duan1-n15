@@ -1,263 +1,283 @@
 <!DOCTYPE html>
-<div lang="en">
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Detail</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
-        <!-- jQuery (Bootstrap JS yêu cầu jQuery) -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-        <link rel="stylesheet" href="style.css">
-    </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <!-- jQuery (Bootstrap JS yêu cầu jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
-    <div>
+  </head>
 
-        <div class="container">
+  <body>
 
+    <div class="container">
 
-            <!--lịch sử người dùng -->
-            <div class="direction mb-5">
-                <a href="#">Trang chủ</a> / <a href="#">Màn hình</a> / <span>Màn hình Samsung S36C LS24C366EAEXXV | 24
-                    inch,
-                    Full HD, VA, 75Hz, 4ms, cong</span>
+      <!--lịch sử người dùng -->
+      <div class="direction mb-5">
+        <a class="header-link" href="#">Trang chủ</a> / <a href="#" class="header-link">Màn hình</a> / <span>Màn hình
+          Samsung S36C LS24C366EAEXXV | 24
+          inch,
+          Full HD, VA, 75Hz, 4ms, cong</span>
+      </div>
+      <!--hình ảnh-->
+      <div class="product-container d-flex justify-content-between">
+        <div class="images">
+          <img id="imgBig" src="./imgduan1/dell1.jpg" width="675px" height="450px"
+            style="object-fit: cover;"
+            alt="Main Product">
+          <div class="smallimg">
+            <img class="imgSmall" src="./imgduan1/dell1.jpg" width="150px" height="146px" alt
+              >
+            <img class="imgSmall" src="./imgduan1/ctdell1_1.jpg" width="150px" height="146px" alt
+              >
+            <img class="imgSmall" src="./imgduan1/ctdell1_2.jpg" width="150px" height="146px" alt
+              >
+            <img class="imgSmall" src="./imgduan1/ctdell1_3.webp" width="150px" height="146px"
+              alt
+              >
+          </div>
+        </div>
+        <!--info sản phẩm-->
+        <div style="width: 42%;">
+          <div class="product-info">
+            <h3>Màn hình Samsung S36C LS24 | 24 inch, Full HD, VA, 75Hz, 4ms, cong</h3>
+            <p class="rating">★ 123 (Đã bán 150)</p>
+            <p class="price">8.990.000₫</p>
+          </div>
+          <hr>
+          <!--buton-->
+          <form action="#" class="buttons">
+            <div id="buy-amount">
+              <button type="button" id="decreaseQty">-</button>
+              <p id="qty">1</p>
+              <button type="button" id="increaseQty">+</button>
             </div>
-            <!--hình ảnh-->
-            <div class="product-container d-flex justify-content-between">
-                <div class="images">
-                    <img src="./imgduan1/dell1.jpg" width="675px" height="450px" style="object-fit: cover;"
-                        alt="Main Product">
-                    <div class="smallimg">
-                        <img src="./imgduan1/dell1.jpg" width="150px" height="146px" alt="" onclick="changeImage(this)">
-                        <img src="./imgduan1/ctdell1_1.jpg" width="150px" height="146px" alt=""
-                            onclick="changeImage(this)">
-                        <img src="./imgduan1/ctdell1_2.jpg" width="150px" height="146px" alt=""
-                            onclick="changeImage(this)">
-                        <img src="./imgduan1/ctdell1_3.webp" width="150px" height="146px" alt=""
-                            onclick="changeImage(this)">
-                    </div>
+            <input class="buy-now" type="submit" name="buyNow" value="Mua ngay"></input>
+            <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+              <span class="material-symbols-outlined ms-2"> favorite </span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="product-describe">
+        <!-- Mô tả sản phẩm -->
+        <section class="product-description">
+          <h1>Màn hình Samsung S30C LS32C3HGEMX/XV</h1>
+          <h2>32 inch, UHD, VA, HDR10, Adaptive Sync</h2>
+          <p>Trải nghiệm đỉnh cao với màn hình Samsung S30C, chiếc màn hình lý
+            tưởng cho nhu cầu làm việc,
+            giải trí và chơi game. Với kích thước 32 inch và độ phân giải UHD 4K
+            sắc nét, sản phẩm này mang
+            lại chất lượng hình ảnh vượt trội và sống động như thật.</p>
+          <h3>Đặc điểm nổi bật:</h3>
+          <ul>
+            <li><strong>Độ phân giải UHD 4K:</strong> Hình ảnh rõ nét, chi tiết
+              gấp 4 lần so với Full HD.
+            </li>
+            <li><strong>Công nghệ HDR10:</strong> Mang đến màu sắc rực rỡ, độ
+              tương phản sâu.</li>
+            <li><strong>Tấm nền VA:</strong> Cung cấp góc nhìn rộng, hình ảnh rõ
+              nét ngay cả ở những góc
+              nghiêng.</li>
+            <li><strong>Adaptive Sync:</strong> Loại bỏ hiện tượng giật hình và
+              xé hình, lý tưởng cho các
+              game thủ.</li>
+            <li><strong>Thiết kế hiện đại:</strong> Viền mỏng tinh tế, phù hợp
+              với mọi không gian.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="comment">
+
+        <h2>Bình luận</h2>
+        <!-- Form nhập bình luận -->
+        <form id="comment-form">
+          <textarea id="comment-input"
+            placeholder="Viết bình luận của bạn ở đây..." required></textarea>
+            <div class="button-send text-end" style="width: 100%;">
+              <input type="submit" name="send" value="Gửi" class="btn px-4 py-2 text-white" style="width: fit-content; background: #7cb1e6;"></input>
+              
+            </div>
+
+        </form>
+
+        <!-- Danh sách bình luận -->
+        <div id="comment-list">
+          <!-- Phần bình luận -->
+
+          <div class="comments">
+            <p><strong>Sam:</strong></p>
+            <p>"Sản phẩm cực kỳ tuyệt vời! Mình mua về để làm việc và xem phim,
+              chất lượng hình ảnh thực sự
+              đỉnh cao. Tính năng Adaptive Sync giúp chơi game mượt mà hơn
+              hẳn."</p>
+          </div>
+          <div class="comments-admin">
+            <div class="comment-admin comments">
+              <p><strong>Admin:</strong></p>
+              <p>"Cảm ơn bạn Sam đã tin tưởng và ủng hộ sản phẩm của chúng tôi.
+                Hy vọng bạn sẽ tiếp tục có
+                những trải nghiệm tuyệt vời với màn hình Samsung S30C!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mt-5">
+        <h3 class="mb-4">Sản Phẩm Liên Quan</h3>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div
+              class="card text-center rounded-2 text-decoration-none card-body">
+              <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top"
+                  style="height: 200px; object-fit: cover"
+                  alt="Product Image" /></a>
+              <div class="text-start">
+                <a href="#" class="text-decoration-none" style="color: #000">
+                  <h5 class="card-title">
+                    Smart Tivi Samsung Crystal UHD 4K 55 inch
+                  </h5>
+                </a>
+                <p class="card-text text-danger fw-bold">8.990.000₫</p>
+                <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
+                  Freeship từ 2km đổ lại
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text-warning">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
                 </div>
-                <!--info sản phẩm-->
-                <div style="width: 42%;">
-                    <div class="product-info">
-                        <h1>Màn hình Samsung S36C LS24C366EAEXXV | 24 inch, Full HD, VA, 75Hz, 4ms, cong</h1>
-                        <div class="rating">★★★★★ (Đã bán 150)</div>
-                        <div class="price">8.990.000₫</div>
-                    </div>
-                    <hr>
-                    <!--buton-->
-                    <div class="buttons">
-                        <div id="buy-amount">
-                            <button class="plus"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
-                                </svg>
-                            </button>
-                            <input class="numbers" type="text" name="amount" id="amount" value="1">
-                            <button class="minus"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <button class="buy-now">Mua ngay</button>
-                        <span class="material-symbols-outlined ms-2"> favorite </span>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="product-describe">
-                <!-- Mô tả sản phẩm -->
-                <section class="product-description">
-                    <h1>Màn hình Samsung S30C LS32C3HGEMX/XV</h1>
-                    <h2>32 inch, UHD, VA, HDR10, Adaptive Sync</h2>
-                    <p>Trải nghiệm đỉnh cao với màn hình Samsung S30C, chiếc màn hình lý tưởng cho nhu cầu làm việc,
-                        giải trí và chơi game. Với kích thước 32 inch và độ phân giải UHD 4K sắc nét, sản phẩm này mang
-                        lại chất lượng hình ảnh vượt trội và sống động như thật.</p>
-                    <h3>Đặc điểm nổi bật:</h3>
-                    <ul>
-                        <li><strong>Độ phân giải UHD 4K:</strong> Hình ảnh rõ nét, chi tiết gấp 4 lần so với Full HD.
-                        </li>
-                        <li><strong>Công nghệ HDR10:</strong> Mang đến màu sắc rực rỡ, độ tương phản sâu.</li>
-                        <li><strong>Tấm nền VA:</strong> Cung cấp góc nhìn rộng, hình ảnh rõ nét ngay cả ở những góc
-                            nghiêng.</li>
-                        <li><strong>Adaptive Sync:</strong> Loại bỏ hiện tượng giật hình và xé hình, lý tưởng cho các
-                            game thủ.</li>
-                        <li><strong>Thiết kế hiện đại:</strong> Viền mỏng tinh tế, phù hợp với mọi không gian.</li>
-                    </ul>
-                </section>
-            </div>
-
-
-            <div class="comment">
-
-                <h2>Bình luận</h2>
-                <!-- Form nhập bình luận -->
-                <form id="comment-form">
-                    <textarea id="comment-input" placeholder="Viết bình luận của bạn ở đây..." required></textarea>
-                    <button type="submit">Gửi</button>
-
-
-                </form>
-
-                <!-- Danh sách bình luận -->
-                <div id="comment-list">
-                    <!-- Phần bình luận -->
-
-                    <div class="comments">
-                        <p><strong>Sam:</strong> ⭐️⭐️⭐️⭐️⭐️</p>
-                        <p>"Sản phẩm cực kỳ tuyệt vời! Mình mua về để làm việc và xem phim, chất lượng hình ảnh thực sự
-                            đỉnh cao. Tính năng Adaptive Sync giúp chơi game mượt mà hơn hẳn."</p>
-                    </div>
-                    <div class="comments-admin">
-                        <div class="comment-admin comments">
-                            <p><strong>Admin:</strong></p>
-                            <p>"Cảm ơn bạn Sam đã tin tưởng và ủng hộ sản phẩm của chúng tôi. Hy vọng bạn sẽ tiếp tục có
-                                những trải nghiệm tuyệt vời với màn hình Samsung S30C!"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container mt-5">
-                <h3 class="mb-4">Sản Phẩm Liên Quan</h3>
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                  <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                    <div class="card text-center rounded-2 text-decoration-none card-body">
-                      <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                      <div class="text-start">
-                        <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                            Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                        </a>
-                        <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                        <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                        </p>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                        </div>
-                        <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Lặp lại thẻ div .col để thêm các sản phẩm khác -->
-                  <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                    <div class="card text-center rounded-2 text-decoration-none card-body">
-                      <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                      <div class="text-start">
-                        <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                            Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                        </a>
-                        <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                        <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                        </p>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                        </div>
-                        <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            
-                  <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                    <div class="card text-center rounded-2 text-decoration-none card-body">
-                      <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                      <div class="text-start">
-                        <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                            Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                        </a>
-                        <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                        <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                        </p>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                        </div>
-                        <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            
-                  <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                    <div class="card text-center rounded-2 text-decoration-none card-body">
-                      <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
-                          alt="Product Image" /></a>
-                      <div class="text-start">
-                        <a href="#" class="text-decoration-none" style="color: #000">
-                          <h5 class="card-title">
-                            Smart Tivi Samsung Crystal UHD 4K 55 inch
-                          </h5>
-                        </a>
-                        <p class="card-text text-danger fw-bold">8.990.000₫</p>
-                        <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
-                          Freeship từ 2km đổ lại
-                        </p>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="text-warning">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                        </div>
-                        <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                          <span class="material-symbols-outlined ms-2"> favorite </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+                  <span class="material-symbols-outlined ms-2"> favorite </span>
                 </div>
               </div>
-            
-        </div>
-        </body>
-        <script src="detail.js"></script>
+            </div>
+          </div>
+          <!-- Lặp lại thẻ div .col để thêm các sản phẩm khác -->
+          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div
+              class="card text-center rounded-2 text-decoration-none card-body">
+              <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top"
+                  style="height: 200px; object-fit: cover"
+                  alt="Product Image" /></a>
+              <div class="text-start">
+                <a href="#" class="text-decoration-none" style="color: #000">
+                  <h5 class="card-title">
+                    Smart Tivi Samsung Crystal UHD 4K 55 inch
+                  </h5>
+                </a>
+                <p class="card-text text-danger fw-bold">8.990.000₫</p>
+                <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
+                  Freeship từ 2km đổ lại
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text-warning">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+                  <span class="material-symbols-outlined ms-2"> favorite </span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        </html>
+          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div
+              class="card text-center rounded-2 text-decoration-none card-body">
+              <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top"
+                  style="height: 200px; object-fit: cover"
+                  alt="Product Image" /></a>
+              <div class="text-start">
+                <a href="#" class="text-decoration-none" style="color: #000">
+                  <h5 class="card-title">
+                    Smart Tivi Samsung Crystal UHD 4K 55 inch
+                  </h5>
+                </a>
+                <p class="card-text text-danger fw-bold">8.990.000₫</p>
+                <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
+                  Freeship từ 2km đổ lại
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text-warning">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+                  <span class="material-symbols-outlined ms-2"> favorite </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div
+              class="card text-center rounded-2 text-decoration-none card-body">
+              <a href="#"><img src="./imgduan1/dell1.jpg" class="card-img-top"
+                  style="height: 200px; object-fit: cover"
+                  alt="Product Image" /></a>
+              <div class="text-start">
+                <a href="#" class="text-decoration-none" style="color: #000">
+                  <h5 class="card-title">
+                    Smart Tivi Samsung Crystal UHD 4K 55 inch
+                  </h5>
+                </a>
+                <p class="card-text text-danger fw-bold">8.990.000₫</p>
+                <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
+                  Freeship từ 2km đổ lại
+                </p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text-warning">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+                  <span class="material-symbols-outlined ms-2"> favorite </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+  <script src="./index.js"></script>
+
+</html>

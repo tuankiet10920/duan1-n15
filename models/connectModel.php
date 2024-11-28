@@ -42,10 +42,9 @@
             return $kq; // biến này chứa mãng các dòng dữ liệu trả về.
         }
 
-        public function addUser($sql){
+        public function add($sql){
             $this->ketnoi();
             $stmt = $this->conn->prepare($sql); 
-            // bindParam
             $stmt->execute();
             $this->conn = null; // đóng kết nối database
         }

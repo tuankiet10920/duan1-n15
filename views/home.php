@@ -56,15 +56,15 @@
                 $string .= '
                     <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                         <div class="card text-center rounded-2 text-decoration-none card-body">
-                            <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
+                            <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
                                     alt="Product Image" /></a>
                             <div class="text-start">
-                                <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'" class="text-decoration-none" style="color: #000">
+                                <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000">
                                     <h5 class="card-title product-name">
                                     ' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['number'] . ' inch
                                     </h5>
                                 </a>
-                                <p class="card-text text-danger fw-bold">'. number_format($monitor['price'], 0, ',', '.') .'₫</p>
+                                <p class="card-text text-danger fw-bold">' . number_format($monitor['price'], 0, ',', '.') . '₫</p>
                                 <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
                                     Freeship từ 2km đổ lại
                                 </p>
@@ -77,7 +77,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
+                                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
                                     <span class="material-symbols-outlined ms-2"> favorite </span>
                                 </div>
                             </div>
@@ -105,15 +105,15 @@
                 $string .= '
                     <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                         <div class="card text-center rounded-2 text-decoration-none card-body">
-                            <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
+                            <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
                                     alt="Product Image" /></a>
                             <div class="text-start">
-                                <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'" class="text-decoration-none" style="color: #000">
+                                <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000">
                                     <h5 class="card-title product-name">
                                     ' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['number'] . ' inch
                                     </h5>
                                 </a>
-                                <p class="card-text text-danger fw-bold">'. number_format($monitor['price'], 0, ',', '.') .'₫</p>
+                                <p class="card-text text-danger fw-bold">' . number_format($monitor['price'], 0, ',', '.') . '₫</p>
                                 <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
                                     Freeship từ 2km đổ lại
                                 </p>

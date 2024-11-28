@@ -4,3 +4,7 @@ function test_array($array){
     print_r($array);
     echo '</pre>';
 }
+
+function transBoolToStringTS($bool){
+    return $bool === 0 ? 'cong' : 'phẳng';
+}

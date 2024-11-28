@@ -1,7 +1,8 @@
+
 create database duan1_n15;
 use duan1_n15;
 -- drop database duan1_n15;
-
+SET FOREIGN_KEY_CHECKS=1;
 create table base_plate(
  id_base_plate int primary key auto_increment,
  name varchar(255)
@@ -42,7 +43,7 @@ create table monitor(
  in_stock int,
  gurantee int,
  size int,
- describe_monitor text,
+ describe_monitor text character set utf8mb4 collate utf8mb4_unicode_ci,
  status boolean,
  brand int,
  color_space int,
@@ -74,9 +75,12 @@ create table address(
  id_user int
 );
 
+-- select * from bill where id_user = 1;
+
 create table user(
  id_user int primary key auto_increment,
- name varchar(255),
+ name varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+ phone varchar(255),
  image varchar(255),
  gender varchar(255),
  email varchar(255),
@@ -85,6 +89,11 @@ create table user(
  nick_name varchar(255),
  status boolean
 );
+
+-- insert into user values
+-- (null, 'nguyen van a', '14541531435','cc.cc', null, 'vananguyen@gmail.com', 'dasdsadad415364153', null, null, 0);
+select * from user;
+select * from user where email = 'vananguyen0123@gmail.com' and password = 'vana123';
 
 create table phone_number(
  id_phone_number int primary key auto_increment,
@@ -96,9 +105,16 @@ create table phone_number(
 create table bill(
  id_bill int primary key auto_increment,
  date_time datetime,
+ status boolean,
  id_user int
 );
-
+-- 0: buying
+-- 1: paid
+select * from bill where id_user = 1 and status = 0;
+-- insert into bill values (null, current_timestamp(), 0, 2);
+-- insert into bill values (null, current_timestamp(), 0, 1);
+select * from bill;
+-- select id_bill from bill where id_user = 1 and status = 0;
 create table bill_detail(
  id_bill_detail int primary key auto_increment,
  quatity int,
@@ -107,8 +123,15 @@ create table bill_detail(
  id_bill int,
  id_voucher int
 );
-
-
+select * from bill where id_user = 1 and status = 0;
+select bill_detail.*, monitor.name, monitor.price as monitor_price from bill_detail
+inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 1;
+-- insert into bill_detail values (null, 2, 10000, 1, 1, null);
+-- update bill_detail set quatity = 2 where id_bill = 1 and id_monitor = 4;
+select quatity from bill_detail where id_bill = 1 and id_monitor = 4;
+select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
+-- delete from bill_detail where id_monitor = 1 and id_bill = 1;
+select bill_detail.*, monitor.name, monitor.price as monitor_price from bill_detail inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 1;
 create table rating(
  id_rating int primary key auto_increment,
  number int,
@@ -116,10 +139,10 @@ create table rating(
  id_user int,
  id_monitor int
 );
-
+select * from images where id_monitor = 2 limit 1;
 create table comment(
  id_comment int primary key auto_increment,
- content_comment text,
+ content_comment text character set utf8mb4 collate utf8mb4_unicode_ci,
  date_time datetime,
  id_comment_parent int,
  id_user int,
@@ -141,11 +164,30 @@ create table views(
 
 create table voucher(
  id_voucher int primary key auto_increment,
- number int,
- unit varchar(255),
+ name varchar(255),
+ value int,
+ -- unit -> 0: VND, 1: %
+ unit boolean,
  limit_number int,
- limit_date_time datetime
+ date_start date,
+ date_end date,
+ id_monitor int
 );
+select * from voucher;
+select id_bill from bill where id_user = 1 and status = 0;
+select * from bill_detail;
+
+select * from voucher where name = 'MUADONG1';
+select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
+-- update bill_detail set id_voucher = 1 where id_monitor = 1;
+select monitor.name as monitor_name, bill_detail.price as monitor_price, voucher.*, quatity from bill_detail 
+inner join voucher on bill_detail.id_voucher = voucher.id_voucher
+inner join monitor on bill_detail.id_monitor = monitor.id_monitor;
+select * from bill_detail;
+ALTER TABLE voucher
+ADD CONSTRAINT FK_voucher
+FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
+
 
 ALTER TABLE monitor
 ADD CONSTRAINT FK2_monitor
@@ -311,6 +353,23 @@ inner join screen_solution on monitor.screen_solution = screen_solution.id_scree
 inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency
 where id_monitor = 1;
 
+select id_monitor from monitor where brand = (select brand from monitor where id_monitor = 1);
+select * from images where id_monitor = 1 limit 1;
+select brand from monitor where id_monitor = 1;
+
+select * from brand;
+
+select * from screen_solution;
+
+-- image, name, price
+
+select id_monitor, monitor.name, price, screen_solution.name as screen_solution_name, size from monitor
+inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution;
+
+select path, name, id_monitor from images;
+
+select id_monitor, monitor.name, price, screen_solution.name as screen_solution_name, size from monitor
+inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution where screen_solution = 2 and size = 24 and brand = 4 and price between 0 and 9000000;
 
 insert into connection_port_monitor values
 (null, 1, 1),
@@ -322,3 +381,13 @@ insert into connection_port_monitor values
 (null, 3, 3),
 (null, 1, 4),
 (null, 4, 4);
+
+
+
+insert into voucher values 
+(null, 'MUADONG1', 10, 1, 20, '2024-11-26', '2024-11-30', null),
+(null, 'MUADONG2', 5, 0, 20, '2024-11-26', '2024-11-30', null),
+(null, 'MUADONG2', 7, 0, 20, '2024-11-26', '2024-11-30', 1),
+(null, 'MUADONG3', 8, 1, 20, '2024-11-26', '2024-11-30', 2);
+select * from voucher;
+-- update voucher set value = 1 where id_voucher = 4;
