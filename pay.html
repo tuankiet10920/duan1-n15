@@ -12,84 +12,105 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="style.css">
+
 </head>
+
+  
+
 <body>
-    <div class="container">
-        <div class="breadcrumb">
-          <a href="#">Tài khoản</a> / 
-          <a href="#">Tài khoản của tôi</a> / 
-          <a href="#">Sản phẩm</a> / 
-          <a href="#">Xem giỏ hàng</a> / 
-          <a href="#">Thanh toán</a>
+    <div class="container ">
+        <div class=" my-3 mx-2">
+          <a class="text-dark" style="text-decoration: none;" href="#">Tài khoản /</a>  
+          <a class="ms-1 text-dark" style="text-decoration: none;" href="#">Tài khoản của tôi /</a>  
+          <a class="ms-1 text-dark" style="text-decoration: none;" href="#">Sản phẩm /</a> 
+          <a class="ms-1 text-dark" style="text-decoration: none;" href="#">Xem giỏ hàng / </a> 
+          <a class="ms-1 text-dark" style="text-decoration: none;" href="#">Thanh toán</a>
         </div>
     
-        <div class="checkout">
-          <!-- Form thông tin thanh toán -->
-          <div class="checkout-details">
-            <h2>Chi tiết thanh toán</h2>
-            <form action="#">
-              <label for="name">Họ và tên</label>
-              <input type="text" id="name" name="name" required>
-    
-              <label for="address">Địa chỉ nơi ở (bắt buộc)</label>
-              <input type="text" id="address" name="address" required>
-    
-              <label for="city">Tỉnh, Thành phố (bắt buộc)</label>
-              <input type="text" id="city" name="city" required>
-    
-              <label for="phone">Số điện thoại (bắt buộc)</label>
-              <input type="tel" id="phone" name="phone" required>
-    
-              <label for="email">Địa chỉ Email (nếu có)</label>
-              <input type="email" id="email" name="email">
-    
-              <label for="status">Tình trạng hôn nhân (nếu có)</label>
-              <input type="text" id="status" name="status">
-    
-              <label for="zipcode">Mã bưu điện (không bắt buộc)</label>
-              <input type="text" id="zipcode" name="zipcode">
-    
-              <div class="save-info">
-                <input type="checkbox" id="save" name="save">
-                <label for="save">Lưu thông tin này để trả phòng nhanh hơn vào lần sau</label>
+        <div class="container my-3">
+          <div class="row">
+              <!-- Cột chi tiết thanh toán -->
+              <div class="col-md-6">
+                  <h4 class="mb-4">Chi tiết thanh toán</h4>
+                  <form>
+                      <div class="mb-3">
+                          <label for="fullName" class="form-label"><b>Họ và tên</b></label>
+                          <input type="text" class="form-control" id="fullName" placeholder="Nhập họ và tên">
+                      </div>
+                      <div class="mb-3">
+                          <label for="address" class="form-label"><b>Địa chỉ nơi ở (bắt buộc)</b></label>
+                          <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ">
+                      </div>
+                      <div class="mb-3">
+                          <label for="city" class="form-label"><b>Tỉnh, Thành phố (bắt buộc)</b></label>
+                          <input type="text" class="form-control" id="city" placeholder="Nhập tỉnh/thành phố">
+                      </div>
+                      <div class="mb-3">
+                          <label for="phone" class="form-label"><b>Số điện thoại (bắt buộc)</b></label>
+                          <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                      </div>
+                      <div class="mb-3">
+                          <label for="email" class="form-label"><b>Địa chỉ Email (nếu có)</b></label>
+                          <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                      </div>
+                      <div class="mb-3">
+                          <label for="postalCode" class="form-label"><b>Mã bưu điện (không bắt buộc)</b></label>
+                          <input type="text" class="form-control" id="postalCode" placeholder="Nhập mã bưu điện">
+                      </div>
+                  </form>
               </div>
-            </form>
+  
+              <!-- Cột đơn hàng đã chọn -->
+              <div class="col-md-6">
+                  <h4 class="mb-4">Đơn hàng đã chọn</h4>
+                  <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                          <img src="./img/dell1.jpg" alt="" style="width: 80px;" height="80px">
+                          <strong style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px;  display: inline-block;">Smart Tivi Samsung Crystal UHD 4K 55 inch</strong>
+                        </div>
+                        <span>8.890.000đ</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                          <img src="./img/dell1.jpg" alt="" style="width: 80px;" height="80px">
+                          <strong style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px;  display: inline-block;" >Smart Tivi Samsung Crystal UHD 4K 55 inch</strong>
+                        </div>
+                        <span>8.890.000đ</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                          <img src="./img/dell1.jpg" alt="" style="width: 80px;" height="80px">
+                          <strong style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px;  display: inline-block;" >Màn Hình Dell S2421H (23.8 inch - FHD - IPS - 75Hz - 4ms)</strong>
+                        </div>
+                        <span>8.890.000đ</span>
+                      </li>
+                  </ul>
+                  <div class="mb-3">
+                      
+                      <div class="d-flex justify-content-between fw-bold">
+                          <span>Tổng cộng:</span>
+                          <span>11.889.000đ</span>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                      <label class="form-label">Phương thức thanh toán</label>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer">
+                          <label class="form-check-label" for="bankTransfer">Thanh toán qua Ngân Hàng</label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery">
+                          <label class="form-check-label" for="cashOnDelivery">Thanh toán khi nhận hàng</label>
+                      </div>
+                  </div>
+                  <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Mã Phiếu giảm giá" aria-label="Mã Phiếu giảm giá">
+                      <button class="btn btn-primary" type="button">Áp dụng</button>
+                  </div>
+                  <button class="btn btn btn-primary w-100" type="button">Đặt hàng</button>
+              </div>
           </div>
-    
-          <!-- Đơn hàng đã chọn -->
-          <div class="order-summary">
-            <h2>Đơn hàng đã chọn</h2>
-            <ul>
-              <li>
-                <img src="img/dell1.jpg" alt="Smart Tivi Samsung">
-                Smart Tivi Samsung Crystal UHD 4K 55 inch
-                <span>8.890.000đ</span>
-              </li>
-              <li>
-                <img src="img/36080_d9.jpg" alt="Màn hình Dell">
-                Màn Hình Dell S2421H (23.8 inch - FHD - IPS - 75Hz - 4ms)
-                <span>2.999.000đ</span>
-              </li>
-            </ul>
-            <div class="totals">
-              <p>Tổng phụ: <span>11.889.000đ</span></p><hr>
-              <p>Phí vận chuyển: <span>Miễn phí</span></p><hr>
-              <p><strong>Tổng cộng: <span>11.889.000đ</span></strong></p>
-            </div>
-            <div class="payment-options">
-              <input type="radio" id="bank" name="payment" checked>
-              <label for="bank">Thanh toán qua Ngân Hàng</label><br>
-              <input type="radio" id="cod" name="payment">
-              <label for="cod">Thanh toán khi nhận hàng</label>
-            </div>
-            <div class="discount-code">
-              <input type="text" placeholder="Mã phiếu giảm giá">
-              <button>Áp dụng</button>
-            </div>
-            <button class="order-btn">Đặt hàng</button>
-          </div>
-        </div>
       </div>
    
 </body>
