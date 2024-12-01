@@ -8,7 +8,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : '';
 
 switch ($page) {
     case 'detail':
-        $id = $qty = $idUser = $price = '';
+        $id = $qty = $idUser = $price = $comment = $idCommentParent = '';
         if(isset($_GET['id'])){
             $id = $_GET['id'];
         }
@@ -18,8 +18,30 @@ switch ($page) {
             $action = $_GET['action'];
             $price = $_GET['price'];
         }
+        if(isset($_POST['sendComment'])){
+            if(isset($_SESSION['user']['id'])){
+                $action = $_GET['action'];
+                $id = $_GET['id'];
+                $comment = $_POST['commentContent'];
+                $idUser = $_SESSION['user']['id'];
+            }else{
+                $action = 'noUser';
+            }
+            
+        }
+        if(isset($_POST['sendCommentChild'])){
+            if(isset($_SESSION['user']['id'])){
+                // $action = $_GET['action'];
+                $id = $_GET['id'];
+                $comment = $_POST['contentCommentChild'];
+                $idCommentParent = $_GET['idUser'];
+                $idUser = $_SESSION['user']['id'];
+            }else{
+                $action = 'noUser';
+            }
+        }
         include_once 'controllers/DetailController.php';
-        $detailController = new DetailController($action, $id, $qty, $price, $idUser);
+        $detailController = new DetailController($action, $id, $qty, $price, $idUser, $comment, $idCommentParent);
         $detailController->index();
         break;
     case 'cart':
@@ -28,7 +50,7 @@ switch ($page) {
             $id = $_GET['id'];
         }
         if(isset($_SESSION['user'])){
-            test_array($_SESSION['user']);
+            // test_array($_SESSION['user']);
             $id_user = $_SESSION['user']['id'];
             $action = 'check';
         }
@@ -53,7 +75,10 @@ switch ($page) {
         $cartController->index();
         break;
     case 'products':
-        $id = $brand = $solution = $size = $priceFrom = $priceTo = '';
+        $id = $brand = $solution = $size = $priceFrom = $priceTo = $idUser = '';
+        if(isset($_SESSION['user'])){
+            $idUser = $_SESSION['user']['id'];
+        }
         if(isset($_GET['id'])){
             $id = $_GET['id'];
         }
@@ -65,8 +90,24 @@ switch ($page) {
             $priceTo = isset($_POST['priceTo'])? $_POST['priceTo'] : '';
             $action = isset($_GET['action']) ? $_GET['action'] : '';
         }
+        if(isset($_GET['action']) && $_GET['action'] === 'addLoving'){
+            if(!isset($_SESSION['user']['id'])){
+                $action = '';
+            }else{
+                $action = $_GET['action'];
+                $id = $_GET['id'];
+            }
+        }
+        if(isset($_GET['action']) && $_GET['action'] === 'deleteLoving'){
+            $action = $_GET['action'];
+            $id = $_GET['id'];
+        }
+        if(isset($_GET['action']) && $_GET['action'] === 'deleteLoving'){
+            $action = $_GET['action'];
+            $id = $_GET['id'];
+        }
         include_once 'controllers/ProductsController.php';
-        $productController = new ProductsController($action, $id, $brand, $solution, $size, $priceFrom, $priceTo);
+        $productController = new ProductsController($action, $id, $brand, $solution, $size, $priceFrom, $priceTo, $idUser);
         $productController->index();
         break;
     case 'signup':
@@ -105,6 +146,55 @@ switch ($page) {
         include_once 'controllers/LoginController.php';
         $loginController = new LoginController($action, $email, $password);
         $loginController->index();
+        
+        break;
+    case 'account':
+        $content = isset($_GET['content']) ? $_GET['content'] : '';
+
+        $leftSide = '
+            <div class="container">
+                <div class="user_side">
+                    <div class="sidebar">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img class="image-acc-clone" src="public/img/acc-clone.jpg" alt="">
+                            </div>
+                            <p class="name">Name Người Dùng</p>
+                        </div>
+                        <ul class="menu">
+                            <li><a href="index.php?page=account"><span class="fa-solid fa-user"></span> Thông tin tài khoản</a></li>
+                            <li><a href="#"><span class="fa-solid fa-address-book"></i></span> Địa chỉ</a></li>
+                            <li><a href="#"><span class="fa-brands fa-product-hunt"></span> Quản lý hóa đơn</a></li>
+                            <li><a href="index.php?page=account&content=love"><span class="fa-solid fa-heart"></span> Sản phẩm yêu thích</a></li>
+                            <li><a href="#"><span class="fa-solid fa-right-from-bracket"></span> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+        ';
+        // left
+        echo $leftSide;
+
+        // main
+        switch ($content) {
+            // this page includes all of favorite products of user
+            case 'love':
+                $idUser = $action = $idMonitor = '';
+                if(isset($_SESSION['user'])){
+                    $idUser = $_SESSION['user']['id'];
+                }
+                if(isset($_GET['action']) && $_GET['action'] === 'deleteLoving'){
+                    $action = $_GET['action'];
+                    $idUser = $_SESSION['user']['id'];
+                    $idMonitor = $_GET['id'];
+                }
+                include_once 'controllers/LoveController.php';
+                $loveController = new LoveController($idUser, $action, $idMonitor);
+                $loveController->index();
+                break;
+            
+            default: // dashboard information user
+                include_once 'views/account.php';
+                break;
+        }
         break;
     default: // home // HomeController
         include_once 'controllers/HomeController.php';

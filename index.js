@@ -1,6 +1,10 @@
 let href = window.location.href;
 
 let btnFavorite = document.querySelectorAll(".btn-favorite");
+function goToAccountPage(){
+  window.location.href = "http://localhost:8080/duan1-n15/index.php?page=account";
+}
+
 btnFavorite.forEach((button) => {
   button.addEventListener("click", addFavorite);
 });
@@ -84,6 +88,42 @@ if (href.search("detail") !== -1) {
   btnIncrease.addEventListener("click", increaseQty);
   btnDecrease.addEventListener("click", decreaseQty);
 }
+function showFormComment(paragraph, idMonitor, idUser) {
+  let checkFormExist = false
+  
+  console.log(paragraph.parentNode);
+  paragraph.parentNode.childNodes.forEach(node => {
+    if(node.id === 'comment-form'){
+      checkFormExist = true
+    }
+  });
+  if(checkFormExist === false){
+    let formSendComment = document.createElement("form");
+    let attributes = {
+      id: "comment-form",
+      action: `index.php?page=detail&action=commentChild&id=${idMonitor}&idUser=${idUser}`,
+      method: "post"
+    }
+    formSendComment.innerHTML = `
+                      <textarea id="comment-input" name="contentCommentChild"
+                          placeholder="Viết bình luận của bạn ở đây..." required></textarea>
+                      <div class="button-send text-end" style="width: 100%;">
+                          <button type="button" class="btn px-4 py-2 text-white" onclick="cancelSendComment(this)">Hủy</button>
+                          <input type="submit" name="sendCommentChild" value="Gửi" class="btn px-4 py-2 text-white" style="width: fit-content; background: #7cb1e6;"></input>
+                      </div>
+    `;
+    for (let key in attributes) {
+      formSendComment.setAttribute(key, attributes[key])
+    }
+    paragraph.parentNode.appendChild(formSendComment);
+  }
+}
+
+function cancelSendComment(button){
+  console.log(button.parentNode.parentNode);
+  button.parentNode.parentNode.remove();
+}
+
 
 if (href.search("signup") !== -1) {
   // Lấy các phần tử nhập liệu

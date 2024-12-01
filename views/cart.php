@@ -1,16 +1,16 @@
 <?php 
-if(isset($cartList['listMonitorWithImages'])){
-    test_array($cartList['listMonitorWithImages']);
-}
-if(isset($checkVoucherCode)){
-    test_array($checkVoucherCode);
-}
-if(isset($meo)){
-    echo $meo;
-}
-if(isset($code)){
-    echo $code;
-}
+// if(isset($cartList)){
+//     test_array($cartList);
+// }
+// if(isset($checkVoucherCode)){
+//     test_array($checkVoucherCode);
+// }
+// if(isset($meo)){
+//     echo $meo;
+// }
+// if(isset($code)){
+//     echo $code;
+// }
 $subtitle = 0;
 ?>
 <div class="container my-4">
@@ -26,7 +26,7 @@ $subtitle = 0;
             </tr>
             <?php 
                 if(isset($_SESSION['user'])){
-                    if(isset($cartList['listMonitorWithImages']) && count($cartList['listMonitorWithImages']) === 0){
+                    if((isset($cartList['listMonitorWithImages']) && count($cartList['listMonitorWithImages']) === 0) || (isset($cartList) && count($cartList) === 0)){
                         echo '
                             <tr>
                                 <td colspan="5" class="text-center">Bạn chưa có đơn hàng nào, hãy tiếp tục mua hàng!</td>
@@ -46,20 +46,20 @@ $subtitle = 0;
                                             alt="'. $monitor['nameImage'] .'"
                                             class="product-image" />
                                         <p>'. $monitor['name'] .'</p>
-                                        <form action="index.php?page=cart&action=addVoucher&id='. $monitor['id_monitor'] .'" method="post">
-                                            <input type="text" name="voucherCode" class="input-cart px-3 py-1 rounded-pill" style="border: 1px solid grey; outline: none;" placeholder="Mã Phiếu giảm giá" />
-                                            <input type="submit" value="Áp dụng" name="addVoucher" class="btn btn-success text-white">
+                                        <form action="index.php?page=cart&action=addVoucher&id='. $monitor['id_monitor'] .'" method="post" style="display: flex; align-items: center;">
+                                            <input type="text" name="voucherCode" style="width: 200px; margin-right: 10px;" class="input-cart px-3 py-1 rounded-pill" style="border: 1px solid grey; outline: none;" placeholder="Mã Phiếu giảm giá" />
+                                            <input type="submit" value="Áp dụng" style="padding: 5px 20px; height: fit-content;" name="addVoucher" class="btn btn-success text-white">
                                         </form>
                                     </td>
                                     <td>'. number_format($monitor['price'], 0, '.', ',') .'đ</td>
                                     <td>
                                         <div id="buy-amount" style="width: fit-content">
                                             <a href="index.php?page=cart&action=updateQty&type=decrease&id='. $monitor['id_monitor'] .'" class="text-decoration-none">
-                                                <button type="button" id="decreaseQty">-</button>
+                                                <button type="button" id="decreaseQty" style="color: #000;">-</button>
                                             </a>
                                             <p class="qty-cart">'. $monitor['quatity'] .'</p>
                                             <a href="index.php?page=cart&action=updateQty&type=increase&id='. $monitor['id_monitor'] .'" class="text-decoration-none">
-                                                <button type="button" id="increaseQty">+</button>
+                                                <button type="button" id="increaseQty" style="color: #000;">+</button>
                                             </a>
                                         </div>
                                     </td>
@@ -89,36 +89,37 @@ $subtitle = 0;
         <div><button class="back-button">Trở về trang cửa hàng</button></div>
         <?php 
             if(isset($_SESSION['user'])){
-                $string = '';
-                $string .= '
-                    <div class="cart-summary">
-                        <p><strong>Thông tin giỏ hàng:</strong></p>
-                        <p><strong>Tạm tính:</strong> '. number_format($subtitle, 0, '.', ',') .'đ</p>
-                        <p><strong>Phí vận chuyển:</strong> Miễn Phí</p>
-                ';
-                if(count($cartList['listMonitorVoucher']) !== 0){
-                    foreach ($cartList['listMonitorVoucher'] as $key => $voucherMonitor) {
-                        $price = 0;
-                        if($voucherMonitor['unit'] === 1){
-                            $price = $voucherMonitor['monitor_price'] * ($voucherMonitor['value'] / 100);
-                        }else{
-                            $price = $voucherMonitor['value'];
+                if(isset($cartList) && count($cartList) !== 0){
+                    $string = '';
+                    $string .= '
+                        <div class="cart-summary">
+                            <p><strong>Thông tin giỏ hàng:</strong></p>
+                            <p><strong>Tạm tính:</strong> '. number_format($subtitle, 0, '.', ',') .'đ</p>
+                            <p><strong>Phí vận chuyển:</strong> Miễn Phí</p>
+                    ';
+                    if(count($cartList['listMonitorVoucher']) !== 0){
+                        foreach ($cartList['listMonitorVoucher'] as $key => $voucherMonitor) {
+                            $price = 0;
+                            if($voucherMonitor['unit'] === 1){
+                                $price = $voucherMonitor['monitor_price'] * ($voucherMonitor['value'] / 100);
+                            }else{
+                                $price = $voucherMonitor['value'];
+                            }
+                            $subtitle -= $price;
+                            $string .= '
+                                <p><strong>Voucher - '. $voucherMonitor['name'] .':</strong> -'. number_format($price, 0, '.', ',') .'đ - '. $voucherMonitor['monitor_name'] .'</p>
+                            ';
                         }
-                        $subtitle -= $price;
-                        $string .= '
-                            <p><strong>Voucher - '. $voucherMonitor['name'] .':</strong> -'. number_format($price, 0, '.', ',') .'đ - '. $voucherMonitor['monitor_name'] .'</p>
-                        ';
                     }
+                    $string .= '
+                            <p><strong>Tổng cộng:</strong> '. number_format($subtitle, 0, '.', ',') .'đ</p>
+                            <a href="index.php?page=pay">
+                                <button class="checkout-button">Tiến hành thanh toán</button>
+                            </a>
+                        </div>
+                    ';
+                    echo $string;
                 }
-                $string .= '
-                        <p><strong>Tổng cộng:</strong> '. number_format($subtitle, 0, '.', ',') .'đ</p>
-                        <a href="index.php?page=pay">
-                            <button class="checkout-button">Tiến hành thanh toán</button>
-                        </a>
-                    </div>
-                ';
-                echo $string;
-                test_array($cartList['listMonitorVoucher']);
             }
         ?>
         

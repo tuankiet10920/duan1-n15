@@ -1,5 +1,5 @@
-<?php 
-    $monitors = isset($_GET['action']) && $_GET['action'] === 'filter' ? $monitorsFilter : $monitors;
+<?php
+$monitors = isset($_GET['action']) && $_GET['action'] === 'filter' ? $monitorsFilter : $monitors;
 ?>
 <div class="container mt-5">
     <div class="row">
@@ -11,14 +11,14 @@
                     <label for="brandFilter" class="form-label">Thương hiệu</label>
                     <select id="brandFilter" class="form-select" name="brand">
                         <option value="">Tất cả</option>
-                        <?php 
-                            $string = '';
-                            foreach ($brandList as $key => $brand) {
-                                $string .= '
-                                    <option value="'. $brand['id_brand'] .'">'. $brand['name'] .'</option>
+                        <?php
+                        $string = '';
+                        foreach ($brandList as $key => $brand) {
+                            $string .= '
+                                    <option value="' . $brand['id_brand'] . '">' . $brand['name'] . '</option>
                                 ';
-                            }
-                            echo $string;
+                        }
+                        echo $string;
                         ?>
                     </select>
                 </div>
@@ -26,14 +26,14 @@
                     <label for="resolutionFilter" class="form-label">Độ phân giải</label>
                     <select id="resolutionFilter" class="form-select" name="solution">
                         <option value="">Tất cả</option>
-                        <?php 
-                            $string = '';
-                            foreach ($screenSolutionList as $key => $screenSolution) {
-                                $string .= '
-                                    <option value="'. $screenSolution['id_screen_solution'] .'">'. $screenSolution['name'] .'</option>
+                        <?php
+                        $string = '';
+                        foreach ($screenSolutionList as $key => $screenSolution) {
+                            $string .= '
+                                    <option value="' . $screenSolution['id_screen_solution'] . '">' . $screenSolution['name'] . '</option>
                                 ';
-                            }
-                            echo $string;
+                        }
+                        echo $string;
                         ?>
                     </select>
                 </div>
@@ -41,16 +41,16 @@
                     <label for="sizeFilter" class="form-label">Kích thước màn hình</label>
                     <select id="sizeFilter" class="form-select" name="size">
                         <option value="">Tất cả</option>
-                        <?php 
-                            $string = '';
-                            $count = 15;
-                            while ($count <= 32) {
-                                $string .= '
-                                    <option value="'. $count .'">'. $count .' inch</option>
+                        <?php
+                        $string = '';
+                        $count = 15;
+                        while ($count <= 32) {
+                            $string .= '
+                                    <option value="' . $count . '">' . $count . ' inch</option>
                                 ';
-                                $count += 0.5;
-                            }
-                            echo $string;
+                            $count += 0.5;
+                        }
+                        echo $string;
                         ?>
                     </select>
                 </div>
@@ -73,13 +73,20 @@
                 <?php
                 $string = '';
                 foreach ($monitors as $key => $monitor) {
+                    $isLove = false;
+                    foreach ($loveList as $key => $love) {
+                        if ($love['id_monitor'] === $monitor['id_monitor']) {
+                            $isLove = true;
+                            break;
+                        }
+                    }
                     $string .= '
                             <div class="col">
                                 <div class="card text-center rounded-2 text-decoration-none card-body">
-                                    <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="public/img/'. $monitor['path'] .'" class="card-img-top" alt="'. $monitor['path_name'] .'" /></a>
+                                    <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="public/img/' . $monitor['path'] . '" class="card-img-top" alt="' . $monitor['path_name'] . '" /></a>
                                     <div class="text-start">
                                         <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000">
-                                            <h5 class="card-title product-name">'. $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['size'] .' inch</h5>
+                                            <h5 class="card-title product-name">' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['size'] . ' inch</h5>
                                         </a>
                                         <p class="card-text text-danger fw-bold">' . number_format($monitor['price'], 0, ',', '.') . '₫</p>
                                         <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">Freeship từ 2km đổ lại</p>
@@ -92,13 +99,36 @@
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                         </div>
-                                        <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)" onclick="addFavorite(this)">
-                                            <span class="material-symbols-outlined ms-2"> favorite </span>
+                                        <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+                    ';
+                    if(isset($_SESSION['user'])){
+                        if($isLove){
+                            $string .= '
+                                <a href="index.php?page=products&action=deleteLoving&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: red;">
+                                    <i class="fa fa-heart ms-2" style="font-size: 21px; color: red"></i>
+                                </a>
+                            ';
+                        }else{
+                            $string .= '
+                                <a href="index.php?page=products&action=addLoving&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000;">
+                                    <span class="material-symbols-outlined ms-2"> favorite </span>
+                                </a>
+                            ';
+                        }
+                    }else{
+                        $string .= '
+                                <a href="index.php?page=login" class="text-decoration-none" style="color: #000;">
+                                    <span class="material-symbols-outlined ms-2"> favorite </span>
+                                </a>
+                        ';
+                    }
+                    
+                    $string .= '
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        ';
+                    ';
                 }
                 echo $string;
                 ?>

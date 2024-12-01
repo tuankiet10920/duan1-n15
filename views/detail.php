@@ -1,8 +1,9 @@
 <?php
-if(isset($getSomething)){
-    test_array($getSomething);
-    echo gettype($getSomething);
-}
+// if (isset($listComments)) {
+//     test_array($listComments);
+//     echo gettype($listComments);
+//     echo count($listComments);
+// }
 $id = $monitor[0]['id_monitor'];
 $name = $monitor[0]['name'];
 $price = $monitor[0]['price'];
@@ -22,14 +23,14 @@ $number = $monitor[0]['number'];
 
 $bigImage = $images[0];
 
-if(isset($_SESSION['user'])){
-   $idUser = $_SESSION['user']['id'];
+if (isset($_SESSION['user'])) {
+    $idUser = $_SESSION['user']['id'];
 }
 ?>
-<?php 
-    if(isset($header)){
-        echo $header;
-    }
+<?php
+if (isset($header)) {
+    echo $header;
+}
 ?>
 <div class="container mt-4">
 
@@ -61,21 +62,21 @@ if(isset($_SESSION['user'])){
             <div class="product-info">
                 <h3><?php echo "$name | $size inch, $screen_solution_name, $base_plate_name, $number Hz, $response_time ms, " . transBoolToStringTS($type_screen) ?></h3>
                 <p class="rating">★ 123 (Đã bán 150)</p>
-                <p class="price"><?php echo number_format($price, 0, '.', ',') ?>₫</p>
+                <p class="price text-start"><?php echo number_format($price, 0, '.', ',') ?>₫</p>
             </div>
             <hr>
             <!--buton-->
-            <form action="<?php 
-                if(isset($_SESSION['user'])){
-                    echo "index.php?page=detail&action=addToCart&id=$id&idUser=$idUser&price=$price";
-                }else{
-                    echo "index.php?page=login";
-                }
-            ?>" method="post" class="buttons">
+            <form action="<?php
+                            if (isset($_SESSION['user'])) {
+                                echo "index.php?page=detail&action=addToCart&id=$id&idUser=$idUser&price=$price";
+                            } else {
+                                echo "index.php?page=login";
+                            }
+                            ?>" method="post" class="buttons">
                 <div id="buy-amount">
-                    <button type="button" id="decreaseQty">-</button>
+                    <button type="button" style="color: #000 !important;" id="decreaseQty">-</button>
                     <input type="number" name="qty" id="qty" value="1" readonly>
-                    <button type="button" id="increaseQty">+</button>
+                    <button type="button" style="color: #000 !important;" id="increaseQty">+</button>
                 </div>
                 <input class="buy-now" type="submit" name="buyNow" value="Mua ngay"></input>
                 <div class="btn-favorite" style="cursor: pointer; height: 20px;">
@@ -115,35 +116,53 @@ if(isset($_SESSION['user'])){
 
         <h2>Bình luận</h2>
         <!-- Form nhập bình luận -->
-        <form id="comment-form">
-            <textarea id="comment-input"
+        <form id="comment-form" action="index.php?page=detail&action=comment&id=<?php echo $id ?>" method="post">
+            <textarea id="comment-input" name="commentContent"
                 placeholder="Viết bình luận của bạn ở đây..." required></textarea>
             <div class="button-send text-end" style="width: 100%;">
-                <input type="submit" name="send" value="Gửi" class="btn px-4 py-2 text-white" style="width: fit-content; background: #7cb1e6;"></input>
-
+                <input type="submit" name="sendComment" value="Gửi" class="btn px-4 py-2 text-white" style="width: fit-content; background: #7cb1e6;"></input>
             </div>
-
         </form>
 
         <!-- Danh sách bình luận -->
         <div id="comment-list">
             <!-- Phần bình luận -->
-
-            <div class="comments">
-                <p><strong>Sam:</strong></p>
-                <p>"Sản phẩm cực kỳ tuyệt vời! Mình mua về để làm việc và xem phim,
-                    chất lượng hình ảnh thực sự
-                    đỉnh cao. Tính năng Adaptive Sync giúp chơi game mượt mà hơn
-                    hẳn."</p>
-            </div>
-            <div class="comments-admin">
-                <div class="comment-admin comments">
-                    <p><strong>Admin:</strong></p>
-                    <p>"Cảm ơn bạn Sam đã tin tưởng và ủng hộ sản phẩm của chúng tôi.
-                        Hy vọng bạn sẽ tiếp tục có
-                        những trải nghiệm tuyệt vời với màn hình Samsung S30C!"</p>
-                </div>
-            </div>
+            
+            <?php 
+                if(count($listComments) === 0){
+                    echo '<p class="text-center">Chưa có bình luận nào cho sản phẩm này, hãy là người đầu tiên!</p>';
+                }else{
+                    $string = '';
+                    foreach ($listComments as $key => $comment) {
+                        if($comment['id_comment_parent'] === null){
+                            $string .= '
+                                        <div class="comments">
+                                            <p><strong>'. $comment['name'] .':</strong></p>
+                                            <p>"'. $comment['content_comment'] .'"</p>
+                                            <p style="cursor: pointer; font-weight: 600; width: fit-content;" onclick="showFormComment(this, '. $id .', '. $comment['id_comment'] .')">Trả lời</p>
+                                        </div>
+                                    ';
+                            for ($i=$key; $i < count($listComments); $i++) { 
+                                if($listComments[$i]['id_comment_parent'] === $comment['id_comment']){
+                                    $string .= '
+                                        <div class="comments-admin">
+                                            <div class="comment-admin comments">
+                                                <p><strong>'. $listComments[$i]['name'] .':</strong></p>
+                                                <p>"'. $listComments[$i]['content_comment'] .'"</p>
+                                                <p style="cursor: pointer; font-weight: 600; width: fit-content;" onclick="showFormComment(this, '. $id .', '. $comment['id_comment'] .')">Trả lời</p>
+                                            </div>
+                                        </div>
+                                    ';
+                                }
+                            }
+                        }
+                        
+                    }
+                    echo $string;
+                }
+            ?>
+            
+            
         </div>
     </div>
 
@@ -157,16 +176,16 @@ if(isset($_SESSION['user'])){
                         <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                             <div
                             class="card text-center rounded-2 text-decoration-none card-body">
-                            <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'"><img src="public/img/'. $imageMonitorsBrand[$key]['path'] .'" class="card-img-top"
+                            <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="public/img/' . $imageMonitorsBrand[$key]['path'] . '" class="card-img-top"
                                 style="height: 200px; object-fit: cover"
-                                alt="'. $imageMonitorsBrand[$key]['name'] .'" /></a>
+                                alt="' . $imageMonitorsBrand[$key]['name'] . '" /></a>
                             <div class="text-start">
-                                <a href="index.php?page=detail&id='. $monitor['id_monitor'] .'" class="text-decoration-none" style="color: #000">
+                                <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000">
                                 <h5 class="card-title">
-                                    '. $monitor['name'] .'
+                                    ' . $monitor['name'] . '
                                 </h5>
                                 </a>
-                                <p class="card-text text-danger fw-bold">'. number_format($monitor['price'], 0, ',', '.') .'₫</p>
+                                <p class="card-text text-danger fw-bold">' . number_format($monitor['price'], 0, ',', '.') . '₫</p>
                                 <p class="badge bg-light text-dark pt-3 pb-3 ps-2 pe-2">
                                 Freeship từ 2km đổ lại
                                 </p>
@@ -189,7 +208,7 @@ if(isset($_SESSION['user'])){
             }
             echo $string;
             ?>
-            
+
             <!-- Lặp lại thẻ div .col để thêm các sản phẩm khác -->
         </div>
     </div>

@@ -7,7 +7,8 @@ class ProductsController {
     public $size;
     public $priceFrom;
     public $priceTo;
-    public function __construct($action, $id, $brand, $solution, $size, $priceFrom, $priceTo){
+    public $idUser;
+    public function __construct($action, $id, $brand, $solution, $size, $priceFrom, $priceTo, $idUser){
         $this->action = $action;
         $this->id = $id;
         $this->brand = $brand;
@@ -15,11 +16,13 @@ class ProductsController {
         $this->size = $size;
         $this->priceFrom = $priceFrom;
         $this->priceTo = $priceTo;
+        $this->idUser = $idUser;
     }
 
     public function index(){
         include_once 'models/productsModel.php';
         $productsModel = new ProductsModel();
+        $loveList = $productsModel->getLoveList($this->idUser);
         switch ($this->action) {
             case 'filter':
                 $array = [];
@@ -37,7 +40,25 @@ class ProductsController {
                 }
                 $monitorsFilter = $productsModel->getMonitorsFilter($array);
                 break;
-            
+            case 'addLoving':
+                $checkLoveMonitor = false;
+                foreach ($loveList as $key => $love) {
+                    if(array_search($this->id, $love)){
+                        $checkLoveMonitor = true;
+                        break;
+                    }
+                }
+                if(!$checkLoveMonitor){
+                    $productsModel->addLove($this->id, $this->idUser);
+                }
+                $loveList = $productsModel->getLoveList($this->idUser);
+                $monitors = $productsModel->getMonitorList();
+                break;
+            case 'deleteLoving':
+                $productsModel->deleteLove($this->id, $this->idUser);
+                $loveList = $productsModel->getLoveList($this->idUser);
+                $monitors = $productsModel->getMonitorList();
+                break;
             default:
                 $monitors = $productsModel->getMonitorList();
                 break;

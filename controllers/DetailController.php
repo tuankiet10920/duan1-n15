@@ -5,12 +5,16 @@ class DetailController {
     public $qty;
     public $price;
     public $idUser;
-    public function __construct($action, $id, $qty, $price, $idUser){
+    public $comment;
+    public $idCommentParent;
+    public function __construct($action, $id, $qty, $price, $idUser, $comment, $idCommentParent){
         $this->action = $action;
         $this->id = $id;
         $this->qty = $qty;
         $this->price = $price;
         $this->idUser = $idUser;
+        $this->comment = $comment;
+        $this->idCommentParent = $idCommentParent;
     }
 
     public function index(){
@@ -25,7 +29,20 @@ class DetailController {
                     </script>
                 ";
                 break;
-            
+            case 'comment';
+            // $getSomething = $this->idUser;
+                $detail->addComment($this->comment, $this->idUser, $this->id);
+                break;
+            case 'commentChild':
+                $detail->addCommentChild($this->comment, $this->idUser, $this->id, $this->idCommentParent);
+                break;
+            case 'noUser':
+                $header = '
+                    <script>
+                        window.location.href = "http://localhost:8080/duan1-n15/index.php?page=login";
+                    </script>
+                ';
+                break;
             default: // return array
                 # code...
                 break;
@@ -34,7 +51,7 @@ class DetailController {
         $images = $detail->getImageMonitor($this->id);
         $monitorsWithBrand = $detail->getMonitorsWithBrand($this->id);
         $imageMonitorsBrand = $detail->getImagesWithBrand($this->id);
-        // $getSomething = $detail->addBill($this->idUser, $this->qty, $this->price, $this->id);
+        $listComments = $detail->getComment($this->id);
         include_once 'views/detail.php';
     }
 }
