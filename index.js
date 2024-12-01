@@ -199,3 +199,37 @@ imgSmall.forEach((image) => {
 function changeSrcImage() {
   imgBig.src = this.src;
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Lấy các phần tử cần thiết
+  const searchInput = document.getElementById('searchInput');
+  const productItems = document.querySelectorAll('.product-name');
+   // Thực hiện kiểm tra khi trang web đã tải hoàn tất
+   console.log("Trang đã tải xong và script hoạt động.");
+  // Lắng nghe sự kiện nhập liệu vào ô tìm kiếm
+  searchInput.addEventListener('input', function () {
+    const searchValue = searchInput.value.toLowerCase().trim();
+    console.log('Từ khóa tìm kiếm: ', searchValue); 
+
+    // Duyệt qua từng sản phẩm và kiểm tra xem tên sản phẩm có chứa từ khóa tìm kiếm
+    productItems.forEach((item) => {
+      const productName = item.textContent.toLowerCase();
+      const productContainer = item.closest('.col'); // Lấy thẻ div chứa sản phẩm
+      console.log('Tên sản phẩm: ', productName); // Kiểm tra tên sản phẩm
+      console.log('Hiển thị sản phẩm: ', productName.includes(searchValue)); // Kiểm tra điều kiện tìm kiếm
+
+      // Nếu tên sản phẩm chứa từ khóa tìm kiếm, hiển thị sản phẩm, ngược lại ẩn đi
+      if (productName.includes(searchValue)) {
+        productContainer.style.display = 'block'; // Hiển thị sản phẩm
+      } else {
+        productContainer.style.display = 'none'; // Ẩn sản phẩm
+      }
+    });
+  });
+  // Kiểm tra sản phẩm ban đầu khi trang tải xong
+  console.log('Số lượng sản phẩm: ', productItems.length);
+ 
+});
+
+
