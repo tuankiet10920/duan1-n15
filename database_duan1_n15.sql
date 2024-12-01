@@ -65,16 +65,6 @@ create table images(
  id_monitor int
 );
 
-create table address(
- id_address int primary key auto_increment,
- number varchar(255),
- street varchar(255),
- ward varchar(255),
- district varchar(255),
- city varchar(255),
- id_user int
-);
-
 -- select * from bill where id_user = 1;
 
 create table user(
@@ -86,6 +76,7 @@ create table user(
  email varchar(255),
  password varchar(255),
  birthday date,
+ address text,
  nick_name varchar(255),
  status boolean
 );
@@ -140,6 +131,8 @@ create table rating(
  id_monitor int
 );
 select * from images where id_monitor = 2 limit 1;
+
+
 create table comment(
  id_comment int primary key auto_increment,
  content_comment text character set utf8mb4 collate utf8mb4_unicode_ci,
@@ -154,6 +147,13 @@ create table love(
  id_user int,
  id_monitor int
 );
+
+select monitor.* from love inner join monitor on love.id_monitor = monitor.id_monitor where id_user = 2;
+-- get more information in monitor table with inner join function
+select id_monitor from love where id_user = 2;
+select * from user;
+-- delete from love where id_monitor = 1 and id_user = 1;
+-- delete from love;
 
 create table views(
  id_views int primary key auto_increment,
@@ -177,12 +177,13 @@ select * from voucher;
 select id_bill from bill where id_user = 1 and status = 0;
 select * from bill_detail;
 
-select * from voucher where name = 'MUADONG1';
+select * from voucher;
 select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
 -- update bill_detail set id_voucher = 1 where id_monitor = 1;
 select monitor.name as monitor_name, bill_detail.price as monitor_price, voucher.*, quatity from bill_detail 
 inner join voucher on bill_detail.id_voucher = voucher.id_voucher
-inner join monitor on bill_detail.id_monitor = monitor.id_monitor;
+inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 2;
+select * from bill;
 select * from bill_detail;
 ALTER TABLE voucher
 ADD CONSTRAINT FK_voucher
@@ -222,9 +223,6 @@ ALTER TABLE images
 ADD CONSTRAINT FK_images
 FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 
-ALTER TABLE address
-ADD CONSTRAINT FK_address
-FOREIGN KEY (id_user) REFERENCES user(id_user);
 
 ALTER TABLE phone_number
 ADD CONSTRAINT FK_phone_number
@@ -385,9 +383,23 @@ insert into connection_port_monitor values
 
 
 insert into voucher values 
-(null, 'MUADONG1', 10, 1, 20, '2024-11-26', '2024-11-30', null),
-(null, 'MUADONG2', 5, 0, 20, '2024-11-26', '2024-11-30', null),
-(null, 'MUADONG2', 7, 0, 20, '2024-11-26', '2024-11-30', 1),
-(null, 'MUADONG3', 8, 1, 20, '2024-11-26', '2024-11-30', 2);
+(null, 'MUADONG1', 1, 1, 20, '2024-11-26', '2024-11-30', null),
+(null, 'MUADONG2', 5000, 0, 20, '2024-11-26', '2024-11-30', null),
+(null, 'MUADONG2', 7000, 0, 20, '2024-11-26', '2024-11-30', 1),
+(null, 'MUADONG3', 1, 1, 20, '2024-11-26', '2024-11-30', 2);
 select * from voucher;
 -- update voucher set value = 1 where id_voucher = 4;
+-- check id monitor of comment
+select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 2;
+-- SET FOREIGN_KEY_CHECKS=1; delete from comment;
+-- insert into comment values
+-- (null, 'dasdsadasdadasd', current_timestamp(), null, 1, 1),
+-- (null, 'dasdsadasdadasd', current_timestamp(), 1, 1, 1),
+-- (null, 'dasdsadasdadasd', current_timestamp(), 2, 1, 1),
+-- (null, 'dasdsadasdadasd', current_timestamp(), 1, 1, 1),
+-- (null, 'dasdsadasdadasd', current_timestamp(), 2, 1, 1),
+-- (null, 'dasdsadasdadasd', current_timestamp(), null, 1, 2),
+-- (null, 'dasdsadasdadasd', current_timestamp(), null, 1, 1);
+select * from comment;
+select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 3 order by date_time asc;
+-- SET FOREIGN_KEY_CHECKS=1; delete from comment;

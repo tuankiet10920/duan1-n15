@@ -77,9 +77,14 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
-                                    <span class="material-symbols-outlined ms-2"> favorite </span>
-                                </div>
+                               <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+                                    <a href="#" class="text-decoration-none" style="color: #000;">
+                                        <span class="material-symbols-outlined ms-2"> favorite </span>
+                                    </a>
+                                    <!-- <a href="#" class="text-decoration-none" style="color: red;">
+                                        <i class="fa fa-heart ms-2" style="font-size: 21px; color: red"></i>
+                                    </a> -->
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -126,9 +131,14 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <div class="btn-favorite" style="cursor: pointer; height: 20px;" onclick="addFavorite(this)">
-                                    <span class="material-symbols-outlined ms-2"> favorite </span>
-                                </div>
+                                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
+                                    <a href="#" class="text-decoration-none" style="color: #000;">
+                                        <span class="material-symbols-outlined ms-2"> favorite </span>
+                                    </a>
+                                    <!-- <a href="#" class="text-decoration-none" style="color: red;">
+                                        <i class="fa fa-heart ms-2" style="font-size: 21px; color: red"></i>
+                                    </a> -->
+                            </div>
                             </div>
                         </div>
                     </div>

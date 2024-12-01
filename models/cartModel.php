@@ -29,7 +29,7 @@ class CartModel
             $sql = "select bill_detail.*, monitor.name, monitor.price as monitor_price from bill_detail
             inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = :id;";
             $listMonitor = $data->selectWithId($sql, $this->idBill);
-            $listMonitorWithImages = [];
+            $listMonitorWithImages = [];    
             foreach ($listMonitor as $key => $monitor) {
                 $sql = "select * from images where id_monitor = :id limit 1;";
                 $image = $data->selectWithId($sql, $monitor['id_monitor']);
@@ -38,8 +38,8 @@ class CartModel
             }
             $sql = "select monitor.name as monitor_name, bill_detail.price as monitor_price, voucher.*, quatity from bill_detail 
             inner join voucher on bill_detail.id_voucher = voucher.id_voucher
-            inner join monitor on bill_detail.id_monitor = monitor.id_monitor;";
-            $listMonitorVoucher = $data->selectall($sql);
+            inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = :id;";
+            $listMonitorVoucher = $data->selectWithId($sql, $this->idBill);
             return [
                 'listMonitorWithImages' => $listMonitorWithImages,
                 'listMonitorVoucher' => $listMonitorVoucher

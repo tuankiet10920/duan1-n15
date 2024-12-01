@@ -4,7 +4,7 @@ class SignupModel {
         include_once 'models/connectModel.php';
         $data = new ConnectModel();
         $sql = "insert into user values
-        (null, '$name', '$phone', null, null, '$email', '$password', null, null, 0);";
+        (null, '$name', '$phone', null, null, '$email', '$password', null, null, null, 0);";
         $data->add($sql);
     }
 }

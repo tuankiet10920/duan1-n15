@@ -60,7 +60,7 @@
                 if(isset($_SESSION['user'])){
                   echo '
                     <div class="header-row-2-name">
-                      <p class="mb-0">'. $_SESSION['user']['name'] .'</p>
+                      <p class="mb-0" style="cursor: pointer;" onclick="window.location.href=`http://localhost:8080/duan1-n15/index.php?page=account`">'. $_SESSION['user']['name'] .'</p>
                     </div>
                     <div class="header-row-2-user ms-2 mt-2">
                       <a href="index.php?page=login&action=logout" onclick="reloadLogout()" class="text-decoration-none" style="color: #000;">

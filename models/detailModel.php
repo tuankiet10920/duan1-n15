@@ -136,4 +136,25 @@ where id_monitor = :id;";
             }
         }
     }
+
+    public function addComment($commentContent, $idUser, $idMonitor){
+        include_once 'models/connectModel.php';
+        $data = new ConnectModel();
+        $sql = "insert into comment values (null, '$commentContent', current_timestamp(), null, $idUser, $idMonitor);";
+        $data->add($sql);
+    }
+
+    public function getComment($idMonitor){
+        include_once 'models/connectModel.php';
+        $data = new ConnectModel();
+        $sql = "select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = :id order by date_time asc;";
+        return $data->selectWithId($sql, $idMonitor);
+    }
+    
+    public function addCommentChild($commentContent, $idUser, $idMonitor, $idCommentParent){
+        include_once 'models/connectModel.php';
+        $data = new ConnectModel();
+        $sql = "insert into comment values (null, '$commentContent', current_timestamp(), $idCommentParent, $idUser, $idMonitor);";
+        $data->add($sql);
+    }
 }
