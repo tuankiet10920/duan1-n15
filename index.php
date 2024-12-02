@@ -204,23 +204,27 @@ switch ($page) {
             include_once 'models/connectModel.php';
             $data = new ConnectModel();
             $data->ketnoi();
-            $sql = "select name from user where id_user = :id;";
+            $sql = "select * from user where id_user = :id;";
             $stmt = $data->conn->prepare($sql);
             // bindParam
             $stmt->bindParam(":id", $_SESSION['user']['id']);
             $stmt->execute();
             $kq = $stmt->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC : chuyển dl mãng lk
             $data->conn = null; // đóng kết nối database
+            $image = $kq[0]['image'];
             $nameUser = $kq[0]['name']; // biến này chứa mãng các dòng dữ liệu trả về.
         }
-
+        $imageFront = 'acc-clone.jpg';
+        if($image !== null){
+            $imageFront = $image;
+        }
         $leftSide = '
             <div class="container">
                 <div class="user_side">
                     <div class="sidebar">
                         <div class="profile">
                             <div class="avatar">
-                                <img class="image-acc-clone" src="public/img/acc-clone.jpg" alt="">
+                                <img class="image-acc-clone" src="public/img/'. $imageFront .'" alt="">
                             </div>
                             <p class="name">'. $nameUser .'</p>
                         </div>
@@ -255,12 +259,36 @@ switch ($page) {
                 break;
             
             default: // dashboard information user account
-                $idUser = '';
+                $idUser = $name = $nickName = $gender = $image = $phone = $email = $address = $birthday = '';
                 if(isset($_SESSION['user'])){
                     $idUser = $_SESSION['user']['id'];
                 }
+                if(isset($_POST['saveChangeAccount'])){
+                    $idUser = $_SESSION['user']['id'];
+                    $name = $_POST['name'];
+                    $nickName = $_POST['nickName'];
+                    if(isset($_POST['gender'])){
+                        $gender = $_POST['gender'];
+                    }else{
+                        $gender = null;
+                    }
+                    $phone = $_POST['phone'];
+                    $email = $_POST['email'];
+                    $address = $_POST['address'];
+                    if($_POST['year'] === '' || $_POST['day'] === '' || $_POST['month'] === ''){
+                        $birthday = null;
+                    }else{
+                        $arrDay = array($_POST['year'], $_POST['month'], $_POST['day']);
+                        $birthday = implode("-", $arrDay);
+                    }
+                    if(isset($_FILES['image']) && $_FILES['image']['name'] !== ''){
+                        $image = $_FILES['image'];
+                    }else{
+                        $image = 'acc-clone.jpg';
+                    }
+                }
                 include_once 'controllers/accountController.php';
-                $accountController = new AccountController($action, $idUser);
+                $accountController = new AccountController($action, $idUser, $name, $nickName, $gender, $image, $phone, $email, $address, $birthday);
                 $accountController->index();
                 break;
         }

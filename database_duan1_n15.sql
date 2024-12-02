@@ -57,15 +57,15 @@ create table connection_port_monitor(
     id_connection_port int,
     id_monitor int
 );
-select * from user;
-select * from love;
+
+
 create table images(
  id_image int primary key auto_increment,
  path varchar(255),
  name varchar(255),
  id_monitor int
 );
-select * from images where id_image = 1;
+
 -- select * from bill where id_user = 1;
 
 create table user(
@@ -77,15 +77,14 @@ create table user(
  email varchar(255),
  password varchar(255),
  birthday date,
- address text,
- nick_name varchar(255),
+ address text character set utf8mb4 collate utf8mb4_unicode_ci,
+ nick_name varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
  status boolean
 );
-
+-- update user set name = '', phone = '', image = '', gender = 0, emnail = '', password = '', birthday = '', address = '', nick_name = '', status = 0 where id_user = 1;
 -- insert into user values
 -- (null, 'nguyen van a', '14541531435','cc.cc', null, 'vananguyen@gmail.com', 'dasdsadad415364153', null, null, 0);
-select * from user;
-select * from user where email = 'vananguyen0123@gmail.com' and password = 'vana123';
+
 
 create table phone_number(
  id_phone_number int primary key auto_increment,
@@ -100,14 +99,14 @@ create table bill(
  status boolean,
  id_user int
 );
-select email from user where email = 'cuong@gmail.com';
+
 -- 0: buying
 -- 1: paid
-select * from bill where id_user = 1 and status = 0;
+
 -- insert into bill values (null, current_timestamp(), 0, 2);
 -- insert into bill values (null, current_timestamp(), 0, 1);
 -- use duan1_n15;
-select * from user;
+
 -- update user set password = 'kiet123' where email = ''; select * from user;
 -- select id_bill from bill where id_user = 1 and status = 0;
 create table bill_detail(
@@ -118,15 +117,15 @@ create table bill_detail(
  id_bill int,
  id_voucher int
 );
-select * from bill where id_user = 1 and status = 0;
-select bill_detail.*, monitor.name, monitor.price as monitor_price from bill_detail
-inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 1;
+-- select * from bill where id_user = 1 and status = 0;
+-- select bill_detail.*, monitor.name, monitor.price as monitor_price from bill_detail
+-- inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 1;
 -- insert into bill_detail values (null, 2, 10000, 1, 1, null);
 -- update bill_detail set quatity = 2 where id_bill = 1 and id_monitor = 4;
-select quatity from bill_detail where id_bill = 1 and id_monitor = 4;
-select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
+-- select quatity from bill_detail where id_bill = 1 and id_monitor = 4;
+-- select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
 -- delete from bill_detail where id_monitor = 1 and id_bill = 1;
-select bill_detail.*, monitor.name, monitor.price as monitor_price from bill_detail inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 1;
+--  bill_detail.*, monitor.name, monitor.price as monitor_price from bill_detail inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 1;
 create table rating(
  id_rating int primary key auto_increment,
  number int,
@@ -134,7 +133,7 @@ create table rating(
  id_user int,
  id_monitor int
 );
-select * from images where id_monitor = 2 limit 1;
+-- select * from images where id_monitor = 2 limit 1;
 
 
 create table comment(
@@ -152,10 +151,10 @@ create table love(
  id_monitor int
 );
 
-select monitor.* from love inner join monitor on love.id_monitor = monitor.id_monitor where id_user = 2;
+-- select monitor.* from love inner join monitor on love.id_monitor = monitor.id_monitor where id_user = 2;
 -- get more information in monitor table with inner join function
-select id_monitor from love where id_user = 2;
-select * from user;
+-- select id_monitor from love where id_user = 2;
+-- select * from user;
 -- delete from love where id_monitor = 1 and id_user = 1;
 -- delete from love;
 
@@ -177,18 +176,18 @@ create table voucher(
  date_end date,
  id_monitor int
 );
-select * from voucher;
-select id_bill from bill where id_user = 1 and status = 0;
-select * from bill_detail;
+-- select * from voucher;
+-- select id_bill from bill where id_user = 1 and status = 0;
+-- select * from bill_detail;
 
-select * from user;
-select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
+-- select * from user;
+-- select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
 -- update bill_detail set id_voucher = 1 where id_monitor = 1;
-select monitor.name as monitor_name, bill_detail.price as monitor_price, voucher.*, quatity from bill_detail 
-inner join voucher on bill_detail.id_voucher = voucher.id_voucher
-inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 2;
-select * from bill;
-select * from bill_detail;
+-- select monitor.name as monitor_name, bill_detail.price as monitor_price, voucher.*, quatity from bill_detail 
+-- inner join voucher on bill_detail.id_voucher = voucher.id_voucher
+-- inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 2;
+-- select * from bill;
+-- select * from bill_detail;
 ALTER TABLE voucher
 ADD CONSTRAINT FK_voucher
 FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
@@ -343,35 +342,35 @@ insert into images values
 (null, 'asus-vg279qr-27inch.jpg', 'asus-vg279qr-27inch', 4),
 (null, 'asus-vg279qr-27inch-1.jpg', 'asus-vg279qr-27inch-1', 4);
 
-select * from images where id_monitor = 1;
+-- select * from images where id_monitor = 1;
 
-select * from images;
+-- select * from images;
 
-select id_monitor, monitor.name, price, type_screen, response_time, in_stock, gurantee, size, describe_monitor, status, brand.name as brand_name, color_space.name as color_space_name, base_plate.name as base_plate_name, screen_solution.name as screen_solution_name ,number_number, scan_frequency.number from monitor 
-inner join brand on monitor.brand = brand.id_brand
-inner join color_space on monitor.color_space = color_space.id_color_space
-inner join base_plate on monitor.base_plate = base_plate.id_base_plate
-inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
-inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency
-where id_monitor = 1;
+-- select id_monitor, monitor.name, price, type_screen, response_time, in_stock, gurantee, size, describe_monitor, status, brand.name as brand_name, color_space.name as color_space_name, base_plate.name as base_plate_name, screen_solution.name as screen_solution_name ,number_number, scan_frequency.number from monitor 
+-- inner join brand on monitor.brand = brand.id_brand
+-- inner join color_space on monitor.color_space = color_space.id_color_space
+-- inner join base_plate on monitor.base_plate = base_plate.id_base_plate
+-- inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
+-- inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency
+-- where id_monitor = 1;
 
-select id_monitor from monitor where brand = (select brand from monitor where id_monitor = 1);
-select * from images where id_monitor = 1 limit 1;
-select brand from monitor where id_monitor = 1;
+-- select id_monitor from monitor where brand = (select brand from monitor where id_monitor = 1);
+-- select * from images where id_monitor = 1 limit 1;
+-- select brand from monitor where id_monitor = 1;
 
-select * from brand;
+-- select * from brand;
 
-select * from screen_solution;
+-- select * from screen_solution;
 
 -- image, name, price
 
-select id_monitor, monitor.name, price, screen_solution.name as screen_solution_name, size from monitor
-inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution;
+-- select id_monitor, monitor.name, price, screen_solution.name as screen_solution_name, size from monitor
+-- inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution;
 
-select path, name, id_monitor from images;
+-- select path, name, id_monitor from images;
 
-select id_monitor, monitor.name, price, screen_solution.name as screen_solution_name, size from monitor
-inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution where screen_solution = 2 and size = 24 and brand = 4 and price between 0 and 9000000;
+-- select id_monitor, monitor.name, price, screen_solution.name as screen_solution_name, size from monitor
+-- inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution where screen_solution = 2 and size = 24 and brand = 4 and price between 0 and 9000000;
 
 insert into connection_port_monitor values
 (null, 1, 1),
@@ -391,10 +390,10 @@ insert into voucher values
 (null, 'MUADONG2', 5000, 0, 20, '2024-11-26', '2024-11-30', null),
 (null, 'MUADONG2', 7000, 0, 20, '2024-11-26', '2024-11-30', 1),
 (null, 'MUADONG3', 1, 1, 20, '2024-11-26', '2024-11-30', 2);
-select * from voucher;
+-- select * from voucher;
 -- update voucher set value = 1 where id_voucher = 4;
 -- check id monitor of comment
-select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 2;
+-- select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 2;
 -- SET FOREIGN_KEY_CHECKS=1; delete from comment;
 -- insert into comment values
 -- (null, 'dasdsadasdadasd', current_timestamp(), null, 1, 1),
@@ -404,6 +403,6 @@ select comment.*, user.name from comment inner join user on comment.id_user = us
 -- (null, 'dasdsadasdadasd', current_timestamp(), 2, 1, 1),
 -- (null, 'dasdsadasdadasd', current_timestamp(), null, 1, 2),
 -- (null, 'dasdsadasdadasd', current_timestamp(), null, 1, 1);
-select * from comment;
-select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 3 order by date_time asc;
+-- select * from comment;
+-- select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 3 order by date_time asc;
 -- SET FOREIGN_KEY_CHECKS=1; delete from comment;

@@ -1,7 +1,7 @@
   <?php
-    if(isset($listImages)){
-        test_array($listImages);
-    }
+    // if(isset($listImages)){
+    //     test_array($listImages);
+    // }
     ?>
   <!-- Banner Slider -->
   <div id="bannerSlider" class="carousel slide mt-3 container mt-3 d-flex justify-content-center"

@@ -1,46 +1,56 @@
 <?php 
 if(isset($informationOfUser)){
     if($informationOfUser[0]['address'] !== null){
-        $date = seperateDayInData($informationOfUser[0]['address']);
+        $date = seperateDayInData($informationOfUser[0]['birthday']);
     }
+    // test_array($informationOfUser);
+}
+if(isset($header)){
+    echo $header;
 }
 
 ?>
 <div class="main-content">
     <h2>Thông tin tài khoản</h2>
-    <form class="account-info" enctype="multipart/form-data">
+    <form action="index.php?page=account&action=saveChange" method="post" class="account-info" enctype="multipart/form-data">
         <label>Họ và tên:</label>
-        <input type="text" class="username-account" value="<?php echo $informationOfUser[0]['name'] ?>">
+        <input type="text" class="username-account" name="name" value="<?php echo $informationOfUser[0]['name'] ?>">
 
         <label>Biệt danh</label>
-        <input type="text" class="username-account" value="Vui lòng nhập">
+        <input type="text" class="username-account" name="nickName" value="<?php 
+            if($informationOfUser[0]['nick_name'] !== null){
+                echo $informationOfUser[0]['nick_name'];
+            }else{
+                echo 'Vui lòng nhập';
+            }
+        ?>">
 
         Đổi ảnh đại diện:
-        <input type="file" class="username-account" name="fileToUpload" id="fileToUpload">
+        <input type="file" class="username-account" name="image" id="fileToUpload">
 
         <label>Giới tính</label>
         <div class="gender">
             <?php 
-                if($informationOfUser[0]['gender'] === 0){
+                if($informationOfUser[0]['gender'] == 0){
                     echo '
-                        <input type="radio" id="male" name="gender" checked>
-                        <label class="male">Nam</label>
-                        <input type="radio" id="female" name="gender">
-                        <label class="female">Nữ</label>
+                        <input type="radio" id="male" name="gender" value="0" checked>
+                        <label class="male" for="male">Nam</label>
+                        <input type="radio" id="female" name="gender" value="1">
+                        <label class="female" for="female">Nữ</label>
                     ';
-                } else if($informationOfUser[0]['gender'] === 1){
+                } else if($informationOfUser[0]['gender'] == 1){
                     echo '
-                        <input type="radio" id="male" name="gender">
-                        <label class="male">Nam</label>
-                        <input type="radio" id="female" name="gender" checked>
-                        <label class="female">Nữ</label>
+                        <input type="radio" id="male" name="gender" value="0">
+                        <label class="male" for="male">Nam</label>
+                        <input type="radio" id="female" name="gender" value="1" checked>
+                        <label class="female" for="female">Nữ</label>
                     ';
                 } else {
                     echo '
-                        <input type="radio" id="male" name="gender">
-                        <label class="male">Nam</label>
-                        <input type="radio" id="female" name="gender">
-                        <label class="female">Nữ</label>
+                        <input type="radio" id="male" name="gender" value="0">
+                        <label class="male" for="male">Nam</label>
+                        <input type="radio" id="female" name="gender" value="1">
+                        <label class="female" for="female">Nữ</label>
                     ';
                 }
             ?>
@@ -62,11 +72,11 @@ if(isset($informationOfUser)){
         <?php 
             if($informationOfUser[0]['address'] !== null){
                 echo '
-                    <input type="text" value="'. $informationOfUser[0]['address'] .'" class="username-account" value="Vui lòng nhập">
+                    <input type="text" name="address" value="'. $informationOfUser[0]['address'] .'" class="username-account" value="Vui lòng nhập">
                 ';
             }else{
                 echo '
-                    <input type="text" class="username-account" value="Vui lòng nhập">
+                    <input type="text" name="address" class="username-account" value="Vui lòng nhập">
                 ';
             }
         ?>
@@ -154,7 +164,7 @@ if(isset($informationOfUser)){
             </select>
         </div>
 
-        <button type="submit">Lưu thay đổi</button>
+        <input type="submit" name="saveChangeAccount" value="Lưu thay đổi" style="background: #7cb1e6; border: none; color: #fff;" class="py-2"></input>
     </form>
 </div>
 </div>
