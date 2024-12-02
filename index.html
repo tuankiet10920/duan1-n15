@@ -52,11 +52,14 @@
                   <a class="nav-link" href="#">Liên hệ</a>
                 </li>
               </ul>
-              <form class="d-flex position-relative" role="search header-row-2-search">
-                <input id="searchInput" class="form-control me-2" style="width: 100%" type="search" placeholder="Search" aria-label="Search" />
-                <span class="material-symbols-outlined search-icon">search</span>
+              <form class="d-flex position-relative" role="search" id="search-form">
+                <input id="searchInput" class="form-control me-2" style="width: 100%" type="search" placeholder="Search"
+                  aria-label="Search" />
+                <span id="searchIcon" class="material-symbols-outlined search-icon">search</span>
+                <div id="searchResults" class="search-results"></div>
               </form>
-     
+            
+
 
               <div class="header-row-2-user ms-2 mt-2">
                 <span class="material-symbols-outlined">person</span>
@@ -160,7 +163,7 @@
           <div class="text-start">
             <a href="#" class="text-decoration-none" style="color: #000">
               <h5 class="card-title product-name product-name">
-                Màn Hình Dell VG27AQ3A Full HD (1080p) 144 inch
+               
               </h5>
             </a>
             <p class="card-text text-danger fw-bold">8.990.000₫</p>
