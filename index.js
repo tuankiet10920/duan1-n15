@@ -288,3 +288,65 @@ imgSmall.forEach((image) => {
 function changeSrcImage() {
   imgBig.src = this.src;
 }
+
+
+// Danh sách sản phẩm giả lập (có thể thay bằng API)
+const products = [
+  { id: 1, name: "Màn Hình Dell VG27AQ3A Full HD (1080p) 144 inch", image: "./imgduan1/dell1.jpg" },
+  { id: 2, name: "Màn Hình Gaming ASUS TUF Gaming VG27AQ3A Full HD (1080p) 144 inch", image: "./imgduan1/dell1.jpg" },
+];
+
+// Lấy phần tử input và container kết quả
+const searchInput = document.getElementById("searchInput");
+const searchIcon = document.getElementById("searchIcon");
+const searchResults = document.getElementById("searchResults");
+
+// Xử lý sự kiện nhập liệu
+searchInput.addEventListener("input", function () {
+  const query = this.value.trim().toLowerCase();
+
+  // Nếu không có gì nhập, ẩn box kết quả và hiển thị lại icon tìm kiếm
+  if (!query) {
+    searchResults.style.display = "none";
+    searchIcon.style.display = "block"; // Hiển thị lại icon khi không nhập
+    return;
+  }
+
+  // Lọc sản phẩm theo tên
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(query)
+  );
+
+  // Hiển thị kết quả
+  if (filteredProducts.length > 0) {
+    searchResults.innerHTML = filteredProducts
+      .map(
+        (product) => `
+      <div class="search-results-item" onclick="goToProduct(${product.id})">
+        <img src="${product.image}" alt="${product.name}" />
+        <span>${product.name}</span>
+      </div>
+    `
+      )
+      .join("");
+    searchResults.style.display = "block";
+    searchIcon.style.display = "none"; // Ẩn icon khi có kết quả tìm kiếm
+  } else {
+    searchResults.innerHTML = `<p>Không tìm thấy sản phẩm</p>`;
+    searchResults.style.display = "block";
+    searchIcon.style.display = "none"; // Ẩn icon khi không tìm thấy kết quả
+  }
+});
+
+// Hàm chuyển hướng đến trang sản phẩm
+function goToProduct(id) {
+  window.location.href = `index.php?page=product&id=${id}`;
+}
+
+// Ẩn box khi click ra ngoài
+document.addEventListener("click", (e) => {
+  if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+    searchResults.style.display = "none";
+    searchIcon.style.display = "block"; // Hiển thị lại icon khi click ra ngoài
+  }
+});
