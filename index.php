@@ -1,10 +1,21 @@
 <?php
 session_start();
 include_once "views/header.php";
+require_once('mailer/Exception.php');
+require_once('mailer/PHPMailer.php');
+require_once('mailer/SMTP.php');
 include_once 'public/helper/debug.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $page = isset($_GET['page']) ? $_GET['page'] : '';
+
+if(isset($_SESSION['otp'])){
+    $timeLife = 120;
+    $timeCurrentOtp = $_SESSION['otp']['startTime'] + $timeLife;
+    if(time() > $timeCurrentOtp){
+        unset($_SESSION['otp']);
+    }
+}
 
 switch ($page) {
     case 'detail':
@@ -115,7 +126,7 @@ switch ($page) {
         if(isset($_POST['signup'])){
             $name = $_POST['name'];
             $email = $_POST['email'];
-            $phone = $_POST['email'];
+            $phone = $_POST['phone'];
             $password = $_POST['password'];
             $passwordConfirm = $_POST['passwordConfirm'];
             if($name !== '' && $email !== '' && $phone !== '' && $password !== '' && $passwordConfirm !== ''){
@@ -146,10 +157,62 @@ switch ($page) {
         include_once 'controllers/LoginController.php';
         $loginController = new LoginController($action, $email, $password);
         $loginController->index();
-        
+        break;
+    case 'pay':
+        include_once 'views/pay.php';
+        break;
+    case 'forgot':
+        $email = '';
+        if(isset($_POST['forgot'])){
+            $email = $_POST['email'];
+            $action = $_GET['action'];
+        }
+        include_once 'controllers/ForgotController.php';
+        $forgotController = new ForgotController($action, $email);
+        $forgotController->index();
+        break;
+    case 'otp':
+        $otp = $email = '';
+        if(isset($_POST['checkOtp'])){
+            $otp = $_POST['otp1'] . $_POST['otp2'] . $_POST['otp3'] . $_POST['otp4'] . $_POST['otp5'] . $_POST['otp6'];
+            $action = $_GET['action'];
+            $email = $_GET['email'];
+        }
+        include_once 'controllers/OtpController.php';
+        $otpController = new OtpController($action, $otp, $email);
+        $otpController->index();
+        break;
+    case 'resetPassword':
+        $password = $email = '';
+        if(isset($_POST['resetPassword'])){
+            if($_POST['newPassword'] === $_POST['newPasswordConfirm']){
+                $password = $_POST['newPassword'];
+                $action = $_GET['action'];
+                $email = $_GET['email'];
+            }else{
+                $action = '';
+                $error = 'Mật khẩu nhập lại không trùng khớp! Vui lòng kiểm tra lại!';
+            }
+        }
+        include_once 'controllers/ResetPasswordController.php';
+        $resetPasswordController = new ResetPasswordController($action, $password, $email);
+        $resetPasswordController->index();
         break;
     case 'account':
         $content = isset($_GET['content']) ? $_GET['content'] : '';
+        if(isset($_SESSION['user'])){
+            include_once 'models/connectModel.php';
+            $data = new ConnectModel();
+            $data->ketnoi();
+            $sql = "select name from user where id_user = :id;";
+            $stmt = $data->conn->prepare($sql);
+            // bindParam
+            $stmt->bindParam(":id", $_SESSION['user']['id']);
+            $stmt->execute();
+            $kq = $stmt->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC : chuyển dl mãng lk
+            $data->conn = null; // đóng kết nối database
+            $nameUser = $kq[0]['name']; // biến này chứa mãng các dòng dữ liệu trả về.
+        }
 
         $leftSide = '
             <div class="container">
@@ -159,7 +222,7 @@ switch ($page) {
                             <div class="avatar">
                                 <img class="image-acc-clone" src="public/img/acc-clone.jpg" alt="">
                             </div>
-                            <p class="name">Name Người Dùng</p>
+                            <p class="name">'. $nameUser .'</p>
                         </div>
                         <ul class="menu">
                             <li><a href="index.php?page=account"><span class="fa-solid fa-user"></span> Thông tin tài khoản</a></li>
@@ -191,14 +254,34 @@ switch ($page) {
                 $loveController->index();
                 break;
             
-            default: // dashboard information user
-                include_once 'views/account.php';
+            default: // dashboard information user account
+                $idUser = '';
+                if(isset($_SESSION['user'])){
+                    $idUser = $_SESSION['user']['id'];
+                }
+                include_once 'controllers/accountController.php';
+                $accountController = new AccountController($action, $idUser);
+                $accountController->index();
                 break;
         }
         break;
     default: // home // HomeController
+        $idUser = $idMonitor = '';
+        if(isset($_SESSION['user'])){
+            $idUser = $_SESSION['user']['id'];
+        }
+        if(isset($_GET['action']) && $_GET['action'] === 'addLoving'){
+            $action = $_GET['action'];
+            $idUser = $_SESSION['user']['id'];
+            $idMonitor = $_GET['id'];
+        }
+        if(isset($_GET['action']) && $_GET['action'] === 'deleteLoving'){
+            $action = $_GET['action'];
+            $idUser = $_SESSION['user']['id'];
+            $idMonitor = $_GET['id'];
+        }
         include_once 'controllers/HomeController.php';
-        $homeController = new HomeController($action);
+        $homeController = new HomeController($action, $idUser, $idMonitor);
         $homeController->index();
         break;
 }

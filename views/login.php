@@ -68,7 +68,7 @@
             </div>
 
             <div class="d-flex justify-content-end mb-3">
-                <a href="#" class="text-decoration-none">Quên mật khẩu?</a>
+                <a href="index.php?page=forgot" class="text-decoration-none">Quên mật khẩu?</a>
             </div>
 
             <input type="submit" name="login" value="Đăng nhập" class="btn btn-primary w-100 custom-button">

@@ -57,14 +57,15 @@ create table connection_port_monitor(
     id_connection_port int,
     id_monitor int
 );
-
+select * from user;
+select * from love;
 create table images(
  id_image int primary key auto_increment,
  path varchar(255),
  name varchar(255),
  id_monitor int
 );
-
+select * from images where id_image = 1;
 -- select * from bill where id_user = 1;
 
 create table user(
@@ -92,19 +93,22 @@ create table phone_number(
  status boolean,
  id_user int
 );
-
+select name from user where id_user = 2;
 create table bill(
  id_bill int primary key auto_increment,
  date_time datetime,
  status boolean,
  id_user int
 );
+select email from user where email = 'cuong@gmail.com';
 -- 0: buying
 -- 1: paid
 select * from bill where id_user = 1 and status = 0;
 -- insert into bill values (null, current_timestamp(), 0, 2);
 -- insert into bill values (null, current_timestamp(), 0, 1);
-select * from bill;
+-- use duan1_n15;
+select * from user;
+-- update user set password = 'kiet123' where email = ''; select * from user;
 -- select id_bill from bill where id_user = 1 and status = 0;
 create table bill_detail(
  id_bill_detail int primary key auto_increment,
@@ -177,7 +181,7 @@ select * from voucher;
 select id_bill from bill where id_user = 1 and status = 0;
 select * from bill_detail;
 
-select * from voucher;
+select * from user;
 select * from bill_detail where id_bill = (select id_bill from bill where id_user = 1 and status = 0);
 -- update bill_detail set id_voucher = 1 where id_monitor = 1;
 select monitor.name as monitor_name, bill_detail.price as monitor_price, voucher.*, quatity from bill_detail 

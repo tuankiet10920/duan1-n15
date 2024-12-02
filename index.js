@@ -22,6 +22,55 @@ function addFavorite() {
   }
 }
 
+if(href.search("otp") === -1){
+  if(localStorage.getItem('countdownTime')){
+    localStorage.removeItem('countdownTime');
+  }
+}
+
+if(href.search("otp") !== -1){
+  // Lấy phần tử hiển thị thời gian
+let countdownElement = document.getElementById('timeSessionCoutdown');
+
+// Hàm để cập nhật thời gian đếm ngược
+function countdown(minutes, seconds) {
+  // Chuyển đổi phút và giây thành giây để dễ tính toán
+  let savedTime = localStorage.getItem('countdownTime');
+  if (savedTime) {
+    // Nếu có, lấy dữ liệu và tiếp tục đếm ngược từ đó
+    totalSeconds = parseInt(savedTime);
+  } else {
+    // Nếu không có, bắt đầu từ thời gian mặc định
+    totalSeconds = minutes * 60 + seconds;
+  }
+
+  // Thiết lập một khoảng thời gian để cập nhật mỗi giây
+  let interval = setInterval(() => {
+    totalSeconds--;
+
+    // Tính toán lại phút và giây từ tổng số giây
+    let minutesLeft = Math.floor(totalSeconds / 60);
+    let secondsLeft = totalSeconds % 60;
+
+    // Định dạng chuỗi hiển thị
+    let formattedTime = `${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+    countdownElement.textContent = formattedTime;
+    localStorage.setItem('countdownTime', totalSeconds);
+    // Nếu thời gian hết, dừng khoảng thời gian và thực hiện hành động mong muốn (tùy chọn)
+    if (totalSeconds <= 0) {
+      clearInterval(interval);
+      // Thêm code ở đây để thực hiện hành động khi thời gian hết, ví dụ:
+      countdownElement.innerHTML = 'Mã otp của bạn đã hết hiệu lực, vui lòng quay lại!';
+    }
+  }, 1000);
+}
+
+// Bắt đầu đếm ngược từ 2 phút
+countdown(2, 0)
+}
+
+
+
 if (href.search("login") !== -1) {
   // Lấy các phần tử email và password
   const emailInput = document.getElementById("email");
