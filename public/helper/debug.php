@@ -27,7 +27,7 @@ function sendMail($to, $otp)
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'kietnguyen02112002@gmail.com'; 
+        $mail->Username   = 'kietnguyen02112002@gmail.com';
         // aahf mmcn sfsb cbjt                    //SMTP username
         $mail->Password   = 'aahfmmcnsfsbcbjt';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
@@ -41,7 +41,33 @@ function sendMail($to, $otp)
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Change Password Account Monitor World';
-        $mail->Body    = "Mã otp của bạn: $otp";
+        $mail->Body    = '
+                          <div style="max-width: 400px;
+                            padding: 30px;
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            background-color: #f9f9f9;">
+                                <div style="text-align: center;">
+                                <h2 style="font-size: 24px;
+                                font-weight: bold;
+                                color: #007bff;"><strong>Email OTP</strong></h2>
+                                <hr>
+                                <p>Gửi khách hàng của tôi</p>
+                                <p>Mã OTP của bạn:</p>
+                                <p style="font-size: 30px;
+                                font-weight: bold;
+                                color: #28a745;">'. $otp .'</p>
+                                <p>Hãy sử dụng mã OTP này để hoàn thành tiến trình đổi mật khẩu của bạn. Đừng chia sẽ mã OTP này cho bất kỳ ai!</p>
+                                </div>
+                                <div style="font-size: 12px;
+                                text-align: center;
+                                margin-top: 20px;
+                                color: #6c757d;">
+                                <p>Cảm ơn vì đã tin tưởng cửa hàng chúng tôi</p>
+                                <p><span style="color: #007bff; ">© www.rohitchouhan.com.</span> All rights reserved.</p>
+                                </div>
+                        </div>
+        ';
 
         $mail->send();
         echo 'Message has been sent';
@@ -50,7 +76,8 @@ function sendMail($to, $otp)
     }
 }
 
-function seperateDayInData($stringDayInData){
+function seperateDayInData($stringDayInData)
+{
     $arrayDayFormat = explode("-", $stringDayInData);
     return [
         'day' => $arrayDayFormat[2],
