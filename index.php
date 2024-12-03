@@ -159,7 +159,13 @@ switch ($page) {
         $loginController->index();
         break;
     case 'pay':
-        include_once 'views/pay.php';
+        $idUser = '';
+        if(isset($_SESSION['user'])){
+            $idUser = $_SESSION['user']['id'];
+        }
+        include_once 'controllers/PayController.php';
+        $payController = new PayController($action, $idUser);
+        $payController->index();
         break;
     case 'forgot':
         $email = '';

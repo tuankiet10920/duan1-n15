@@ -64,7 +64,7 @@ function sendMail($to, $otp)
                                 margin-top: 20px;
                                 color: #6c757d;">
                                 <p>Cảm ơn vì đã tin tưởng cửa hàng chúng tôi</p>
-                                <p><span style="color: #007bff; ">© www.rohitchouhan.com.</span> All rights reserved.</p>
+                                <p><span style="color: #007bff; ">© https://monitorworld.com.</span> All rights reserved.</p>
                                 </div>
                         </div>
         ';

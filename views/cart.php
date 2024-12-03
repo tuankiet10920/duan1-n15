@@ -2,8 +2,8 @@
 // if(isset($cartList)){
 //     test_array($cartList);
 // }
-// if(isset($checkVoucherCode)){
-//     test_array($checkVoucherCode);
+// if(isset($cartList['listMonitorWithImages'])){
+//     test_array($cartList['listMonitorWithImages']);
 // }
 // if(isset($meo)){
 //     echo $meo;
@@ -11,7 +11,7 @@
 // if(isset($code)){
 //     echo $code;
 // }
-$subtitle = 0;
+$subtotal = 0;
 ?>
 <div class="container my-4">
     <div class="cart">
@@ -37,7 +37,7 @@ $subtitle = 0;
 
                         $string = '';
                         foreach ($cartList['listMonitorWithImages'] as $key => $monitor) {
-                            $subtitle += ($monitor['price'] * $monitor['quatity']);
+                            $subtotal += ($monitor['price'] * $monitor['quatity']);
                             $string .= '
                                 <tr>
                                     <td>
@@ -89,12 +89,12 @@ $subtitle = 0;
         <div><button class="back-button">Trở về trang cửa hàng</button></div>
         <?php 
             if(isset($_SESSION['user'])){
-                if(isset($cartList) && count($cartList) !== 0){
+                if(isset($cartList['listMonitorWithImages']) && count($cartList['listMonitorWithImages']) > 0){
                     $string = '';
                     $string .= '
                         <div class="cart-summary">
                             <p><strong>Thông tin giỏ hàng:</strong></p>
-                            <p><strong>Tạm tính:</strong> '. number_format($subtitle, 0, '.', ',') .'đ</p>
+                            <p><strong>Tạm tính:</strong> '. number_format($subtotal, 0, '.', ',') .'đ</p>
                             <p><strong>Phí vận chuyển:</strong> Miễn Phí</p>
                     ';
                     if(count($cartList['listMonitorVoucher']) !== 0){
@@ -105,14 +105,15 @@ $subtitle = 0;
                             }else{
                                 $price = $voucherMonitor['value'];
                             }
-                            $subtitle -= $price;
+                            $quatity = $cartList['listMonitorWithImages'][$key]['quatity'];
+                            $subtotal -= $price * $quatity;
                             $string .= '
-                                <p><strong>Voucher - '. $voucherMonitor['name'] .':</strong> -'. number_format($price, 0, '.', ',') .'đ - '. $voucherMonitor['monitor_name'] .'</p>
+                                <p><strong>Voucher - '. $voucherMonitor['name'] .':</strong> -'. number_format($price, 0, '.', ',') .'đ - '. $voucherMonitor['monitor_name'] . ' x' . $quatity . ' </p>
                             ';
                         }
                     }
                     $string .= '
-                            <p><strong>Tổng cộng:</strong> '. number_format($subtitle, 0, '.', ',') .'đ</p>
+                            <p><strong>Tổng cộng:</strong> '. number_format($subtotal, 0, '.', ',') .'đ</p>
                             <a href="index.php?page=pay">
                                 <button class="checkout-button">Tiến hành thanh toán</button>
                             </a>

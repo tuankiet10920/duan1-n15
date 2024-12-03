@@ -57,8 +57,8 @@ create table connection_port_monitor(
     id_connection_port int,
     id_monitor int
 );
-
-
+-- select * from bill_detail;
+-- select * from user;
 create table images(
  id_image int primary key auto_increment,
  path varchar(255),
@@ -92,17 +92,19 @@ create table phone_number(
  status boolean,
  id_user int
 );
-select name from user where id_user = 2;
+-- select name from user where id_user = 2;
 create table bill(
  id_bill int primary key auto_increment,
  date_time datetime,
  status boolean,
  id_user int
 );
-
+select * from user;
+select bill_detail.*, voucher.name as name_voucher, voucher.value as voucher_cost, voucher.unit as voucher_unit from bill_detail left join voucher on bill_detail.id_voucher = voucher.id_voucher where id_bill = 3;
 -- 0: buying
 -- 1: paid
-
+select * from bill_detail where id_bill = 2;
+select * from voucher;
 -- insert into bill values (null, current_timestamp(), 0, 2);
 -- insert into bill values (null, current_timestamp(), 0, 1);
 -- use duan1_n15;

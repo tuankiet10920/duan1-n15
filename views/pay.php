@@ -1,3 +1,8 @@
+<?php 
+    if(isset($test)){
+        test_array($test);
+    }
+?>
 <div class="container ">
     <div class=" my-3 mx-2">
         <a class="text-dark" style="text-decoration: none;" href="#">Tài
