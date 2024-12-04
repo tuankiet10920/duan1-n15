@@ -159,12 +159,18 @@ switch ($page) {
         $loginController->index();
         break;
     case 'pay':
-        $idUser = '';
+        $idUser = $subtotal = $idBill = '';
         if(isset($_SESSION['user'])){
             $idUser = $_SESSION['user']['id'];
         }
+        if(isset($_POST['order'])){
+            $action = $_GET['action'];
+            $idUser = $_SESSION['user']['id'];
+            $subtotal = $_POST['subtotal'];
+            $idBill = $_GET['idBill'];
+        }
         include_once 'controllers/PayController.php';
-        $payController = new PayController($action, $idUser);
+        $payController = new PayController($action, $idUser, $subtotal, $idBill);
         $payController->index();
         break;
     case 'forgot':
@@ -272,7 +278,16 @@ switch ($page) {
                 if(isset($_POST['saveChangeAccount'])){
                     $idUser = $_SESSION['user']['id'];
                     $name = $_POST['name'];
-                    $nickName = $_POST['nickName'];
+                    if($_POST['nickName'] === 'Vui lòng nhập' || $_POST['nickName'] === ''){
+                        $nickName = null;
+                    }else{
+                        $nickName = $_POST['nickName'];
+                    }
+                    if($_POST['address'] === 'Vui lòng nhập' || $_POST['address'] === ''){
+                        $address = null;
+                    }else{
+                        $address = $_POST['address'];
+                    }
                     if(isset($_POST['gender'])){
                         $gender = $_POST['gender'];
                     }else{
@@ -280,7 +295,6 @@ switch ($page) {
                     }
                     $phone = $_POST['phone'];
                     $email = $_POST['email'];
-                    $address = $_POST['address'];
                     if($_POST['year'] === '' || $_POST['day'] === '' || $_POST['month'] === ''){
                         $birthday = null;
                     }else{

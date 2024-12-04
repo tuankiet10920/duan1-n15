@@ -96,15 +96,22 @@ create table phone_number(
 create table bill(
  id_bill int primary key auto_increment,
  date_time datetime,
+ price int,
  status boolean,
  id_user int
 );
-select * from user;
-select bill_detail.*, voucher.name as name_voucher, voucher.value as voucher_cost, voucher.unit as voucher_unit from bill_detail left join voucher on bill_detail.id_voucher = voucher.id_voucher where id_bill = 3;
+select * from bill;
+-- update bill set price = 0 and status = 1 where id_bill = 1;
+-- select * from user;
+-- select images.path as path_image, images.name as name_image, monitor.id_monitor, monitor.name, monitor.price from images inner join monitor on images.id_monitor = monitor.id_monitor where monitor.id_monitor = 1 limit 1;
+
+-- select bill_detail.*, voucher.name as name_voucher, voucher.value as voucher_cost, voucher.unit as voucher_unit, monitor.name as monitor_name from bill_detail left join voucher on bill_detail.id_voucher = voucher.id_voucher
+-- inner join monitor on bill_detail.id_monitor = monitor.id_monitor where id_bill = 3;
+
 -- 0: buying
 -- 1: paid
-select * from bill_detail where id_bill = 2;
-select * from voucher;
+-- select * from bill_detail where id_bill = 2;
+-- select * from voucher;
 -- insert into bill values (null, current_timestamp(), 0, 2);
 -- insert into bill values (null, current_timestamp(), 0, 1);
 -- use duan1_n15;

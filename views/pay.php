@@ -1,6 +1,17 @@
 <?php 
-    if(isset($test)){
-        test_array($test);
+    // if(isset($monitorWithImages)){
+    //     test_array($monitorWithImages);
+    // }
+    $checkUser = false;
+    if(isset($informationUser)){
+        $checkUser = true;
+    }
+
+    function addDisabled($checkUser){
+        return $checkUser ? 'disabled' : '';
+    }
+    if(isset($header)){
+        echo $header;
     }
 ?>
 <div class="container ">
@@ -18,102 +29,126 @@
     </div>
 
     <div class="container my-3">
-        <div class="row">
+        <form action="index.php?page=pay&action=order&idBill=<?php echo $idBill ?>" method="post" class="row">
             <!-- Cột chi tiết thanh toán -->
             <div class="col-md-6">
                 <h4 class="mb-4">Chi tiết thanh toán</h4>
-                <form>
+                <div>
                     <div class="mb-3">
                         <label for="fullName" class="form-label"><b>Họ
                                 và tên</b></label>
                         <input type="text" class="form-control"
-                            id="fullName" placeholder="Nhập họ và tên">
+                            id="fullName" name="name" value="<?php 
+                                if(isset($informationUser)){
+                                     echo $informationUser['name'];
+                                }else{
+                                    echo 'Vui lòng nhập';
+                                }
+                            ?>" placeholder="Nhập họ và tên" <?php echo addDisabled($checkUser) ?>>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label"><b>Địa
-                                chỉ nơi ở (bắt buộc)</b></label>
+                                chỉ nơi ở (Bắt buộc)</b></label>
                         <input type="text" class="form-control"
-                            id="address" placeholder="Nhập địa chỉ">
+                            id="address" name="address" value="<?php 
+                                if(isset($informationUser) && $informationUser['address'] !== ''){
+                                    echo $informationUser['address'];
+                                }else{
+                                    echo 'Vui lòng nhập địa chỉ ở trang tài khoản';
+                                }
+                            ?>" placeholder="Nhập địa chỉ" <?php 
+                                if(isset($informationUser) && $informationUser['address'] !== null){
+                                    echo 'disabled';
+                                }else{
+                                    echo '';
+                                }
+                            ?>>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label"><b>Số điện
-                                thoại (bắt buộc)</b></label>
+                                thoại (Bắt buộc)</b></label>
                         <input type="text" class="form-control"
-                            id="phone" placeholder="Nhập số điện thoại">
+                            id="phone" name="phone" value="<?php 
+                                if(isset($informationUser)){
+                                    echo $informationUser['phone'];
+                                }else{
+                                    echo 'Vui lòng nhập';
+                                }
+                            ?>" placeholder="Nhập số điện thoại" <?php echo addDisabled($checkUser) ?>>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label"><b>Địa chỉ
-                                Email (nếu có)</b></label>
+                                Email (Bắt buộc)</b></label>
                         <input type="email" class="form-control"
-                            id="email" placeholder="Nhập email">
+                            id="email" name="email" value="<?php 
+                                if(isset($informationUser)){
+                                    echo $informationUser['email'];
+                                }else{
+                                    echo 'Vui lòng nhập';
+                                }
+                            ?>" placeholder="Nhập email" <?php echo addDisabled($checkUser) ?>>
                     </div>
-                </form>
+                </div>
             </div>
 
             <!-- Cột đơn hàng đã chọn -->
             <div class="col-md-6">
                 <h4 class="mb-4">Đơn hàng đã chọn</h4>
                 <ul class="list-group mb-3">
-                    <li
-                        class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center">
-                            <img src="./img/dell1.jpg" alt
-                                style="width: 80px;" height="80px">
-                            <div
-                                class="pay-item-content d-flex justify-content-around"
-                                style="flex-direction: column;">
-                                <strong
-                                    style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px;  display: inline-block;">Smart
-                                    Tivi Samsung Crystal UHD 4K 55
-                                    inch</strong>
-                                <p class="mb-0">Số lượng: 2</p>
-                            </div>
-                        </div>
-                        <span>8.890.000đ</span>
-                    </li>
-                    <li
-                        class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center">
-                            <img src="./img/dell1.jpg" alt
-                                style="width: 80px;" height="80px">
-                            <div
-                                class="pay-item-content d-flex justify-content-around"
-                                style="flex-direction: column;">
-                                <strong
-                                    style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px;  display: inline-block;">Smart
-                                    Tivi Samsung Crystal UHD 4K 55
-                                    inch</strong>
-                                <p class="mb-0">Số lượng: 2</p>
-                            </div>
-                        </div>
-                        <span>8.890.000đ</span>
-                    </li>
-                    <li
-                        class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center">
-                            <img src="./img/dell1.jpg" alt
-                                style="width: 80px;" height="80px">
-                            <div
-                                class="pay-item-content d-flex justify-content-around"
-                                style="flex-direction: column;">
-                                <strong
-                                    style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px;  display: inline-block;">Smart
-                                    Tivi Samsung Crystal UHD 4K 55
-                                    inch</strong>
-                                <p class="mb-0">Số lượng: 2</p>
-                            </div>
-                        </div>
-                        <span>8.890.000đ</span>
-                    </li>
+                    <?php 
+                        
+                        $subtotal = 0;
+                        $listMonitorVoucher = [];
+                        $string = '';
+                        foreach ($informationBillDetailAndVoucher as $key => $monitor) {
+                            $subtotal += $monitor['price'] * $monitor['quatity'];
+                            if($monitor['id_voucher'] !== null){
+                                $listMonitorVoucher = [...$listMonitorVoucher, $monitor];
+                            }
+                            $string .= '
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="public/img/'. $monitorWithImages[$key]['path_image'] .'" alt="'. $monitorWithImages[$key]['name_image'] .'"
+                                            style="width: 80px;" height="80px">
+                                        <div
+                                            class="pay-item-content d-flex justify-content-around"
+                                            style="flex-direction: column;">
+                                            <strong
+                                                style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px;  display: inline-block;">'. $monitorWithImages[$key]['name'] .'</strong>
+                                            <p class="mb-0">Số lượng: '. $monitor['quatity'] .'</p>
+                                        </div>
+                                    </div>
+                                    <span>'. number_format($monitor['price'], 0, ',', '.') .'đ</span>
+                                </li>
+                            ';
+                        }
+                        echo $string;
+                    ?>
+                    
                 </ul>
                 <div class="mb-3">
-                    <div class="d-flex justify-content-between">
-                        <span>MUADONG1:</span>
-                        <span>-5.000đ</span>
+                    <div class="d-flex justify-content-between fw-bold mb-2">
+                        <span>Tạm tính:</span>
+                        <span><?= number_format($subtotal, 0, ',', '.') ?>đ</span>
                     </div>
-                    <div class="d-flex justify-content-between fw-bold">
-                        <span>Tổng cộng:</span>
-                        <span>11.889.000đ</span>
+                    <?php 
+                        $string = '';
+                        foreach ($listMonitorVoucher as $key => $voucher) {
+                            $subtotal -= $voucher['voucher_cost'] * $voucher['quatity'];
+                            $string .= '
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>'. $voucher['name_voucher'] .' - '. $informationBillDetailAndVoucher[$key]['monitor_name'] .'  x  '. $informationBillDetailAndVoucher[$key]['quatity'] .'</span>
+                                    <span>- '. number_format($voucher['voucher_cost'], 0, ',', '.') .'đ</span>
+                                </div>
+                            ';
+                        }
+                        echo $string;
+                    ?>
+                    <div class="d-flex justify-content-between fw-bold mb-2">
+                        <span>Tổng tiền thanh toán:</span>
+                        <span><?= number_format($subtotal, 0, ',', '.') ?>đ</span>
+                        <input hidden type="hidden" value="<?php echo $subtotal ?>" name="subtotal">
                     </div>
                 </div>
                 <div class="mb-3">
@@ -121,14 +156,14 @@
                         toán</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio"
-                            name="paymentMethod" id="cashOnDelivery">
+                            name="paymentMethod" id="cashOnDelivery" checked>
                         <label class="form-check-label"
                             for="cashOnDelivery">Thanh toán khi nhận
                             hàng</label>
                     </div>
                 </div>
-                <button class="btn btn btn-primary w-100"
-                    type="button">Đặt hàng</button>
+                <input class="btn btn btn-primary w-100"
+                    type="submit" name="order" value="Đặt hàng"></input>
             </div>
         </div>
     </div>

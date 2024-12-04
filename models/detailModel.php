@@ -112,12 +112,13 @@ where id_monitor = :id;";
         // check bill with id user if null then add new bill and new monitor into bill_detail
         if (count($this->checkBillUser($idUser)) === 0) {
             $data->ketnoi();
-            $sql = "SET FOREIGN_KEY_CHECKS=1;insert into bill values (null, current_timestamp(), 0, :idUser);
-            insert into bill_detail values (null, $qty, $price, $idMonitor, $idUser, null);";
+            $sql = "SET FOREIGN_KEY_CHECKS=1;insert into bill values (null, current_timestamp(), null, 0, :idUser);";
             $stmt = $data->conn->prepare($sql);
             $stmt->bindParam(":idUser", $idUser);
             $stmt->execute();
             $data->conn = null; // đóng kết nối database
+            $sql = "insert into bill_detail values (null, $qty, $price, $idMonitor, $idUser, null);";
+            $data->add($sql);
         } else {
             // if bill not null, bill detail if null with id bill and id monitor
             $this->getIdBill($idUser); // get id bill

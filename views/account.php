@@ -14,11 +14,11 @@ if(isset($header)){
     <h2>Thông tin tài khoản</h2>
     <form action="index.php?page=account&action=saveChange" method="post" class="account-info" enctype="multipart/form-data">
         <label>Họ và tên:</label>
-        <input type="text" class="username-account" name="name" value="<?php echo $informationOfUser[0]['name'] ?>">
+        <input type="text" readonly class="username-account" name="name" value="<?php echo $informationOfUser[0]['name'] ?>">
 
         <label>Biệt danh</label>
         <input type="text" class="username-account" name="nickName" value="<?php 
-            if($informationOfUser[0]['nick_name'] !== null){
+            if($informationOfUser[0]['nick_name'] !== null && $informationOfUser[0]['nick_name'] !== ''){
                 echo $informationOfUser[0]['nick_name'];
             }else{
                 echo 'Vui lòng nhập';
@@ -58,19 +58,19 @@ if(isset($header)){
 
         <label>Số điện thoại</label>
         <div class="input-with-action">
-            <input type="text" placeholder="Vui lòng nhập" value="<?php echo $informationOfUser[0]['phone'] ?>" name="phone" style="border: none; outline: none">
+            <input type="text" readonly placeholder="Vui lòng nhập" value="<?php echo $informationOfUser[0]['phone'] ?>" name="phone" style="border: none; outline: none">
             <a href="#">Thay đổi</a>
         </div>
 
         <label>Email</label>
         <div class="input-with-action">
-            <input type="email" value="<?php echo $informationOfUser[0]['email'] ?>" placeholder="Vui lòng nhập" name="email" style="border: none; outline: none">
+            <input type="email" readonly value="<?php echo $informationOfUser[0]['email'] ?>" placeholder="Vui lòng nhập" name="email" style="border: none; outline: none">
             <a href="#">Thay đổi</a>
         </div>
 
         <label>Địa chỉ</label>
         <?php 
-            if($informationOfUser[0]['address'] !== null){
+            if($informationOfUser[0]['address'] !== null && $informationOfUser[0]['address'] !== ''){
                 echo '
                     <input type="text" name="address" value="'. $informationOfUser[0]['address'] .'" class="username-account" value="Vui lòng nhập">
                 ';
