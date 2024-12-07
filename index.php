@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once "views/header.php";
 require_once('mailer/Exception.php');
 require_once('mailer/PHPMailer.php');
 require_once('mailer/SMTP.php');
@@ -8,6 +7,29 @@ include_once 'public/helper/debug.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $page = isset($_GET['page']) ? $_GET['page'] : '';
+
+// middleware
+if(!isset($_SESSION['admin'])){
+    if(isset($_SESSION['user'])){
+        if($page === 'admin'){
+            $page = 'login';
+        }
+    }else{
+        if(!isset($_SESSION['admin'])){
+            if($page === 'admin'){
+                $page = 'login';
+            }
+        }
+    }
+}
+
+
+
+if($page !== 'admin'){
+    include_once "views/header.php";
+}
+
+
 
 if(isset($_SESSION['otp'])){
     $timeLife = 120;
@@ -153,6 +175,9 @@ switch ($page) {
             }else{
                 $action = '';
             }
+        }
+        if(isset($_GET['action']) && $_GET['action'] === 'logoutAdmin'){
+            $action = $_GET['action'];
         }
         include_once 'controllers/LoginController.php';
         $loginController = new LoginController($action, $email, $password);
@@ -313,6 +338,92 @@ switch ($page) {
                 break;
         }
         break;
+    case 'admin':
+        include_once 'views/headerAdmin.php';
+
+        $content = isset($_GET['content']) ? $_GET['content'] : '';
+
+        switch ($content) {
+            case 'monitor':
+                $id = $name = $price =  $typeScreen = $responseTime = $inStock = $gurantee = $size = $status = $brand = $colorSpace = $basePlate = $screenSolution = $scanFrequency = $descibe = $images = '';
+                if(isset($_GET['action']) && $_GET['action'] == 'delete'){
+                    $action = $_GET['action'];
+                    $id = $_GET['id'];
+                }
+                if(isset($_POST['addMonitor'])){
+                    $action = $_GET['action'];
+                    $name = $_POST['name'];
+                    $price = $_POST['price'];
+                    $typeScreen = $_POST['typeScreen'];
+                    $responseTime = $_POST['responseTime'];
+                    $inStock = $_POST['instock'];
+                    $gurantee = $_POST['gurantee'];
+                    // , $name, $price, $typeScreen, $responseTime, $inStock, $gurantee, $size, $status, $brand, $colorSpace, $basePlate, $screenSolution, $scanFrequency, $descibe, $images
+                    $size = $_POST['size'];
+                    $status = $_POST['status'];
+                    $brand = $_POST['brands'];
+                    $colorSpace = $_POST['colorSpace'];
+                    $basePlate = $_POST['basePlate'];
+                    $screenSolution = $_POST['screenSolution'];
+                    $scanFrequency = $_POST['scanFrequency'];
+                    $descibe = $_POST['descibe'];
+                    $images = [];
+                    if(isset($_FILES['images1']) && $_FILES['images1']['error'] === 0){
+                        $images = [...$images, 0 => $_FILES['images1']];
+                    }
+                    if(isset($_FILES['images2']) && $_FILES['images2']['error'] === 0){
+                        $images = [...$images, 1 => $_FILES['images2']];
+                    }
+                    if(isset($_FILES['images3']) && $_FILES['images3']['error'] === 0){
+                        $images = [...$images, 2 => $_FILES['images3']];
+                    }
+                }
+                if(isset($_GET['action']) && $_GET['action'] === 'getMonitor'){
+                    $action = $_GET['action'];
+                    $id = $_GET['id'];
+                }
+                if(isset($_GET['action']) && $_GET['action'] === 'edit'){
+                    $action = $_GET['action'];
+                    $id = $_GET['id'];
+                    $name = $_POST['name'];
+                    $price = $_POST['price'];
+                    $typeScreen = $_POST['typeScreen'];
+                    $responseTime = $_POST['responseTime'];
+                    $inStock = $_POST['instock'];
+                    $gurantee = $_POST['gurantee'];
+                    $size = $_POST['size'];
+                    $status = $_POST['status'];
+                    $brand = $_POST['brands'];
+                    $colorSpace = $_POST['colorSpace'];
+                    $basePlate = $_POST['basePlate'];
+                    $screenSolution = $_POST['screenSolution'];
+                    $scanFrequency = $_POST['scanFrequency'];
+                    $descibe = $_POST['descibe'];
+                    $images = [];
+                    if(isset($_FILES['images1']) && $_FILES['images1']['error'] === 0){
+                        $images = [...$images, 0 => $_FILES['images1']];
+                    }
+                    if(isset($_FILES['images2']) && $_FILES['images2']['error'] === 0){
+                        $images = [...$images, 1 => $_FILES['images2']];
+                    }
+                    if(isset($_FILES['images3']) && $_FILES['images3']['error'] === 0){
+                        $images = [...$images, 2 => $_FILES['images3']];
+                    }
+                }
+                include_once 'controllers/AdminMonitorController.php';
+                $adminMonitorController = new AdminMonitorController($action, $id, $name, $price, $typeScreen, $responseTime, $inStock, $gurantee, $size, $status, $brand, $colorSpace, $basePlate, $screenSolution, $scanFrequency, $descibe, $images);
+                $adminMonitorController->index();
+                break;
+            
+            default: // dashboard admin
+                include_once 'controllers/AdminDashboardController.php';
+                $adminDashboardController = new AdminDashboardController($action);
+                $adminDashboardController->index();
+                break;
+        }
+
+        include_once 'views/footerAdmin.php';
+        break;
     default: // home // HomeController
         $idUser = $idMonitor = '';
         if(isset($_SESSION['user'])){
@@ -334,4 +445,6 @@ switch ($page) {
         break;
 }
 
-include_once "views/footer.php";
+if($page !== 'admin'){
+    include_once "views/footer.php";
+}

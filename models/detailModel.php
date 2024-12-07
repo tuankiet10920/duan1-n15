@@ -117,7 +117,8 @@ where id_monitor = :id;";
             $stmt->bindParam(":idUser", $idUser);
             $stmt->execute();
             $data->conn = null; // đóng kết nối database
-            $sql = "insert into bill_detail values (null, $qty, $price, $idMonitor, $idUser, null);";
+            $this->getIdBill($idUser);
+            $sql = "insert into bill_detail values (null, $qty, $price, $idMonitor, $this->idBill, null);";
             $data->add($sql);
         } else {
             // if bill not null, bill detail if null with id bill and id monitor

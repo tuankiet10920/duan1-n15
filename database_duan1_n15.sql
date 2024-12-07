@@ -51,14 +51,27 @@ create table monitor(
  screen_solution int,
  scan_frequency int
 );
+-- insert into monitor values (null, 'name', 1000000, typeScreen, respensetime, instock, gurantee, size, describe_monitor, status, brand, color_space, base_plate, screen_solution, scan_frequency);
+-- insert into images values (null, path, name, id_monitor);
+-- select id_monitor from monitor order by id_monitor desc limit 1;
+select * from monitor;
+-- update montitor set name = name, price = price, type_screen = type_screen, 
+-- response_time = response_time, in_stock = in_stock, gurantee = gurantee, size = size,
+-- describe_monitor = describe_monitor, status = status, brand = brand, color_space = color_space,
+-- base_plate = base_plate, screen_solution = screen_solution, scan_frequency = scan_frequency where id_monitor = 1;
+select * from images where id_monitor = 3;
 
+-- update images set path = '', name = '' where id_image = 1;
+-- update monitor set status = 1 where id_monitor = 9;
 create table connection_port_monitor(
 	id_connection_port_monitor int primary key auto_increment,
     id_connection_port int,
     id_monitor int
 );
+-- SET FOREIGN_KEY_CHECKS=1;delete from monitor where id_monitor = 8;
 -- select * from bill_detail;
 -- select * from user;
+-- delete from images where id_image = 23;
 create table images(
  id_image int primary key auto_increment,
  path varchar(255),
@@ -79,12 +92,30 @@ create table user(
  birthday date,
  address text character set utf8mb4 collate utf8mb4_unicode_ci,
  nick_name varchar(255) character set utf8mb4 collate utf8mb4_unicode_ci,
+ -- user: 0, admin: 1
  status boolean
 );
+
+-- insert into user values (null, 'Kiet Nguyen', '0123123123', null, 0, 'tuankiet10920@gmail.com', 'admin123', null, null, null, 1);
+select monitor.id_monitor, monitor.name, monitor.price, monitor.type_screen, monitor.response_time, monitor.in_stock, monitor.gurantee, monitor.in_stock, monitor.size, 
+monitor.describe_monitor, monitor.status, brand.name as brand_name, color_space.name as color_space_name, base_plate.name as base_plate_name, screen_solution.name as screen_solution_name, scan_frequency.number as scan_frequency_number from monitor
+inner join brand on monitor.brand = brand.id_brand
+inner join color_space on monitor.color_space = color_space.id_color_space
+inner join base_plate on monitor.base_plate = base_plate.id_base_plate
+inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
+inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency;
+select * from bill where status = 1;
 -- update user set name = '', phone = '', image = '', gender = 0, emnail = '', password = '', birthday = '', address = '', nick_name = '', status = 0 where id_user = 1;
 -- insert into user values
 -- (null, 'nguyen van a', '14541531435','cc.cc', null, 'vananguyen@gmail.com', 'dasdsadad415364153', null, null, 0);
 
+select * from images;
+
+select * from monitor;
+
+select * from scan_frequency;
+
+-- update monitor set status = 1 where id_monitor = 1;
 
 create table phone_number(
  id_phone_number int primary key auto_increment,
@@ -415,3 +446,7 @@ insert into voucher values
 -- select * from comment;
 -- select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 3 order by date_time asc;
 -- SET FOREIGN_KEY_CHECKS=1; delete from comment;
+
+select count(id_bill) as number_of_monitors from bill;
+select date_time, price, user.name from bill inner join user on bill.id_user = user.id_user where bill.status = 1 order by date_time desc limit 5;
+select name, phone, gender from user limit 5;

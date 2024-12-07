@@ -57,8 +57,8 @@
           <div class="left-content">
             <div class="left-content-title">
               <p class="text-white">Main</p>
-              <div
-                class="left-content-box d-flex justify-content-between text-white align-items-center select-entity"
+              <a href="index.php?page=admin"
+                class="text-decoration-none left-content-box d-flex justify-content-between text-white align-items-center select-entity"
               >
                 <div
                   class="left-content-box-leftside d-flex align-items-center"
@@ -77,10 +77,10 @@
                   <p class="mb-0">Dashboard</p>
                 </div>
                 <span class="material-symbols-outlined"> chevron_right </span>
-              </div>
+              </a>
               <p class="text-white mt-3">Entity</p>
               <a
-                href=""
+                href="index.php?page=admin&content=monitor"
                 class="text-decoration-none left-content-box d-flex justify-content-between text-white align-items-center mb-2 select-entity"
               >
                 <div
@@ -387,28 +387,7 @@
                 </div>
                 <span class="material-symbols-outlined"> chevron_right </span>
               </a>
-              <a
-                href=""
-                class="text-decoration-none left-content-box d-flex justify-content-between text-white align-items-center mb-2 select-entity"
-              >
-                <div
-                  class="left-content-box-leftside d-flex align-items-center"
-                >
-                  <div
-                    class="left-content-box-icon me-3 border d-flex align-items-center px-1 py-1 rounded"
-                    style="height: fit-content; background: #ecfbf9"
-                  >
-                    <span
-                      class="material-symbols-outlined"
-                      style="color: #4490db"
-                    >
-                      star
-                    </span>
-                  </div>
-                  <p class="mb-0">Rating</p>
-                </div>
-                <span class="material-symbols-outlined"> chevron_right </span>
-              </a>
+              
               <a
                 href=""
                 class="text-decoration-none left-content-box d-flex justify-content-between text-white align-items-center mb-2 select-entity"
@@ -453,6 +432,28 @@
                 </div>
                 <span class="material-symbols-outlined"> chevron_right </span>
               </a>
+              <a
+                href="index.php?page=login&action=logoutAdmin"
+                class="text-decoration-none left-content-box d-flex justify-content-between text-white align-items-center mb-2 select-entity"
+              >
+                <div
+                  class="left-content-box-leftside d-flex align-items-center"
+                >
+                  <div
+                    class="left-content-box-icon me-3 border d-flex align-items-center px-1 py-1 rounded"
+                    style="height: fit-content; background: #ecfbf9"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="color: #4490db"
+                    >
+                    logout
+                    </span>
+                  </div>
+                  <p class="mb-0">Logout</p>
+                </div>
+                <span class="material-symbols-outlined"> chevron_right </span>
+              </a>
             </div>
           </div>
         </div>
@@ -494,231 +495,15 @@
                   />
                 </div>
                 <p class="text-dark mb-0 ms-2" style="font-size: 12px">
-                  Kiet Nguyen
+                  <?php 
+                    if(isset($_SESSION['admin'])){
+                      echo $_SESSION['admin']['name'];
+                    }else{
+                      echo 'Undefined Account';
+                    }
+                  ?>
                 </p>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- it hear -->
-
-        <div class="content-right mt-4">
-          <div class="content-right-container">
-            <div class="content-right-container-box">
-              <div class="content-dashboard-themes">
-                <div class="row mx-0 my-0">
-                  <!-- #130e2e -->
-                  <div
-                    class="col text-center d-flex justify-content-center align-items-center"
-                  >
-                    <div
-                      class="content-dashboard-themes-box border d-flex align-items-center"
-                      style="
-                        width: fit-content;
-                        height: fit-content;
-                        padding: 25px 50px;
-                      "
-                    >
-                      <span class="material-symbols-outlined admin-ion-desktop">
-                        desktop_windows
-                      </span>
-                      <div class="content-dashboard-name-qty text-start">
-                        <p class="mb-0">Monitors</p>
-                        <p class="mb-0">215</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="col text-center d-flex justify-content-center align-items-center"
-                  >
-                    <div
-                      class="content-dashboard-themes-box border d-flex align-items-center"
-                      style="
-                        width: fit-content;
-                        height: fit-content;
-                        padding: 25px 50px;
-                      "
-                    >
-                      <span class="material-symbols-outlined admin-ion-desktop">
-                        desktop_windows
-                      </span>
-                      <div class="content-dashboard-name-qty text-start">
-                        <p class="mb-0">Users</p>
-                        <p class="mb-0">215</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="col text-center d-flex justify-content-center align-items-center"
-                  >
-                    <div
-                      class="content-dashboard-themes-box border d-flex align-items-center"
-                      style="
-                        width: fit-content;
-                        height: fit-content;
-                        padding: 25px 50px;
-                      "
-                    >
-                      <span class="material-symbols-outlined admin-ion-desktop">
-                        desktop_windows
-                      </span>
-                      <div class="content-dashboard-name-qty text-start">
-                        <p class="mb-0">Bills</p>
-                        <p class="mb-0">215</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="col text-center d-flex justify-content-center align-items-center"
-                  >
-                    <div
-                      class="content-dashboard-themes-box border d-flex align-items-center"
-                      style="
-                        width: fit-content;
-                        height: fit-content;
-                        padding: 25px 50px;
-                      "
-                    >
-                      <span class="material-symbols-outlined admin-ion-desktop">
-                        desktop_windows
-                      </span>
-                      <div class="content-dashboard-name-qty text-start">
-                        <p class="mb-0">Vouchers</p>
-                        <p class="mb-0">215</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- chartjs -->
-              <div class="chart-dashboard mt-4">
-                <canvas
-                  id="myChart"
-                  style="width: 100%; max-width: 100%; height: 400px"
-                ></canvas>
-              </div>
-              <div class="double-table d-flex justify-content-between mt-3" style="width: 100%;">
-                <table class="table" style="width: 49%;">
-                  <thead>
-                    <tr>
-                      <th colspan="4" class="text-center">Các đơn hàng đã thanh toán mới nhất</th>
-                    </tr>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Product Name</th>
-                      <th scope="col">Username</th>
-                      <th scope="col">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table class="table" style="width: 49%;">
-                  <thead>
-                    <tr>
-                      <th colspan="4" class="text-center">Các khách hàng mới</th>
-                    </tr>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Username</th>
-                      <th scope="col">Phone</th>
-                      <th scope="col">Email</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- it end hear -->
-
-      </div>
-    </section>
-    <script>
-      const xValues = [
-        "Tháng 1",
-        "Tháng 2",
-        "Tháng 3",
-        "Tháng 4",
-        "Tháng 5",
-        "Tháng 6",
-        "Tháng 7",
-        "Tháng 8",
-        "Tháng 9",
-        "Tháng 10",
-      ];
-      const yValues = [55, 49, 44, 24, 66, 33, 22, 67, 77, 29];
-      const barColors = [
-        "#295683",
-        "#295683",
-        "#295683",
-        "#295683",
-        "#295683",
-        "#295683",
-        "#295683",
-        "#295683",
-        "#295683",
-        "#295683",
-      ];
-
-      new Chart("myChart", {
-        type: "bar",
-        data: {
-          labels: xValues,
-          datasets: [
-            {
-              backgroundColor: barColors,
-              data: yValues,
-            },
-          ],
-        },
-        options: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: "Tổng số lượng sản phẩm bán được trong 5 tháng gần nhất",
-          },
-        },
-      });
-    </script>
-  </body>
-</html>

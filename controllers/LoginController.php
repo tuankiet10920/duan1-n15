@@ -17,11 +17,20 @@ class LoginController {
                 if(count($userExist) === 0){
                     $error = 'Login failed, please check your email address or password and try again!';
                 }else{
-                    $_SESSION['user'] = [
-                        'id' => $userExist[0]['id_user'],
-                        'name' => $userExist[0]['name']
-                    ];
-                    header('location: index.php');
+                    if($userExist[0]['status'] === 0){
+                        $_SESSION['user'] = [
+                            'id' => $userExist[0]['id_user'],
+                            'name' => $userExist[0]['name']
+                        ];
+                        header('location: index.php');
+                    }else{
+                        $_SESSION['admin'] = [
+                            'id' => $userExist[0]['id_user'],
+                            'name' => $userExist[0]['name']
+                        ];
+                        header('location: index.php?page=admin');
+                    }
+                    
                 }
                 break;
             case 'logout':
@@ -31,6 +40,14 @@ class LoginController {
                     </script>
                 ';
                 unset($_SESSION['user']);
+                break;
+            case 'logoutAdmin':
+                $reload = '
+                    <script>
+                        window.location.href="http://localhost:8080/duan1-n15/index.php?page=login";
+                    </script>
+                ';
+                unset($_SESSION['admin']);
                 break;
             default:
                 # code...
