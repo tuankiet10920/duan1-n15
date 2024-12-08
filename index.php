@@ -25,7 +25,7 @@ if(!isset($_SESSION['admin'])){
 
 
 
-if($page !== 'admin'){
+if($page !== 'admin' && $page !== 'getMonitor'){
     include_once "views/header.php";
 }
 
@@ -424,6 +424,22 @@ switch ($page) {
 
         include_once 'views/footerAdmin.php';
         break;
+    case 'getMonitor':
+        include_once 'models/connectModel.php';
+        $data = new ConnectModel();
+        $findKey = $_GET['findKey'];
+        $data->ketnoi();
+        $sql = "select distinct images.path as path_image, images.name as name_image, monitor.name as name_monitor, monitor.id_monitor from images inner join monitor
+        on images.id_monitor = monitor.id_monitor
+        group by images.id_monitor having monitor.name like :findKey;";
+        $stmt = $data->conn->prepare($sql); 
+        // bindParam
+        $stmt->bindValue(":findKey", "%$findKey%");
+        $stmt->execute();
+        $listMonitorFind = $stmt->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC : chuyển dl mãng lk
+        $data->conn = null; // đóng kết nối database
+        include_once 'views/getMonitor.php';
+        break;
     default: // home // HomeController
         $idUser = $idMonitor = '';
         if(isset($_SESSION['user'])){
@@ -445,6 +461,6 @@ switch ($page) {
         break;
 }
 
-if($page !== 'admin'){
+if($page !== 'admin' && $page !== 'getMonitor'){
     include_once "views/footer.php";
 }

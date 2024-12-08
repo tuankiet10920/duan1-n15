@@ -52,9 +52,11 @@
                   <a class="nav-link" href="#">Liên hệ</a>
                 </li>
               </ul>
-              <form class="d-flex position-relative" role="search header-row-2-search">
-                <input class="form-control me-2" style="width: 100%" type="search" placeholder="Search" aria-label="Search" />
-                <span class="material-symbols-outlined search-icon">search</span>
+              <form class="d-flex position-relative" role="search" id="search-form">
+                <input id="searchInput" class="form-control me-2" style="width: 100%" type="search" placeholder="Search"
+                  aria-label="Search" />
+                <span id="searchIcon" class="material-symbols-outlined search-icon">search</span>
+                <div id="searchResults" class="search-results"></div>
               </form>
               <?php 
                 if(isset($_SESSION['user'])){

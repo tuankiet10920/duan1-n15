@@ -68,6 +68,10 @@ create table connection_port_monitor(
     id_connection_port int,
     id_monitor int
 );
+select * from monitor where name like '%MAn HINH%';
+select distinct images.path as path_image, images.name as name_image, monitor.name as name_monitor, monitor.id_monitor from images inner join monitor
+on images.id_monitor = monitor.id_monitor
+group by images.id_monitor having monitor.name like '%MAn HINH%';
 -- SET FOREIGN_KEY_CHECKS=1;delete from monitor where id_monitor = 8;
 -- select * from bill_detail;
 -- select * from user;
