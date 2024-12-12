@@ -27,7 +27,8 @@ where id_monitor = :id;";
     {
         include_once 'models/connectModel.php';
         $data = new ConnectModel();
-        $sql = "select id_monitor, name, price from monitor where brand = (select brand from monitor where id_monitor = :id);";
+        $data->ketnoi();
+        $sql = "select id_monitor, name, price from monitor where brand = (select brand from monitor where id_monitor = :id) and id_monitor <> :id;";
         return $data->selectWithId($sql, $id);
     }
 

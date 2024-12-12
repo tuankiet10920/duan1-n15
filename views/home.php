@@ -1,6 +1,6 @@
   <?php
-    // if(isset($listImages)){
-    //     test_array($listImages);
+    // if (isset($listHotestMonitors)) {
+    //     test_array($listHotestMonitors);
     // }
     ?>
   <!-- Banner Slider -->
@@ -55,10 +55,10 @@
           <?php
             $string = '';
             foreach ($monitorList as $key => $monitor) {
-                if(isset($_SESSION['user'])){
+                if (isset($_SESSION['user'])) {
                     $isLove = false;
-                    foreach ($loveList as $keyLove=> $loveMonitor) {
-                        if($loveMonitor['id_monitor'] === $monitor['id_monitor']){
+                    foreach ($loveList as $keyLove => $loveMonitor) {
+                        if ($loveMonitor['id_monitor'] === $monitor['id_monitor']) {
                             $isLove = true;
                             break;
                         }
@@ -68,8 +68,8 @@
                 $string .= '
                     <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                         <div class="card text-center rounded-2 text-decoration-none card-body">
-                            <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="public/img/'. $listImages[$key]['path'] .'" class="card-img-top" style="height: 200px; object-fit: cover"
-                                    alt="'. $listImages[$key]['name'] .'" /></a>
+                            <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="public/img/' . $listImages[$key]['path'] . '" class="card-img-top" style="height: 200px; object-fit: cover"
+                                    alt="' . $listImages[$key]['name'] . '" /></a>
                             <div class="text-start">
                                 <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000">
                                     <h5 class="card-title product-name">
@@ -91,21 +91,21 @@
                                 </div>
                                <div class="btn-favorite" style="cursor: pointer; height: 20px;">
                 ';
-                if(isset($isLove) && $isLove){
+                if (isset($isLove) && $isLove) {
                     // isLove = true : it is in love list monitor
                     $string .= '
                         <a href="index.php?action=deleteLoving&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: red;">
                             <i class="fa fa-heart ms-2" style="font-size: 21px; color: red"></i>
                         </a>
                     ';
-                }else if(isset($isLove) && !$isLove){
+                } else if (isset($isLove) && !$isLove) {
                     // isLove = false : not in love list monitor
                     $string .= '
                         <a href="index.php?action=addLoving&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000;">
                             <span class="material-symbols-outlined ms-2"> favorite </span>
                         </a>
                     ';
-                }else{
+                } else {
                     $string .= '
                         <a href="index.php?page=login" class="text-decoration-none" style="color: #000;">
                             <span class="material-symbols-outlined ms-2"> favorite </span>
@@ -135,16 +135,25 @@
       <div class="row row-cols-1 row-cols-md-4 g-4">
           <?php
             $string = '';
-            foreach ($monitorList as $key => $monitor) {
+            foreach ($listHotestMonitors as $key => $monitor) {
+                if (isset($_SESSION['user'])) {
+                    $isLove = false;
+                    foreach ($loveList as $keyLove => $loveMonitor) {
+                        if ($loveMonitor['id_monitor'] === $monitor['id_monitor']) {
+                            $isLove = true;
+                            break;
+                        }
+                    }
+                }
                 $string .= '
                     <div class="col h-100 col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                         <div class="card text-center rounded-2 text-decoration-none card-body">
-                            <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="./imgduan1/dell1.jpg" class="card-img-top" style="height: 200px; object-fit: cover"
+                            <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '"><img src="public/img/' . $monitor['path'] . '" alt="' . $monitor['name_image'] . '" class="card-img-top" style="height: 200px; object-fit: cover"
                                     alt="Product Image" /></a>
                             <div class="text-start">
                                 <a href="index.php?page=detail&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000">
                                     <h5 class="card-title product-name">
-                                    ' . $monitor['name'] . ' ' . $monitor['screen_solution_name'] . ' ' . $monitor['number'] . ' inch
+                                    ' . $monitor['name'] . ' ' . $monitor['size'] . ' inch
                                     </h5>
                                 </a>
                                 <p class="card-text text-danger fw-bold">' . number_format($monitor['price'], 0, ',', '.') . '₫</p>
@@ -161,13 +170,30 @@
                                     <i class="fa fa-star"></i>
                                 </div>
                                 <div class="btn-favorite" style="cursor: pointer; height: 20px;">
-                                    <a href="#" class="text-decoration-none" style="color: #000;">
-                                        <span class="material-symbols-outlined ms-2"> favorite </span>
-                                    </a>
-                                    <!-- <a href="#" class="text-decoration-none" style="color: red;">
-                                        <i class="fa fa-heart ms-2" style="font-size: 21px; color: red"></i>
-                                    </a> -->
-                            </div>
+                ';
+                if (isset($isLove) && $isLove) {
+                    // isLove = true : it is in love list monitor
+                    $string .= '
+                        <a href="index.php?action=deleteLoving&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: red;">
+                            <i class="fa fa-heart ms-2" style="font-size: 21px; color: red"></i>
+                        </a>
+                    ';
+                } else if (isset($isLove) && !$isLove) {
+                    // isLove = false : not in love list monitor
+                    $string .= '
+                        <a href="index.php?action=addLoving&id=' . $monitor['id_monitor'] . '" class="text-decoration-none" style="color: #000;">
+                            <span class="material-symbols-outlined ms-2"> favorite </span>
+                        </a>
+                    ';
+                } else {
+                    $string .= '
+                        <a href="index.php?page=login" class="text-decoration-none" style="color: #000;">
+                            <span class="material-symbols-outlined ms-2"> favorite </span>
+                        </a>
+                    ';
+                }
+                $string .= '
+                                </div>
                             </div>
                         </div>
                     </div>

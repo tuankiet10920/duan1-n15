@@ -1,6 +1,7 @@
 <?php
 class HomeModel
 {
+    private $listMonitorHotest;
     private $listMonitor;
     public function getAll($table)
     {
@@ -69,5 +70,18 @@ class HomeModel
         $data = new ConnectModel();
         $sql = "insert into love values (null, $idUser, $idMonitor)";
         $data->add($sql);
+    }
+
+    public function getHotestMonitor(){
+        include_once 'models/connectModel.php';
+        $data = new ConnectModel();
+        $sql = "select monitor.id_monitor, monitor.name, monitor.price, monitor.size from bill_detail
+        inner join monitor on bill_detail.id_monitor = monitor.id_monitor group by bill_detail.id_monitor order by count(bill_detail.id_monitor) desc limit 4;";
+        $list = $data->selectall($sql);
+        foreach ($list as $key => $monitor) {
+            $image = $data->selectWithId("select path, name as name_image from images where id_monitor = :id limit 1;", $monitor['id_monitor']);
+            $list[$key] = [...$monitor, 'path' => $image[0]['path'], 'name_image' => $image[0]['name_image']];
+        }
+        return $list;
     }
 }

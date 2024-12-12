@@ -22,13 +22,21 @@ class LoginController {
                             'id' => $userExist[0]['id_user'],
                             'name' => $userExist[0]['name']
                         ];
-                        header('location: index.php');
+                        $reload = '
+                            <script>
+                                window.location.href="http://localhost:8080/duan1-n15/index.php";
+                            </script>
+                        ';
                     }else{
                         $_SESSION['admin'] = [
                             'id' => $userExist[0]['id_user'],
                             'name' => $userExist[0]['name']
                         ];
-                        header('location: index.php?page=admin');
+                        $reload = '
+                            <script>
+                                window.location.href="http://localhost:8080/duan1-n15/index.php?page=admin";
+                            </script>
+                        ';
                     }
                     
                 }

@@ -124,7 +124,7 @@
                 <span class="material-symbols-outlined"> chevron_right </span>
               </a>
               <a
-                href=""
+                href="index.php?page=admin&content=bill"
                 class="text-decoration-none left-content-box d-flex justify-content-between text-white align-items-center mb-2 select-entity"
               >
                 <div
@@ -141,7 +141,7 @@
                       photo_library
                     </span>
                   </div>
-                  <p class="mb-0">Images</p>
+                  <p class="mb-0">Bills</p>
                 </div>
                 <span class="material-symbols-outlined"> chevron_right </span>
               </a>

@@ -69,7 +69,7 @@ class PayModel
         include_once 'models/connectModel.php';
         $data = new ConnectModel();
         $data->ketnoi();
-        $sql = "update bill set price = $price, status = 1 where id_bill = :id_bill;";
+        $sql = "update bill set date_time = current_timestamp(), price = $price, status = 1 where id_bill = :id_bill;";
         $stmt = $data->conn->prepare($sql);
         // bindParam
         $stmt->bindParam(":id_bill", $idBill);

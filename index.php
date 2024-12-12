@@ -414,7 +414,31 @@ switch ($page) {
                 $adminMonitorController = new AdminMonitorController($action, $id, $name, $price, $typeScreen, $responseTime, $inStock, $gurantee, $size, $status, $brand, $colorSpace, $basePlate, $screenSolution, $scanFrequency, $descibe, $images);
                 $adminMonitorController->index();
                 break;
-            
+            case 'bill':
+                $username = $price = $priceFrom = $priceTo = $dayFrom = $monthFrom = $yearFrom = $dayEnd = $monthEnd = $yearEnd = $hourFrom = $minuteFrom = $hourTo = $minuteTo = $phone = $status = '';
+                if(isset($_POST['filter'])){
+                    $action = $_GET['action'];
+                    $username = $_POST['username'];
+                    $price = $_POST['price'];
+                    $priceFrom = $_POST['priceFrom'];
+                    $priceTo = $_POST['priceTo'];
+                    $dayFrom = $_POST['dayFrom'];
+                    $monthFrom = $_POST['monthFrom'];
+                    $yearFrom = $_POST['yearFrom'];
+                    $dayEnd = $_POST['dayEnd'];
+                    $monthEnd = $_POST['monthEnd'];
+                    $yearEnd = $_POST['yearEnd'];
+                    $hourFrom = $_POST['hourFrom'];
+                    $minuteFrom = $_POST['minuteFrom'];
+                    $hourTo = $_POST['hourTo'];
+                    $minuteTo = $_POST['minuteTo'];
+                    $phone = $_POST['phone'];
+                    $status = $_POST['status'];
+                }
+                include_once 'controllers/AdminBillController.php';
+                $adminBillController = new AdminBillController($action, $username, $price, $priceFrom, $priceTo, $dayFrom, $monthFrom, $yearFrom, $dayEnd, $monthEnd, $yearEnd, $hourFrom, $minuteFrom, $hourTo, $minuteTo, $phone, $status);
+                $adminBillController->index();
+                break;
             default: // dashboard admin
                 include_once 'controllers/AdminDashboardController.php';
                 $adminDashboardController = new AdminDashboardController($action);

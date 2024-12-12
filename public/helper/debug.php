@@ -86,3 +86,10 @@ function seperateDayInData($stringDayInData)
     ];
 }
 
+function getIndex($array, $valueNeedFind){
+    for ($i=0; $i < count($array); $i++) { 
+        if($array[$i] === $valueNeedFind){
+            return $i;
+        }
+    }
+}

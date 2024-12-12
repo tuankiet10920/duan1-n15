@@ -19,7 +19,7 @@ class AdminDashboardModel {
         $billAndUser = [];
         $bills = $data->selectall("select date_time, price, user.name from bill inner join user on bill.id_user = user.id_user where bill.status = 1 order by date_time desc limit 5;");
         $billAndUser = [...$billAndUser, 'lastedBills' => $bills];
-        $users = $data->selectall("select name, phone, gender from user limit 5;");
+        $users = $data->selectall("select name, phone, gender from user where status = 0 limit 5;");
         $billAndUser = [...$billAndUser, 'lastedUsers' => $users];
         return $billAndUser;
     }

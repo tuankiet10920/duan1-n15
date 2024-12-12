@@ -54,12 +54,12 @@ create table monitor(
 -- insert into monitor values (null, 'name', 1000000, typeScreen, respensetime, instock, gurantee, size, describe_monitor, status, brand, color_space, base_plate, screen_solution, scan_frequency);
 -- insert into images values (null, path, name, id_monitor);
 -- select id_monitor from monitor order by id_monitor desc limit 1;
-select * from monitor;
+-- select * from monitor;
 -- update montitor set name = name, price = price, type_screen = type_screen, 
 -- response_time = response_time, in_stock = in_stock, gurantee = gurantee, size = size,
 -- describe_monitor = describe_monitor, status = status, brand = brand, color_space = color_space,
 -- base_plate = base_plate, screen_solution = screen_solution, scan_frequency = scan_frequency where id_monitor = 1;
-select * from images where id_monitor = 3;
+-- select * from images where id_monitor = 3;
 
 -- update images set path = '', name = '' where id_image = 1;
 -- update monitor set status = 1 where id_monitor = 9;
@@ -68,10 +68,17 @@ create table connection_port_monitor(
     id_connection_port int,
     id_monitor int
 );
-select * from monitor where name like '%MAn HINH%';
-select distinct images.path as path_image, images.name as name_image, monitor.name as name_monitor, monitor.id_monitor from images inner join monitor
-on images.id_monitor = monitor.id_monitor
-group by images.id_monitor having monitor.name like '%MAn HINH%';
+-- select * from monitor where name like '%MAn HINH%';
+-- select distinct images.path as path_image, images.name as name_image, monitor.name as name_monitor, monitor.id_monitor from images inner join monitor
+-- on images.id_monitor = monitor.id_monitor
+-- group by images.id_monitor having monitor.name like '%MAn HINH%';
+
+-- select date_time, price, user.name from bill inner join user on bill.id_user = user.id_user where bill.status = 1 order by date_time desc limit 5;
+-- select * from bill;
+-- select count(id_monitor), bill_detail.* from bill_detail group by id_monitor;
+
+-- select count(bill_detail.id_monitor) as quality, monitor.id_monitor, monitor.name, monitor.status from bill_detail
+-- inner join monitor on bill_detail.id_monitor = monitor.id_monitor group by bill_detail.id_monitor having monitor.status = 1 order by count(bill_detail.id_monitor) desc limit 4;
 -- SET FOREIGN_KEY_CHECKS=1;delete from monitor where id_monitor = 8;
 -- select * from bill_detail;
 -- select * from user;
@@ -82,6 +89,14 @@ create table images(
  name varchar(255),
  id_monitor int
 );
+
+
+
+-- select bill.id_bill, bill.date_time as time, bill.price, user.name, user.phone, bill.status from bill inner join user
+-- on bill.id_user = user.id_user where day(bill.date_time) between 12 and 6;
+
+-- select bill.id_bill, bill.date_time as time, bill.price, user.name, user.phone, bill.status from bill inner join user on bill.id_user = user.id_user
+ -- where day(date_time) between 1 and 11 and month(date_time) between 12 and 12 and year(date_time) between 2012 and 2024;
 
 -- select * from bill where id_user = 1;
 
@@ -100,33 +115,28 @@ create table user(
  status boolean
 );
 
--- insert into user values (null, 'Kiet Nguyen', '0123123123', null, 0, 'tuankiet10920@gmail.com', 'admin123', null, null, null, 1);
-select monitor.id_monitor, monitor.name, monitor.price, monitor.type_screen, monitor.response_time, monitor.in_stock, monitor.gurantee, monitor.in_stock, monitor.size, 
-monitor.describe_monitor, monitor.status, brand.name as brand_name, color_space.name as color_space_name, base_plate.name as base_plate_name, screen_solution.name as screen_solution_name, scan_frequency.number as scan_frequency_number from monitor
-inner join brand on monitor.brand = brand.id_brand
-inner join color_space on monitor.color_space = color_space.id_color_space
-inner join base_plate on monitor.base_plate = base_plate.id_base_plate
-inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
-inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency;
-select * from bill where status = 1;
+
+-- select monitor.id_monitor, monitor.name, monitor.price, monitor.type_screen, monitor.response_time, monitor.in_stock, monitor.gurantee, monitor.in_stock, monitor.size, 
+-- monitor.describe_monitor, monitor.status, brand.name as brand_name, color_space.name as color_space_name, base_plate.name as base_plate_name, screen_solution.name as screen_solution_name, scan_frequency.number as scan_frequency_number from monitor
+-- inner join brand on monitor.brand = brand.id_brand
+-- inner join color_space on monitor.color_space = color_space.id_color_space
+-- inner join base_plate on monitor.base_plate = base_plate.id_base_plate
+-- inner join screen_solution on monitor.screen_solution = screen_solution.id_screen_solution
+-- inner join scan_frequency on monitor.scan_frequency = scan_frequency.id_scan_frequency;
+-- select * from bill where status = 1;
 -- update user set name = '', phone = '', image = '', gender = 0, emnail = '', password = '', birthday = '', address = '', nick_name = '', status = 0 where id_user = 1;
 -- insert into user values
 -- (null, 'nguyen van a', '14541531435','cc.cc', null, 'vananguyen@gmail.com', 'dasdsadad415364153', null, null, 0);
 
-select * from images;
+-- select * from images;
 
-select * from monitor;
+-- select * from monitor;
 
-select * from scan_frequency;
+-- select * from scan_frequency;
 
+-- select * from bill where day(date_time) >= day(curdate()) - 5;
 -- update monitor set status = 1 where id_monitor = 1;
 
-create table phone_number(
- id_phone_number int primary key auto_increment,
- phone_number varchar(11),
- status boolean,
- id_user int
-);
 -- select name from user where id_user = 2;
 create table bill(
  id_bill int primary key auto_increment,
@@ -135,7 +145,7 @@ create table bill(
  status boolean,
  id_user int
 );
-select * from bill;
+-- select * from bill;
 -- update bill set price = 0 and status = 1 where id_bill = 1;
 -- select * from user;
 -- select images.path as path_image, images.name as name_image, monitor.id_monitor, monitor.name, monitor.price from images inner join monitor on images.id_monitor = monitor.id_monitor where monitor.id_monitor = 1 limit 1;
@@ -202,13 +212,6 @@ create table love(
 -- delete from love where id_monitor = 1 and id_user = 1;
 -- delete from love;
 
-create table views(
- id_views int primary key auto_increment,
- date_time datetime,
- id_user int,
- id_monitor int
-);
-
 create table voucher(
  id_voucher int primary key auto_increment,
  name varchar(255),
@@ -271,9 +274,6 @@ ADD CONSTRAINT FK_images
 FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 
 
-ALTER TABLE phone_number
-ADD CONSTRAINT FK_phone_number
-FOREIGN KEY (id_user) REFERENCES user(id_user);
 
 ALTER TABLE bill
 ADD CONSTRAINT FK_bill
@@ -313,14 +313,6 @@ FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
 
 ALTER TABLE love
 ADD CONSTRAINT FK2_love
-FOREIGN KEY (id_user) REFERENCES user(id_user);
-
-ALTER TABLE views
-ADD CONSTRAINT FK1_views
-FOREIGN KEY (id_monitor) REFERENCES monitor(id_monitor);
-
-ALTER TABLE views
-ADD CONSTRAINT FK2_views
 FOREIGN KEY (id_user) REFERENCES user(id_user);
 
 insert into brand values
@@ -434,6 +426,10 @@ insert into voucher values
 (null, 'MUADONG2', 5000, 0, 20, '2024-11-26', '2024-11-30', null),
 (null, 'MUADONG2', 7000, 0, 20, '2024-11-26', '2024-11-30', 1),
 (null, 'MUADONG3', 1, 1, 20, '2024-11-26', '2024-11-30', 2);
+
+
+
+insert into user values (null, 'Kiet Nguyen', '0123123123', null, 0, 'tuankiet10920@gmail.com', 'admin123', null, null, null, 1);
 -- select * from voucher;
 -- update voucher set value = 1 where id_voucher = 4;
 -- check id monitor of comment
@@ -451,6 +447,6 @@ insert into voucher values
 -- select comment.*, user.name from comment inner join user on comment.id_user = user.id_user where id_monitor = 3 order by date_time asc;
 -- SET FOREIGN_KEY_CHECKS=1; delete from comment;
 
-select count(id_bill) as number_of_monitors from bill;
-select date_time, price, user.name from bill inner join user on bill.id_user = user.id_user where bill.status = 1 order by date_time desc limit 5;
-select name, phone, gender from user limit 5;
+-- select count(id_bill) as number_of_monitors from bill;
+-- select date_time, price, user.name from bill inner join user on bill.id_user = user.id_user where bill.status = 1 order by date_time desc limit 5;
+-- select name, phone, gender from user limit 5;

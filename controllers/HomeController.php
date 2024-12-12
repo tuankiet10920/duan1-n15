@@ -28,6 +28,7 @@ class HomeController{
         $loveList = $homeModel->getAllFavorite($this->idUser);
         // list images monitors
         $listImages = $homeModel->getAllImageMonitors();
+        $listHotestMonitors = $homeModel->getHotestMonitor();
         include_once 'views/home.php';
     }
 }
